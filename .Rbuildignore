@@ -1,0 +1,4 @@
+^LICENSE\.md$
+^LICENSE_CONTENT\.md$
+^.*\.Rproj$
+^\.gitignore$

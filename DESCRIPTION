@@ -1,0 +1,21 @@
+Package: flemolymp
+Title: Flemme Olympique - Interactive operations research workshops for Terra Numerica
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Arnaud", "Malapert", , "arnaud.malapert@univ-cotedazur.fr", role = c("aut", "cre")),
+    person("Marie", "Pelleau", , "marie.pelleau@univ-cotedazur.fr", role = "aut"),
+    person("Alexia", "Gastaud", , "alexia.gastaud@etu.univ-cotedazur.fr", role = "ctb"),
+    person(, "Université Côte d'Azur", role = "cph")
+  )
+Description: Flemme Olympique offers a hands-on introduction to the subset sum problem in operations research. Participants create Olympic-style highlight videos, combining computational thinking with creative storytelling at Terra Numerica.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Language: en
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+URL: https://github.com/arnaud-m/flemolymp
+BugReports: https://github.com/arnaud-m/flemolymp/issues
