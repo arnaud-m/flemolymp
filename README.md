@@ -1,8 +1,8 @@
 # Flemme Olympique - Interactive Operations Research Workshops for Terra Numerica
 
 <!-- badges: start -->
-\[\![License: MIT](<https://img.shields.io/badge/License-MIT-yellow.svg>)\](LICENSE.md)
-\[\![License: CC BY 4.0](<https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg>)\](LICENSE_CONTENT.md)
+[![License: MIT](<https://img.shields.io/badge/License-MIT-yellow.svg>)](LICENSE.md)
+[![License: CC BY 4.0](<https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg>)](LICENSE_CONTENT.md)
 <!-- badges: end -->
 
 
