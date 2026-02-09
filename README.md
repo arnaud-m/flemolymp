@@ -9,7 +9,7 @@
 The goal of **flemolymp** is to provide a hands-on introduction to the **subset sum problem** in operations research.
 
 Participants tackle computational challenges while creating **Olympic-style highlight videos**, combining **algorithmic thinking** with **creative storytelling**. This activity is designed for **Terra Numerica**, offering an engaging way to explore optimization concepts in a playful and interactive setting.
-The goal of flemolymp is to ...
+
 
 ## Installation
 
@@ -31,7 +31,7 @@ library(flemolymp)
 
 # Licenses
 
-- The R code is licensed under the **MIT License**. See `LICENSE` for details.
+- The R code is licensed under the **MIT License**. See `LICENSE.md` for details.
 - Pedagogical content (images, text, diagrams) is licensed under **CC BY 4.0**. See `LICENSE_CONTENT.md` for details.
 
 Copyright 2026 Université Côte d'Azur. All rights reserved.
