@@ -19,14 +19,14 @@
 ##' @export
 IteratedGreedySearchSSP <- function(sizes, capacity = sum(sizes) %/% 2, iterations = length(sizes), tikz = FALSE) {
     solution <- GreedySearchSSP(sizes, capacity)
-    if(tikz) ExportTikZ(solution, sizes, capacity, picY = 0)
+    if(tikz) ExportTikz(solution, sizes, capacity, picY = 0)
     iterations <- max(1, min(length(sizes), iterations))
     if(iterations > 1 && !IsFeasible(solution, sizes, capacity)) {
         for(i in seq(1, iterations - 1)) {
             restrictedSizes <- tail(sizes, -i)
             restrictedSolution <- GreedySearchSSP(restrictedSizes, capacity)
             solution <- c(rep(NA, i), restrictedSolution)
-            if(tikz) ExportTikZ(solution, sizes, capacity, picY = -4 * i)
+            if(tikz) ExportTikz(solution, sizes, capacity, picY = -4 * i)
             if(IsFeasible(solution, sizes, capacity) ||
                isTRUE(restrictedSolution)) {
                 return(solution)

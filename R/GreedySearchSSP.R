@@ -29,7 +29,7 @@ GreedySearchSSP <- function(sizes, capacity, tikz = FALSE) {
         } else {
             solution[i] <- NA
         }
-        if(tikz) ExportTikZ(solution, sizes, capacity, picY = -2 * i)
+        if(tikz) ExportTikz(solution, sizes, capacity, picY = -2 * i)
         if(total == capacity) return(solution)
     }
     return(solution)
