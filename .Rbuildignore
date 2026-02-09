@@ -2,3 +2,4 @@
 ^LICENSE_CONTENT\.md$
 ^.*\.Rproj$
 ^\.gitignore$
+^data-raw$

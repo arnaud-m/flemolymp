@@ -22,7 +22,7 @@ IteratedGreedySearchSSP <- function(sizes, capacity = sum(sizes) %/% 2, iteratio
     iterations <- max(1, min(length(sizes), iterations))
     if(iterations > 1 && !IsFeasible(solution, sizes, capacity)) {
         for(i in seq(1, iterations - 1)) {
-            restrictedSizes <- utils::tail(sizes, -i)
+            restrictedSizes <- tail(sizes, -i)
             restrictedSolution <- GreedySearchSSP(restrictedSizes, capacity)
             solution <- c(rep(NA, i), restrictedSolution)
             if(tikz) ExportTikz(solution, sizes, capacity, picY = -4 * i)
