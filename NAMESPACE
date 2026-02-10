@@ -3,6 +3,7 @@
 export(DynamicProgrammingSSP)
 export(GetSolutionDP)
 export(GreedySearchSSP)
+export(HalfSum)
 export(IsFeasible)
 export(IteratedGreedySearchSSP)
 export(SummarySSP)
