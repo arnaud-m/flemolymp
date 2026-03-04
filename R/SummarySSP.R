@@ -18,6 +18,7 @@ SummarySSP <-function(sizes, capacity) {
     solGS <- GreedySearchSSP(sizes, capacity)
     solMTGS <- IteratedGreedySearchSSP(sizes, capacity)
     tableDP <- DynamicProgrammingSSP(sizes, capacity)
+    solCount <- DynamicProgrammingEnumSSP(sizes, capacity)
 
     results <- data.frame(
         IN.n = length(sizes),
@@ -27,7 +28,8 @@ SummarySSP <-function(sizes, capacity) {
         MTGS.status = IsFeasible(solMTGS, sizes, capacity),
         MTGS.iterations = head(which(solMTGS == TRUE), 1),
         DP.status = tail(tableDP, 1) > 0,
-        DP.iterations = max(tail(tableDP, -1))
+        DP.iterations = max(tail(tableDP, -1)),
+        DP.solutions = solCount
     )
     type <- ifelse(results$DP.status,
                  ifelse(results$MTGS.status,
