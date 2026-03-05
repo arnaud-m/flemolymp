@@ -1,6 +1,6 @@
-##' First Fit Greedy Search for the Subset Sum Problem
+##' Summary statistics for solving the Subset Sum Problem
 ##'
-##' This function applies the first fit greedy algorithm for the subset sum problem.
+##' This function applies multiple algorithms (GS, MTGS, DP) for solving the subset sum problem and reports performance statistics.
 ##'
 ##' @inheritParams IsFeasible
 ##' @return A single-row data frame with summary performance metrics for the GS, MTGS, and DP algorithms.
@@ -23,13 +23,15 @@ SummarySSP <-function(sizes, capacity) {
     results <- data.frame(
         IN.n = length(sizes),
         IN.capa = capacity,
+        IN.dups = sum(duplicated(sizes)),
         GS.status = IsFeasible(solGS, sizes, capacity),
         GS.iterations = sum(is.na(solGS) | solGS),
         MTGS.status = IsFeasible(solMTGS, sizes, capacity),
         MTGS.iterations = head(which(solMTGS == TRUE), 1),
         DP.status = tail(tableDP, 1) > 0,
         DP.iterations = max(tail(tableDP, -1)),
-        DP.solutions = solCount
+        DP.solutions = solCount,
+        DP.density = mean(tableDP > 0)
     )
     type <- ifelse(results$DP.status,
                  ifelse(results$MTGS.status,
