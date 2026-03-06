@@ -2,11 +2,13 @@
 
 export(DynamicProgrammingEnumSSP)
 export(DynamicProgrammingSSP)
+export(GenerateInstances)
 export(GetSolutionDP)
 export(GreedySearchSSP)
 export(HalfSum)
 export(IsFeasible)
 export(IteratedGreedySearchSSP)
+export(SummaryInstances)
 export(SummarySSP)
 importFrom(utils,head)
 importFrom(utils,tail)
