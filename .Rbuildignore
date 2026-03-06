@@ -3,3 +3,4 @@
 ^.*\.Rproj$
 ^\.gitignore$
 ^data-raw$
+^manuel$
