@@ -69,81 +69,128 @@
 
 \section{Description du problème}
 
+\begin{definition}{Sac d'entiers}
+  Un \emph{sac d'entiers} est une collection d'entiers naturels dans laquelle un même nombre peut apparaître plusieurs fois.
 
-  \begin{definition}{Partition d'un ensemble}
-    Un \emph{multiensemble} (parfois appelé sac) est un ensemble dans lequel chaque élément peut apparaître plusieurs fois.
-    Soit un multiensemble $S$ de $n$ entiers naturels :
+  Par exemple, le sac
+  $$S = \{1,2,2,5\}$$
+  contient quatre entiers et le nombre $2$ apparaît deux fois.
 
-    $$S = \{s_i\ |\ s_i > 0\}_{1\leq i \leq n}.$$
+  Plus généralement, un sac $S$ de $n$ entiers naturels peut être noté
+  $$S = \{s_1,s_2,\dots,s_n\}$$
+  où chaque $s_i$ est un entier strictement positif.
+\end{definition}
 
-    Une \emph{(bi)partition} de $S$ est constituée de deux sous-multiensembles $S_1$ et $S_2$ tels que :
-    \begin{itemize}
-      \item $S_1$ et $S_2$ sont non vides:  $S_1 \neq \emptyset$ et $S_2 \neq \emptyset$ ;
-      \item $S_1$ et $S_2$ sont disjoints:  $S_1 \cap S_2 = \emptyset$ ;
-      \item $S_1$ et $S_2$ recouvrent $S$:  $S_1 \cup S_2 = S$.
-    \end{itemize}
-  \end{definition}
+\begin{definition}{Partition d'un sac}
+  Une \emph{partition} d'un sac $S$ consiste à séparer les éléments de $S$
+  en deux sacs non vides $S_1$ et $S_2$.
+  Chaque élément du sac initial doit apparaître dans \emph{exactement un} des deux sacs.
+  \\
+  Autrement dit :
+  \begin{itemize}
+  \item $S_1$ et $S_2$ sont non vides; %: $S_1 \neq \emptyset$ et $S_2 \neq \emptyset$ ;
+  \item $S_1$ et $S_2$ sont disjoints (aucun entier n'apparaît dans les deux sacs) ; %:  $S_1 \cap S_2 = \emptyset$) ;
+  \item $S_1$ et $S_2$ recouvrent $S$:  tous les éléments de $S$ apparaissent dans $S_1$ ou $S_2$.
+  \end{itemize}
+\end{definition}
+
 
   \begin{exemple}{Partition d'un ensemble}
-    Soit un multiensemble $S = \{1,2,3,4,5\}$.
+    Soit un sac$S = \{1,2,3,4,5\}$.
     \begin{itemize}
-      \item Les multiensembles $S_1$ et $S_2$ forment une partition de $S$.
+      \item Les sacs $S_1$ et $S_2$ forment une partition de $S$.
         \begin{itemize}
           \item $S_1 = \{1\}$ et $S_2 = \{2,3,4,5\}$
           \item $S_1 = \{2, 4\}$ et $S_2 = \{1,3,5\}$
         \end{itemize}
-      \item Les multiensembles $S_1$ et $S_2$ ne forment pas une partition de $S$.
+      \item Les sacs $S_1$ et $S_2$ ne forment pas une partition de $S$.
         \begin{itemize}
           \item $S_1 = \{1,2,3,4,5\}$ et $S_2 = \emptyset$, car $S_2$ est vide.
-          \item $S_1 = \{1,2,3\}$ et $S_2 = \{3,4,5\}$, car leur intersection est non vide.
-          \item $S_2 = \{1,2\}$ et $S_2 = \{4, 5\}$, car 3 est dans $S$, mais n'appartient ni à $S_1$ ni à $S_2$.
+          \item $S_1 = \{1,2,3\}$ et $S_2 = \{3,4,5\}$, car le nombre 3 apparaît dans les deux sacs.
+          \item $S_2 = \{1,2\}$ et $S_2 = \{4, 5\}$, car le nombre 3 n'apparaît dans aucun des deux sacs.
         \end{itemize}
     \end{itemize}
   \end{exemple}
 
-  \begin{definition}{Partition parfaite d'un multiensemble pair}
-    Un multiensemble d'entiers $S$ est dit \emph{pair} si la somme des entiers de $S$ est paire.
+  \begin{definition}{Partition parfaite d'un sac pair}
+    Un sac d'entiers $S$ est dit \emph{pair} si la somme de tous ses entiers est un nombre pair.
 
-    Une \emph{partition parfaite} d'un multiensemble pair est une partition telle que la valeur absolue de la différence entre la somme des entiers de $S_1$ et la somme des entiers de $S_2$ est 0.
+    Une \emph{partition parfaite} d'un sac pair est une partition $(S_1,S_2)$ telle que
+    la somme des entiers de $S_1$ est égale à la somme des entiers de $S_2$.
   \end{definition}
 
-  \begin{exemple}{Partition parfaite d'un multiensemble pair}
-    $S = \{1,2,3,4\}$ est un multiensemble pair.
+  \begin{exemple}{Partition parfaite d'un sac pair}
+    $S = \{1,2,3,4\}$ est un sac  pair.
     \begin{itemize}
-      \item $S_1 = \{1,3\}$ et $S_2 = \{2,4\}$ ne forment pas une partition parfaite.
-      \item $S_1 = \{1,4\}$ et $S_2 = \{2,3\}$ forment une partition parfaite.
+      \item $S_1 = \{1,3\}$ et $S_2 = \{2,4\}$ ne forment pas une partition parfaite, car $1 + 3 \neq 2 + 4$.
+      \item $S_1 = \{1,4\}$ et $S_2 = \{2,3\}$ forment une partition parfaite $1 + 4 = 2 + 3$.
     \end{itemize}
   \end{exemple}
 
-  \begin{definition}{Partition parfaite d'un multiensemble impair}
-    Un multiensemble d'entiers $S$ est dit \emph{impair} si la somme des entiers de $S$ est impaire.
+  \begin{definition}{Partition parfaite d'un sac impair}
 
-    Une \emph{partition parfaite} d'un multiensemble impair est une partition telle que la valeur absolue de la différence entre la somme des entiers de $S_1$ et la somme des entiers de $S_2$ est 1.
+    Un sac d'entiers $S$ est dit \emph{impair} si la somme de tous ses entiers est un nombre impair.
+
+    Une \emph{partition parfaite} d'un sac impair est une partition $(S_1,S_2)$ telle que
+    la différence entre la somme des entiers de $S_1$ et celle de $S_2$ est égale à $1$.
+
+    En effet, lorsque la somme totale est impaire, il est impossible de partager les
+    entiers en deux sacs ayant exactement la même somme. La meilleure partition
+    possible est donc celle où les deux sommes diffèrent de $1$.
   \end{definition}
 
-  \begin{exemple}{Partition parfaite d'un multiensemble impair}
-    $S = \{1,2,3,4, 5\}$ est un multiensemble impair.
+  \begin{exemple}{Partition parfaite d'un sac impair}
+
+    Le sac $S = \{1,2,3,4,5\}$ est impair car $1+2+3+4+5 = 15$.
 
     \begin{itemize}
-      \item $S_1 = \{2, 4\}$ et $S_2 = \{1,3,5\}$ ne forment pas une partition parfaite.
-      \item $S_1 = \{1, 2, 5\}$ et $S_2 = \{3,4\}$ forment une partition parfaite.
+    \item $S_1 = \{2,4\}$ et $S_2 = \{1,3,5\}$ ne forment pas une partition parfaite,
+      car $2 + 4 = 6$ et $1 + 3 + 5 = 9$.
+
+    \item $S_1 = \{1,2,5\}$ et $S_2 = \{3,4\}$ forment une partition parfaite,
+      car $1 + 2 + 5 = 8$ et $3 + 4 = 7$, et la différence entre les deux sommes est $1$.
     \end{itemize}
+
   \end{exemple}
 
   \begin{definition}{Problème de partitionnement}
-    En informatique, le problème de partitionnement consiste à déterminer si une partition parfaite d'un ensembles d'entiers existe. C'est un problème \emph{NP-complet}. Cependant, il existe plusieurs algorithmes qui résolvent efficacement le problème que ce soit de manière approchée ou optimale. Pour ces raisons, il est réputé
+    En informatique, le problème de partitionnement consiste à déterminer si une partition parfaite d'un sac d'entiers existe.
+
+    Ce problème est connu pour être \emph{difficile} en informatique théorique et est classé comme \emph{NP-complet}.
+    \begin{compactitem}
+    \item Si l'on nous fournit une partition candidate, on peut rapidement vérifier
+      qu'elle est correcte ou non ;
+    \item mais trouver une partition parfaite pour n'importe quel sac peut être très difficile.
+    \end{compactitem}
+
+
+    Cependant, plusieurs algorithmes permettent de le résoudre de manière efficace pour des instances de taille raisonnable, soit exactement, soit approximativement.
+    Pour cette raison, on l'appelle parfois :
     \begin{center}
       \emph{le plus facile des problèmes difficiles}.
     \end{center}
 
 \end{definition}
-  % Le problème de partitionnement se décline aussi en problème d'optimisation dans lequel on recherche une partition minimisant la valeur absolue de la différence entre la somme des entiers des deux sous-ensembles de la partition.
-  % Ce problème d'optimisation est \emph{NP-difficile}.
 
-\begin{remarque}{}
+
+\begin{remarque}{Symétries du problème}
     Ce problème admet une symétrie évidente puisque l'on peut inverser la partition, c'est-à-dire échanger les ensembles $S_1$ et $S_2$.
-    De manière générale, on peut toujours échanger des objets entre $S_1$ et $S_2$ si cela ne change pas leurs sommes.
- \end{remarque}
+
+    De manière générale, on peut échanger des objets entre $S_1$ et $S_2$ tant que les sommes des deux sacs restent identiques.
+  \end{remarque}
+
+  \begin{exemple}{Symétries du problème}
+    soit le sac $S = \{1, 2, 4, 6, 8, 9\}$ et la partition parfaite de somme égale à 15.
+    $$S_1 = \{6, 9\}, \quad S_2 = \{1, 2, 4, 8\}.$$
+
+    \begin{description}
+    \item[Inveresion de la partition] On peut inverser la partition et les sommes restent identiques.
+      $$S_1 = \{1, 2, 4, 8\}, \quad S_2 = \{6, 9\}$$
+
+    \item[Échange partiel d'objets] On peut aussi échanger des objets sans changer les sommes, par exemple en remplaçant $6 \in S_1$ par $2,\ 4 \in S_2$.
+      $$S_1 = \{2, 4, 9\}, \quad S_2 = \{1, 6, 8\},$$
+      \end{description}
+  \end{exemple}
 
 \section{Partition parfaite des entiers de 1 à $n$}
 
