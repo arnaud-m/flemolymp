@@ -65,10 +65,6 @@
 \tableofcontents
 
 
-\begin{quote}
-  On croit comprendre en apprenant, on est plus confiant en écrivant, encore plus en enseignant… mais on en est vraiment sûr en programmant. \\
-  -- Alan J. Perlis
-\end{quote}
 
 
 \section{Bienvenue aux Flemmes Olympiques !}
@@ -85,15 +81,23 @@ Une vidéo trop longue ou trop courte peut bloquer tout le système, interrompre
 Au début, vous tentez d'organiser les séquences à la main, en espérant gagner du temps.
 Mauvaise idée. Les vidéos s'entrechoquent, certaines séquences débordent, d'autres restent à moitié inutilisées \dots et vous commencez à désespérer.
 
-Mais heureusement, votre ami Richard Ernest Bellman, maître incontesté des algorithmes, apparaît à la rescousse.
-Il vous promet qu'avec son aide, vous pourrez accomplir votre tâche lorsque c'est possible, et la plupart du temps dans un temps raisonnable, sauf dans les pires cas.
+Mais pas de panique ! Heureusement, Richard Ernest Bellman, maître des algorithmes, peut vous aider à trouver une partition parfaite lorsque c'est possible, et la plupart du temps dans un temps raisonnable, sauf dans les pires cas.
 
-Sa première leçon : simplifiez le problème. Considérez chaque séquence comme un objet réduit à sa seule durée et préparez-vous à appliquer des algorithmes plus ou moins retors selon les situations.
+Et pour vous guider, l’esprit d’Alan Jay Perlis, pionnier de la programmation et des langages informatiques, est là pour distiller ses conseils et réflexions sur les algorithmes \dots à travers ses fameuses épigrammes~\cite{Perlis1982}.
 
-Richard vous avertit cependant que l'efficacité et les gains de temps n'arriveront qu'après un sérieux effort pour comprendre le problème et dompter les différents algorithmes.
+Sa première leçon : simplifiez le problème.
+Considérez chaque séquence comme un objet réduit à sa seule durée et préparez-vous à appliquer des algorithmes plus ou moins retors selon les situations.
+
+Alan vous avertit cependant que l'efficacité et les gains de temps n'arriveront qu'après un sérieux effort pour comprendre le problème et dompter les algorithmes.
 Mais une fois ce coup de maître acquis, vous pourrez enfin profiter de votre flemme olympique \dots sans catastrophe vidéo.
 
-Prêts à devenir des champions de la flemme tout en domptant la puissance des algorithmes ?
+Prêts à devenir des champions de la flemme en domptant la puissance des algorithmes ?
+
+\begin{quote}
+  On croit comprendre en apprenant, on est plus confiant en écrivant, encore plus en enseignant… mais on en est vraiment sûr en programmant. \\
+  -- Alan J. Perlis
+\end{quote}
+
 
 \section{Description du problème}
 
@@ -224,6 +228,7 @@ Prêts à devenir des champions de la flemme tout en domptant la puissance des a
   \end{quote}
 
 
+  \textbf{TODO Insérer des médailles (chocolat, bronze, argent, or) pour la difficulté des différentes sections.}
 \section{Partition parfaite des entiers de 1 à $n$}
 
 
@@ -232,6 +237,27 @@ Prêts à devenir des champions de la flemme tout en domptant la puissance des a
   Trouver une partition parfaite des entiers de 1 à $n$ pour $n = 6, 7, 8, 9$.
 \end{exercice}
 
+\begin{remarque}{Somme des entiers de1 à $n$}
+  La somme des entiers de $1$ à $n$ vaut
+  $$1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}.$$
+
+  Une anecdote célèbre raconte que le mathématicien allemand
+  Carl Friedrich Gauss aurait découvert cette formule lorsqu’il
+  était encore écolier.
+
+  Son professeur lui aurait demandé de calculer la somme des entiers
+  de $1$ à $100$ afin d’occuper la classe pendant un moment.
+  Mais Gauss remarqua rapidement que l’on pouvait associer les
+  nombres par paires :
+  $$1 + 100 = 101,\quad 2 + 99 = 101,\quad 3 + 98 = 101,\ \dots$$
+
+  Chaque paire donne la même somme, $101$, et il y a $50$ paires.
+  La somme vaut donc $50 \times 101 = 5050.$
+
+  Ce raisonnement fonctionne pour tout $n$ et conduit à la formule générale $\frac{n(n+1)}{2}$.
+
+  Cette formule permet notamment de connaître rapidement la somme totale des objets, ce qui sera utile pour déterminer la capacité du sac dans les problèmes de partition.
+\end{remarque}
 
 \begin{exercice}{}
   Trouvez d'autres partitions parfaites en effectuant des échanges partiels d'entiers entre les deux sacs.
@@ -263,7 +289,6 @@ Prêts à devenir des champions de la flemme tout en domptant la puissance des a
 
 \section{Algorithme glouton}
 
-
 Jusqu'à présent, nous avons manipulé des sacs d'entiers sans leur donner de sens concret.
 Pour appliquer les algorithmes, nous allons maintenant considérer chaque entier comme la \emph{taille} d'un objet réel.
 
@@ -288,7 +313,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     \begin{itemize}
     \item Déterminer la capacité du sac.
     \item Trier les objets par ordre décroissant de taille.
-    \item  Tant qu'il reste des objets à placer :
+    \item Tant qu'il reste des objets à placer :
       \begin{itemize}
       \item placer le plus grand objet dans le sac si sa capacité le permet ;
       \item Sinon, retirer l'objet ;
@@ -298,15 +323,48 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \end{algorithme}
 
   \input{exs/ex1-GS}
+
+  \begin{remarque}{Nombre d'étapes de l'algorithme glouton}
+    Pour un ordre donné des objets, le glouton est très rapide :
+    \begin{itemize}
+    \item Chaque objet est examiné une seule fois pour être placé dans le sac ;
+    \item Le nombre d'étapes est donc proportionnel au nombre d'objets $n$.
+    \end{itemize}
+
+    En pratique, même pour plusieurs centaines d'objet le glouton
+    trouve une partition presque sans transpirer.
+  \end{remarque}
+
   \input{exs/ex2-GS}
 
   \begin{remarque}{À propos de l'algorithme glouton}
     \begin{itemize}
     \item On peut obtenir d'autres solutions en modifiant l'ordre dans lequel les objets sont considérés.
-    \item Certains ordres différents donnent la même solution. Par exemple, échanger les objets 8 et 7 dans la solution \#1 ne change pas la somme.
-    \item Répéter le glouton avec plusieurs ordres différents permet de générer plusieurs solutions distinctes.
+    \item Des ordres différents donnent parfois la même solution.
+    \item Répéter le glouton avec plusieurs ordres différents permet de générer plusieurs solutions.
     \end{itemize}
   \end{remarque}
+
+  \begin{exercice}
+    Appliquer l'algorithme glouton pour une partition parfaite des entiers de 1 à $n$ pour $n=15, 16$.
+  \end{exercice}
+
+  \textbf{TODO Insérer les solutions du glouton pour $n=15, 16$.}
+
+  \begin{remarque}{Glouton et partition des entiers de 1 à $n$}
+    L'algorithme glouton est optimal pour le problème de partition des entiers de $1$ à $n$ :
+    \begin{itemize}
+    \item il existe toujours une partition parfaite des entiers de $1$ à $n$ ;
+    \item l'algorithme glouton en trouve toujours une.
+    \end{itemize}
+
+    \emph{Preuve : } supposons qu'à une étape de l'algorithme on ne puisse pas placer l'entier $k$ dans le sac.
+    Dans ce cas, la capacité restante du sac est égale à la différence entre la capacité totale et la somme des entiers déjà placés dans le sac.
+
+    Or les entiers encore disponibles sont exactement $1,2,\dots,k$.
+    Il reste donc toujours un entier égal à cette capacité restante, que l'on peut placer dans le sac. L'algorithme peut donc toujours compléter le sac.
+  \end{remarque}
+
 
   \section{Algorithme glouton répété}
 
@@ -328,6 +386,16 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \end{algorithme}
 
   \input{exs/ex2-MTGS}
+
+  \begin{remarque}{À propos de l'algorithme glouton répété}
+    \begin{itemize}
+    \item L'algorithme glouton répété examine uniquement des solutions distinctes,
+      car à chaque itération le plus grand objet restant est éliminé avant
+      d'appliquer à nouveau l'algorithme glouton.
+    \item l'algorithme explore au plus $n$ solutions (une par objet éliminé).
+    \end{itemize}
+  \end{remarque}
+
   \input{exs/ex3-MTGS}
 
 
@@ -364,8 +432,37 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \end{algorithme}
 
   \input{exs/ex3-DP}
+
+  \begin{remarque}{Nombre d'étapes de la programmation dynamique}
+    L'algorithme de programmation dynamique est beaucoup plus gourmand en étapes
+    que les gloutons. Pour $n$ objets et une capacité $C$ du sac :
+    \begin{itemize}
+    \item Il faut examiner toutes les cases marquées pour chaque objet, et il y a au plus $C$ cases marquées ;
+    \item Le nombre d'étapes est donc proportionnel à $n \cdot C$, ce qui est bien plus que le glouton.
+    \end{itemize}
+
+    Cette complexité ne dépend pas seulement de la taille de l’entrée (le nombre d’objets),
+    mais aussi de leurs valeurs, ici la capacité du sac.
+    Pour des petites valeurs ou une capacité raisonnable, l’algorithme reste rapide,
+    mais pour de grandes valeurs, le temps de calcul peut devenir important.
+  \end{remarque}
+
   \input{exs/ex4-DP}
 
+
+  \textbf{Insérer devise shadok : S’il n’y a pas de solution, c’est qu’il n’y a pas de problème.
+    Zut, les images ne sont pas libres de droit.
+  }
+
+\begin{remarque}{Optimalité de la programmation dynamique}
+  L'algorithme de programmation dynamique garantit de trouver la partition la plus équilibrée :
+  \begin{itemize}
+  \item il trouve une partition parfaite si elle existe ;
+  \item sinon, il minimise la différence entre les sommes des deux sous-sacs.
+  \end{itemize}
+
+    On sacrifie la rapidité pour être sûr d’obtenir la solution optimale.
+\end{remarque}
 
   \section{Tester et Générer}
 
