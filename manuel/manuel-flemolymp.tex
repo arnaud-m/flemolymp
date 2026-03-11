@@ -16,6 +16,8 @@
 \usepackage{graphicx}
 \graphicspath{{./fig}}
 
+\usepackage[numbers,sort&compress]{natbib}
+
 \newif\ifdraftmode
 \draftmodetrue
 % \draftmodefalse
@@ -63,9 +65,10 @@
 \tableofcontents
 
 
-
-
-
+\begin{quote}
+  On croit comprendre en apprenant, on est plus confiant en écrivant, encore plus en enseignant… mais on en est vraiment sûr en programmant. \\
+  -- Alan J. Perlis
+\end{quote}
 
 \section{Description du problème}
 
@@ -190,7 +193,14 @@
       \end{description}
   \end{exemple}
 
+  \begin{quote}
+    La symétrie permet de réduire la complexité ; cherchez-la partout. \\
+    -- Alan J. Perlis
+  \end{quote}
+
+
 \section{Partition parfaite des entiers de 1 à $n$}
+
 
 
 \begin{exercice}{}
@@ -204,8 +214,8 @@
 
 
 \begin{definition}{Algorithme}
-  Un \emph{algorithme} est une suite d’étapes simples qui permet de résoudre un problème.
-  Le nombre d’étapes peut varier en fonction de la taille des données.
+  Un \emph{algorithme} est une suite d'étapes simples qui permet de résoudre un problème.
+  Le nombre d'étapes peut varier en fonction de la taille des données.
 \end{definition}
 
 
@@ -217,18 +227,28 @@
 \end{remarque}
 
 \begin{exercice}{}
-  Donner un algorithme pour trouver une partition parfaite des entiers de 1 à $n$.
+  Proposer un algorithme pour trouver une partition parfaite des entiers de 1 à $n$.
 \end{exercice}
+
+\begin{quote}
+  Écrire un mauvais programme est facile ; comprendre un bon programme est difficile.
+  -- Alan J. Perlis
+\end{quote}
 
 
 \section{Algorithme glouton}
 
+
 Jusqu'à présent, nous avons manipulé des sacs d'entiers sans leur donner de sens concret.
-Pour appliquer les algorithmes, nous allons maintenant considérer chaque entier comme la \emph{taille} d’un objet réel.
+Pour appliquer les algorithmes, nous allons maintenant considérer chaque entier comme la \emph{taille} d'un objet réel.
 
-Ainsi, chaque entier du sac correspond à un objet que l’on peut placer dans un sac de capacité donnée.
-Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en gardant à l’esprit qu'il sont seulement caractérisés par un entier, leur taille.
+Ainsi, chaque entier du sac correspond à un objet que l'on peut placer dans un sac de capacité donnée.
+Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en gardant à l'esprit qu'il sont seulement caractérisés par un entier, leur taille.
 
+\begin{quote}
+  Il n'y a pas de simplicité véritable, que des simplifications.\\
+  --- Léon-Paul Fargues
+\end{quote}
 
   \begin{definition}{Algorithme glouton}
     Un \emph{algorithme glouton} est un algorithme qui, étape par étape, fait toujours le choix considéré comme le meilleur à ce moment précis (choix \emph{localement optimal}).
@@ -257,13 +277,20 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   \begin{remarque}{À propos de l'algorithme glouton}
     \begin{itemize}
-    \item On peut obtenir d’autres solutions en modifiant l’ordre dans lequel les objets sont considérés.
+    \item On peut obtenir d'autres solutions en modifiant l'ordre dans lequel les objets sont considérés.
     \item Certains ordres différents donnent la même solution. Par exemple, échanger les objets 8 et 7 dans la solution \#1 ne change pas la somme.
     \item Répéter le glouton avec plusieurs ordres différents permet de générer plusieurs solutions distinctes.
     \end{itemize}
   \end{remarque}
 
   \section{Algorithme glouton répété}
+
+
+  \begin{quote}
+    Si l’on écrivait des programmes dès l’enfance, on saurait probablement mieux les lire une fois adultes.
+    -- Alan J. Perlis
+
+  \end{quote}
 
   \begin{algorithme}{Algorithme glouton répété}
     \label{algo:mtgs}
@@ -280,6 +307,11 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
 
   \section{Programmation dynamique}
+
+  \begin{quote}
+    Pour comprendre un programme, il faut se mettre dans la peau de la machine et du programme.\\
+    -- Alan J. Perlis
+  \end{quote}
 
   \begin{algorithme}{Algorithme de programmation dynamique}
     \label{algo:dp}
@@ -342,27 +374,60 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \end{algorithme}
 
 
-
   \section{Problèmes connexes}
 
-  % \subsection{Subset Sum Problem}
-  % \cite{SSP}
+  \begin{quote}
+    En programmation, chaque tâche est un cas particulier d'une idée plus générale – et on s'en rend compte parfois trop vite.
+  \end{quote}
 
-  % \subsection{Ordonnancement}
-  % \cite{MS}
-  % \cite{Korf2013}
+Le problème de partition appartient à une grande famille de problèmes d'optimisation étudiés en informatique et en recherche opérationnelle.
+De nombreux problèmes célèbres lui sont étroitement liés.
 
-  % \subsection{Sac-à-dos}
-  % \cite{KP}
-  % \cite{MartelloToth1990}
+\begin{description}
+
+\item[Somme de sous-ensembles]
+on dispose d'un sac d'entiers et d'une capacité donnée.
+La question est de savoir s'il existe un sous-ensemble d'objets dont la
+somme est exactement égale à cette capacité.
+
+Le problème de partition en est un cas particulier où la capacité est la moitié de la somme totale des entiers.
+
+\item[Problème du sac à dos]
+chaque objet possède une taille et une valeur.
+Le but est de choisir des objets à placer dans un sac de capacité limitée de manière à maximiser la valeur totale.
+
+Contrairement au problème de partition, il ne s'agit plus de trouver une somme exacte, mais de sélectionner la meilleure combinaison
+possible en termes de valeurs.
+
+\item[Ordonnancement sur deux machines]
+Un problème très proche apparaît en \emph{ordonnancement}.
+Supposons que plusieurs tâches doivent être réparties sur deux machines identiques.
+Chaque tâche a une durée d'exécution.
+On cherche à minimiser le délai total, c'est-à-dire la date de fin de la dernière tâche.
+Pour cela, il faut répartir les tâches entre les deux machines de manière à équilibrer au mieux leurs durées totales.
+
+Ce problème revient donc à chercher une partition des durées des tâches aussi équilibrée que possible.
+
+\item[Problème de mise en boîtes]
+  On dispose de plusieurs sacs de capacité fixe et d'objets de tailles différentes.
+  Le but est de ranger tous les objets en utilisant le moins de sacs possible.
+
+  Ce problème généralise l'idée de remplir un sac avec des objets de tailles données.
+
+\end{description}
+
+Ces problèmes~\cite{PP,SSP,KP,MS,BP} apparaissent dans de nombreux domaines : logistique, planification de tâches, allocation de ressources ou encore gestion de
+données. Ils illustrent l'importance des algorithmes pour organiser et optimiser des ressources limitées.
+
+\begin{quote}
+  La simplicité ne précède pas la complexité, elle la suit. \\
+  -- Alan J. Perlis
+\end{quote}
 
 
   \input{instances}
 
-  \begin{plusloin}{}
-    test
-  \end{plusloin}
 
-  \bibliographystyle{plain}
+  \bibliographystyle{plainnat}
   \bibliography{flemolymp}
 \end{document}
