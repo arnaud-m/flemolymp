@@ -156,13 +156,11 @@
   \begin{definition}{Problème de partitionnement}
     En informatique, le problème de partitionnement consiste à déterminer si une partition parfaite d'un sac d'entiers existe.
 
-    Ce problème est connu pour être \emph{difficile} en informatique théorique et est classé comme \emph{NP-complet}.
-    \begin{compactitem}
-    \item Si l'on nous fournit une partition candidate, on peut rapidement vérifier
-      qu'elle est correcte ou non ;
+    Ce problème est connu pour être difficile en informatique théorique, classé \emph{NP-complet} :
+    \begin{itemize}
+    \item on peut vérifier rapidement si une partition candidate est correcte ;
     \item mais trouver une partition parfaite pour n'importe quel sac peut être très difficile.
-    \end{compactitem}
-
+    \end{itemize}
 
     Cependant, plusieurs algorithmes permettent de le résoudre de manière efficace pour des instances de taille raisonnable, soit exactement, soit approximativement.
     Pour cette raison, on l'appelle parfois :
@@ -170,7 +168,7 @@
       \emph{le plus facile des problèmes difficiles}.
     \end{center}
 
-\end{definition}
+  \end{definition}
 
 
 \begin{remarque}{Symétries du problème}
@@ -184,87 +182,59 @@
     $$S_1 = \{6, 9\}, \quad S_2 = \{1, 2, 4, 8\}.$$
 
     \begin{description}
-    \item[Inveresion de la partition] On peut inverser la partition et les sommes restent identiques.
+    \item[Inversion de la partition] On peut inverser la partition et les sommes restent identiques.
       $$S_1 = \{1, 2, 4, 8\}, \quad S_2 = \{6, 9\}$$
 
-    \item[Échange partiel d'objets] On peut aussi échanger des objets sans changer les sommes, par exemple en remplaçant $6 \in S_1$ par $2,\ 4 \in S_2$.
+    \item[Échange partiel de nombres] On peut aussi échanger des nombres sans changer les sommes, par exemple en remplaçant $6 \in S_1$ par $2,\ 4 \in S_2$.
       $$S_1 = \{2, 4, 9\}, \quad S_2 = \{1, 6, 8\},$$
       \end{description}
   \end{exemple}
 
 \section{Partition parfaite des entiers de 1 à $n$}
 
-\begin{exercice}{}
-  Trouver une partition parfaite des entiers de 1 à $n$ pour $n =4, 5, 6, 7, 8$.
-  \end{exercice}
-
-
-  \begin{figure}[htbp]
-    \centering
-    \resizebox{0.6\linewidth}{!}{
-      \input{fig/partition-8}
-    }
-    \caption{Partition parfaite des entiers de 1 à $n$.}
-  \end{figure}
-
-
-  \begin{definition}{Algorithme}
-    Un \emph{algorithme} répond à un problème. Il est composé d’un ensemble d’étapes simples nécessaires à la résolution, dont le nombre varie en fonction de la taille des données.
-  \end{definition}
-
-  \begin{remarque}{}
-    Plusieurs algorithmes peuvent répondre à un même problème.
-  \end{remarque}
-
-  \begin{remarque}{}
-    Un algorithme peut répondre à plusieurs problèmes.
-  \end{remarque}
-
-  \begin{exercice}{}
-    Donner un algorithme pour trouver une partition parfaite des entiers de 1 à $n$.
-  \end{exercice}
-
-  \begin{indice}
-    Distinguer les cas en fonction du reste $r$ de la division euclidienne de $n$ par 4. C'est-à-dire qu'il existe $k \geq 0$ et $0 \leq r \leq 3$ tels quel $n = 4 \times k + r$.
-  \end{indice}
-
-
-  \begin{algorithme}{Partition parfaite des entiers de 1 à $n$.}
-    \begin{itemize}
-    \item Soit $n = 4 \times k + r$ le quotient $k$ et le reste $r$ de la division euclidienne de $n$ par 4.
-      \begin{itemize}
-      \item Si $r=1$, alors éliminer l'objet 1.
-      \item Si $r=2$, alors ranger l'objet 1 et éliminer l'objet 2.
-      \item Si $r=3$, alors ranger les objets 1 et 2 et éliminer l'objet 3.
-      \end{itemize}
-  \item Répéter tant que le sac n'est pas rempli :
-    \begin{itemize}
-    \item ranger le plus petit et le plus grand objet.
-    \end{itemize}
-  \end{itemize}
-  \end{algorithme}
-
-  \begin{exercice}[label=ex-16]{}
-    Trouver une partition parfaite des entiers de 1 à 18.
-  \end{exercice}
-
-
-\begin{remarque}{}
-  Toutes les paires d'objets formées par l'algorithme ont la même somme.
-\end{remarque}
-
 
 \begin{exercice}{}
-  Trouvez d'autres partitions parfaites par échanges successifs.
+  Trouver une partition parfaite des entiers de 1 à $n$ pour $n = 6, 7, 8, 9$.
 \end{exercice}
 
 
+\begin{exercice}{}
+  Trouvez d'autres partitions parfaites en effectuant des échanges partiels d'entiers entre les deux sacs.
+\end{exercice}
 
-  \section{Algorithmes gloutons}
+
+\begin{definition}{Algorithme}
+  Un \emph{algorithme} est une suite d’étapes simples qui permet de résoudre un problème.
+  Le nombre d’étapes peut varier en fonction de la taille des données.
+\end{definition}
+
+
+\begin{remarque}{}
+  \begin{itemize}
+  \item Plusieurs algorithmes peuvent répondre à un même problème.
+  \item Un algorithme peut répondre à plusieurs problèmes.
+  \end{itemize}
+\end{remarque}
+
+\begin{exercice}{}
+  Donner un algorithme pour trouver une partition parfaite des entiers de 1 à $n$.
+\end{exercice}
+
+
+\section{Algorithme glouton}
+
+Jusqu'à présent, nous avons manipulé des sacs d'entiers sans leur donner de sens concret.
+Pour appliquer les algorithmes, nous allons maintenant considérer chaque entier comme la \emph{taille} d’un objet réel.
+
+Ainsi, chaque entier du sac correspond à un objet que l’on peut placer dans un sac de capacité donnée.
+Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en gardant à l’esprit qu'il sont seulement caractérisés par un entier, leur taille.
+
 
   \begin{definition}{Algorithme glouton}
-    Un \emph{algorithme glouton} est un algorithme qui suit le principe de faire, étape par étape, un choix optimum local.
-    Dans certains cas, cette approche aboutit à un optimum global, mais dans le cas général c'est une heuristique qui n'aboutit pas nécessairement à un optimum global.
+    Un \emph{algorithme glouton} est un algorithme qui, étape par étape, fait toujours le choix considéré comme le meilleur à ce moment précis (choix \emph{localement optimal}).
+
+    Dans certains problèmes, cette approche conduit à un optimum global.
+    Dans le cas général, c'est une \emph{heuristique} qui ne garantit pas de trouver l'optimum global.
   \end{definition}
 
 
@@ -272,12 +242,12 @@
     \label{algo:gs}
     \begin{itemize}
     \item Déterminer la capacité du sac.
-    \item Trier les objets par ordre décroissant.
-    \item  Répéter tant qu'il reste des objets :
+    \item Trier les objets par ordre décroissant de taille.
+    \item  Tant qu'il reste des objets à placer :
       \begin{itemize}
-      \item ranger le plus grand objet dans le sac si sa capacité le permet ;
+      \item placer le plus grand objet dans le sac si sa capacité le permet ;
       \item Sinon, retirer l'objet ;
-      \item Si le sac est rempli, arrêter.
+      \item Si le sac est rempli, arrêter l'algorithme.
       \end{itemize}
   \end{itemize}
   \end{algorithme}
@@ -285,22 +255,23 @@
   \input{exs/ex1-GS}
   \input{exs/ex2-GS}
 
-  \begin{remarque}
-
+  \begin{remarque}{À propos de l'algorithme glouton}
     \begin{itemize}
-    \item Trouver une autre solution en changeant l'ordre du glouton.
-    \item Remarquer que plusieurs ordres donne la même solution : échanger 8 et 7 dans \#1.
-    \item Le glouton répété garantit de trouver des solutions distinctes.
+    \item On peut obtenir d’autres solutions en modifiant l’ordre dans lequel les objets sont considérés.
+    \item Certains ordres différents donnent la même solution. Par exemple, échanger les objets 8 et 7 dans la solution \#1 ne change pas la somme.
+    \item Répéter le glouton avec plusieurs ordres différents permet de générer plusieurs solutions distinctes.
     \end{itemize}
   \end{remarque}
 
+  \section{Algorithme glouton répété}
+
   \begin{algorithme}{Algorithme glouton répété}
-     \label{algo:mtgs}
-    Répéter jusqu'à ce que le sac contienne tous les objets :
+    \label{algo:mtgs}
+    Répéter tant que le sac n'est pas complètement rempli :
     \begin{itemize}
-    \item appliquer l'algorithme glouton ;
-    \item Si le sac est rempli, arrêter;
-    \item Sinon éliminer le plus grand objet.
+    \item Appliquer l'algorithme glouton.
+    \item Si le sac est rempli, arrêter l'algorithme.
+    \item Sinon, retirer le plus grand objet du sac restant et recommencer.
     \end{itemize}
   \end{algorithme}
 
@@ -311,29 +282,28 @@
   \section{Programmation dynamique}
 
   \begin{algorithme}{Algorithme de programmation dynamique}
-    \label{algo-DP}
-
+    \label{algo:dp}
     \begin{itemize}
     \item Déterminer la capacité du sac.
     \item Trier les objets par ordre décroissant.
-    \item  Répéter tant qu'il reste des objets :
+    \item Répéter tant qu'il reste des objets à placer :
       \begin{itemize}
-      \item répéter pour chaque case marquée en partant de la dernière :
-      \begin{itemize}
-      \item déterminer la case atteinte en rangeant l'objet immédiatement après la case marquée (utiliser l'objet comme règle) ;
-      \item Si la case atteinte n'est pas marquée, placer un marqueur de l'objet.
-      \end{itemize}
-    \item Si le sac est rempli (la dernière case est marquée), alors arrêter.
+      \item Pour chaque case marquée, en partant de la dernière :
+        \begin{itemize}
+        \item Calculer la case atteinte en plaçant immédiatement l'objet après la case marquée.
+        \item Si cette case n'est pas encore marquée, placer un marqueur correspondant à l'objet.
+        \end{itemize}
+      \item Si la dernière case (capacité) est marquée, le sac est rempli et l'algorithme s'arrête.
       \end{itemize}
     \end{itemize}
   \end{algorithme}
 
-\begin{algorithme}{Reconstruction du sac en programmation dynamique}
-  Tant qu'il reste des marqueurs dans le sac :
-  \begin{itemize}
-  \item sélectionner le marqueur le plus à droite ;
-  \item ranger l'objet à la place du marqueur en retirant des marqueurs si nécessaire.
-  \end{itemize}
+  \begin{algorithme}{Reconstruction du sac en programmation dynamique}
+    Tant qu'il reste des marqueurs dans le sac :
+    \begin{itemize}
+    \item Sélectionner le marqueur le plus à droite.
+    \item Placer l'objet correspondant à ce marqueur dans le sac en retirant les marqueurs sous l'objet.
+    \end{itemize}
   \end{algorithme}
 
   \input{exs/ex3-DP}
