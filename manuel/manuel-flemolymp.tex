@@ -7,11 +7,14 @@
 
 
 \usepackage{booktabs}
-%% Camille, change the color as you wish
 \usepackage[pdftex,dvipsnames,usenames]{xcolor}
 \usepackage[pdftex,colorlinks=true,urlcolor=ForestGreen,citecolor=Blue,linkcolor=BrickRed]{hyperref} % Must be loaded before cleveref
-\usepackage{paralist}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[normalem]{ulem}
+\usepackage{nameref}
+\usepackage{cleveref}
 
+\usepackage{paralist}
 
 \usepackage{graphicx}
 \graphicspath{{./fig}}
@@ -20,10 +23,8 @@
 
 \newif\ifdraftmode
 \draftmodetrue
-% \draftmodefalse
+%\draftmodefalse
 
-\usepackage{amsmath,amsthm,amssymb}
-\usepackage[normalem]{ulem}
 
 \textwidth 16cm
 %\textheight 22cm
@@ -35,6 +36,10 @@
 \usepackage{tikzstyles}
 \usepackage{theoremes}
 \usepackage{macros}
+
+\usepackage{lettrine}
+
+
 
 \title{La flemme olympique}
 \date{}
@@ -66,9 +71,8 @@
 
 
 
-
 \section{Bienvenue aux Flemmes Olympiques !}
-
+\label{sec:flemo}
 
 
 Votre mission : créer le résumé parfait des Jeux Olympiques, en combinant des séquences de différents sports.
@@ -100,6 +104,7 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
 
 
 \section{Description du problème}
+\label{sec:partition}
 
 \begin{definition}{Sac d'entiers}
   Un \emph{sac d'entiers} est une collection d'entiers naturels dans laquelle un même nombre peut apparaître plusieurs fois.
@@ -228,9 +233,15 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
   \end{quote}
 
 
-  \textbf{TODO Insérer des médailles (chocolat, bronze, argent, or) pour la difficulté des différentes sections.}
-\section{Partition parfaite des entiers de 1 à $n$}
 
+  \section{Partition parfaite des entiers de 1 à $n$}
+  \label{sec:unn}
+
+  \lettrine[lines=4,lhang=0]{\includegraphics[height=3ex]{Bronze_medal_olympic}}{}
+  \footnote{Insérer une médaille en chocolat}
+Avant de se lancer dans des séquences vidéo dignes des Jeux Olympiques, commençons doucement avec des petites séquences faciles à manipuler : les entiers de 1 à $n$.
+Explorez les partitions, essayez, échouez, recommencez.
+Votre mission est de répartir ces nombres en deux résumés parfaits et découvrir que comprendre un algorithme, c'est souvent plus important que le résultat immédiat.
 
 
 \begin{exercice}{}
@@ -242,12 +253,12 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
   $$1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}.$$
 
   Une anecdote célèbre raconte que le mathématicien allemand
-  Carl Friedrich Gauss aurait découvert cette formule lorsqu’il
+  Carl Friedrich Gauss aurait découvert cette formule lorsqu'il
   était encore écolier.
 
   Son professeur lui aurait demandé de calculer la somme des entiers
-  de $1$ à $100$ afin d’occuper la classe pendant un moment.
-  Mais Gauss remarqua rapidement que l’on pouvait associer les
+  de $1$ à $100$ afin d'occuper la classe pendant un moment.
+  Mais Gauss remarqua rapidement que l'on pouvait associer les
   nombres par paires :
   $$1 + 100 = 101,\quad 2 + 99 = 101,\quad 3 + 98 = 101,\ \dots$$
 
@@ -287,11 +298,17 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
 \end{quote}
 
 
-\section{Algorithme glouton}
+\section{Algorithme glouton}\label{sec:gs}
+
+\nocite{medals}
+\lettrine[lines=4,lhang=0]{\includegraphics[height=3ex]{Bronze_medal_olympic}}{}
+Vous avez maintenant compris comment jongler avec les entiers et trouver des partitions parfaites \dots mais qui a envie de tester toutes les combinaisons possibles ?
+L’algorithme glouton correspond à la manière la plus intuitive de résoudre le problème pour les débutants.
+Il construit une solution étape par étape, sans se compliquer la vie.
+Ce n’est pas toujours la voie optimale, mais c’est simple, rapide et permet de se familiariser avec les algorithmes.
 
 Jusqu'à présent, nous avons manipulé des sacs d'entiers sans leur donner de sens concret.
 Pour appliquer les algorithmes, nous allons maintenant considérer chaque entier comme la \emph{taille} d'un objet réel.
-
 Ainsi, chaque entier du sac correspond à un objet que l'on peut placer dans un sac de capacité donnée.
 Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en gardant à l'esprit qu'il sont seulement caractérisés par un entier, leur taille.
 
@@ -327,7 +344,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \begin{remarque}{Nombre d'étapes de l'algorithme glouton}
     Pour un ordre donné des objets, le glouton est très rapide :
     \begin{itemize}
-    \item Chaque objet est examiné une seule fois pour être placé dans le sac ;
+    \item Chaque objet est examiné au plus une fois pour être placé dans le sac ;
     \item Le nombre d'étapes est donc proportionnel au nombre d'objets $n$.
     \end{itemize}
 
@@ -367,7 +384,15 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
 
   \section{Algorithme glouton répété}
+  \label{sec:mtgs}
 
+  \lettrine[lines=4,lhang=0]{\includegraphics[height=3ex]{Silver_medal_olympic}}{}
+  L’algorithme glouton semblait prometteur, mais il passe parfois juste à côté d’une partition parfaite.
+  Et pourtant, en effectuant quelques échanges entre les objets, la solution finit par apparaître.
+  Alan J. Perlis, vous glisserait volontiers qu’un programme devient souvent plus intéressant lorsqu’on le relancer plusieurs fois.
+
+  L’idée est donc simple : si le glouton échoue, recommençons, mais en modifiant légèrement les conditions initiales.
+  C’est précisément le principe de l’algorithme glouton répété : relancer le glouton plusieurs fois pour explorer d’autres possibilités en espérant être assez chanceux pour trouver une partition parfaite.
 
   \begin{quote}
     Si l'on écrivait des programmes dès l'enfance, on saurait probablement mieux les lire une fois adultes.
@@ -400,6 +425,20 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
 
   \section{Programmation dynamique}
+  \label{sec:dp}
+
+  \lettrine[lines=4,lhang=0]{\includegraphics[height=3ex]{Gold_medal_olympic}}{}
+  Cette fois, vous avez tout essayé.
+  Le glouton répété n'a rien trouvé et vos tentativces d'échanges sont restées vaines.
+  Malgré tous vos efforts la partition parfaite reste introuvable ou peut-être simplement bien cachée.
+  Malheureusement, votre patron exige une réponse claire : la partition parfaite existe-t-elle ou non ?
+
+  C’est alors que Richard Bellman intervient avec une idée plus méthodique.
+  Plutôt que d’explorer les possibilités un peu au hasard, il propose de construire progressivement toutes les sommes que l’on peut atteindre avec les objets disponibles.
+
+  La méthode est plus coûteuse en temps, mais aussi plus difficile à imaginer et à mettre en œuvre.
+  Il va falloir être rusé : la programmation dynamique est pour les champions de l’algorithmique.
+
 
   \begin{quote}
     Pour comprendre un programme, il faut se mettre dans la peau de la machine et du programme.\\
@@ -441,16 +480,16 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     \item Le nombre d'étapes est donc proportionnel à $n \cdot C$, ce qui est bien plus que le glouton.
     \end{itemize}
 
-    Cette complexité ne dépend pas seulement de la taille de l’entrée (le nombre d’objets),
+    Cette complexité ne dépend pas seulement de la taille de l'entrée (le nombre d'objets),
     mais aussi de leurs valeurs, ici la capacité du sac.
-    Pour des petites valeurs ou une capacité raisonnable, l’algorithme reste rapide,
+    Pour des petites valeurs ou une capacité raisonnable, l'algorithme reste rapide,
     mais pour de grandes valeurs, le temps de calcul peut devenir important.
   \end{remarque}
 
   \input{exs/ex4-DP}
 
 
-  \textbf{Insérer devise shadok : S’il n’y a pas de solution, c’est qu’il n’y a pas de problème.
+  \textbf{Insérer devise shadok : S'il n'y a pas de solution, c'est qu'il n'y a pas de problème.
     Zut, les images ne sont pas libres de droit.
   }
 
@@ -461,7 +500,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \item sinon, il minimise la différence entre les sommes des deux sous-sacs.
   \end{itemize}
 
-    On sacrifie la rapidité pour être sûr d’obtenir la solution optimale.
+    On sacrifie la rapidité pour être sûr d'obtenir la solution optimale.
 \end{remarque}
 
   \section{Tester et Générer}
@@ -497,6 +536,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
 
   \section{Problèmes connexes}
+  \label{sec:related}
 
   \begin{quote}
     En programmation, chaque tâche est un cas particulier d'une idée plus générale – et on s'en rend compte parfois trop vite.
@@ -547,6 +587,37 @@ données. Ils illustrent l'importance des algorithmes pour organiser et optimise
 \end{quote}
 
 
+
+\appendix
+
+\section{Guide pour les animateurs}
+
+Cette suite d'activités a été concue pour être adaptée à différents publics, du primaire au supérieur.
+Le scénario dépendra aussi de la familiarité et l'intérêt de l'animateur.
+
+% \Cref{sec:unn}
+% Les \protect\cref{sec:unn,sec:gs,sec:mtgs,sec:dp} peuvent être abordées de manière presque indépendantes même si l'ordre du document a été soigneusement pensé.
+
+\begin{table}[htbp]
+  \small
+  \centering
+  \begin{tabular}{lllll}
+    \toprule
+    Section & Objectif & Public visé & Durée & Difficulté \\
+    \midrule
+    \nameref{sec:flemo} & Introduction du problème & Tous & 10min & \\
+    \nameref{sec:partition} & Définition du problème & Tous & 20min & \\
+    \nameref{sec:unn} & Appropriation du problème & Tous & 30min \\
+    \nameref{sec:gs} & Méthode naturelle approximative & Tous & 45min \\
+    \nameref{sec:mtgs} & Amélioration et limitations & Secondaire & 45min\\
+    \nameref{sec:dp} & Méthode difficile, mais exacte & Secondaire 2nd cycle & 60min\\
+    \nameref{sec:related} & Généralisation du problème & Tous & 15min \\
+    \bottomrule
+  \end{tabular}
+  \caption[Scénario pédagogique.]{Scénario pédagogique pour les animateurs}
+  \label{tab:scenario}
+\end{table}
+\section{Tableau des instances}
   \input{instances}
 
 
