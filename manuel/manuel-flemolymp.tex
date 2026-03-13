@@ -23,7 +23,7 @@
 
 \newif\ifdraftmode
 \draftmodetrue
-%\draftmodefalse
+\draftmodefalse
 
 
 \textwidth 16cm
@@ -56,6 +56,7 @@
 }
 \fi
 
+
 \begin{document}
 
 \newif\ifshowsols
@@ -68,7 +69,6 @@
 
 \maketitle
 \tableofcontents
-
 
 
 \section{Bienvenue aux Flemmes Olympiques !}
@@ -102,7 +102,7 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
   -- Alan J. Perlis
 \end{quote}
 
-
+\nocite{MartelloToth1990,Mertens2003}
 \section{Description du problème}
 \label{sec:partition}
 
@@ -211,7 +211,7 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
 \begin{remarque}{Symétries du problème}
     Ce problème admet une symétrie évidente puisque l'on peut inverser la partition, c'est-à-dire échanger les ensembles $S_1$ et $S_2$.
 
-    De manière générale, on peut échanger des objets entre $S_1$ et $S_2$ tant que les sommes des deux sacs restent identiques.
+    De manière générale, on peut échanger des nombres entre $S_1$ et $S_2$ tant que les sommes des deux sacs restent identiques.
   \end{remarque}
 
   \begin{exemple}{Symétries du problème}
@@ -501,82 +501,101 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \end{itemize}
 
     On sacrifie la rapidité pour être sûr d'obtenir la solution optimale.
-\end{remarque}
+  \end{remarque}
 
-  \section{Tester et Générer}
 
-  \begin{algorithme}{Algorithme Tester-et-Générer}
-    \begin{itemize}
-    \item Déterminer la capacité.
-    \item Trier les objets par ordre décroissant.
-    \item  Descente : Répéter tant que le dernier objet n'est pas dans le sac :
-      \begin{itemize}
-      \item Répéter pour chaque objet :
-        \begin{itemize}
-        \item ranger l'objet dans le sac si la capacité le permet.
-        \end{itemize}
-      \item Si le sac est rempli, arrêter l'algorithme.
-      \item Sinon, effectuer un retour arrière simple : retirer le plus petit objet du sac.
-        \end{itemize}
-      \item Retour arrière sautée quand le plus petit objet du deck est dans le sac.
-      \begin{itemize}
-      \item Retirer les objets du sac trouver jusqu'à ce que vous trouviez le plus petit objet que vous n'avez pas pu faire rentrer.
-      \item Sinon éliminer l'objet.
-      \end{itemize}
-    % \item  Répéter tant qu'il reste des objets et que le sac n'est pas rempli (la dernière case n'est pas marquée) :
-    %   \begin{itemize}
-    %   \item répéter pour chaque case marquée en partant de la dernière :
-    %   \begin{itemize}
-    %   \item déterminer la case atteinte en rangeant l'objet immédiatement après la case marquée (utiliser l'objet comme règle).
-    %   \item Si la case atteinte n'est pas marquée, placer un marqueur de l'objet.
-    %   \end{itemize}
-    %   \end{itemize}
-    \end{itemize}
-  \end{algorithme}
+
+  % \section{Tester et Générer}
+
+  % \begin{algorithme}{Algorithme Tester-et-Générer}
+  %   \begin{itemize}
+  %   \item Déterminer la capacité.
+  %   \item Trier les objets par ordre décroissant.
+  %   \item  Descente : Répéter tant que le dernier objet n'est pas dans le sac :
+  %     \begin{itemize}
+  %     \item Répéter pour chaque objet :
+  %       \begin{itemize}
+  %       \item ranger l'objet dans le sac si la capacité le permet.
+  %       \end{itemize}
+  %     \item Si le sac est rempli, arrêter l'algorithme.
+  %     \item Sinon, effectuer un retour arrière simple : retirer le plus petit objet du sac.
+  %       \end{itemize}
+  %     \item Retour arrière sautée quand le plus petit objet du deck est dans le sac.
+  %     \begin{itemize}
+  %     \item Retirer les objets du sac trouver jusqu'à ce que vous trouviez le plus petit objet que vous n'avez pas pu faire rentrer.
+  %     \item Sinon éliminer l'objet.
+  %     \end{itemize}
+  %   % \item  Répéter tant qu'il reste des objets et que le sac n'est pas rempli (la dernière case n'est pas marquée) :
+  %   %   \begin{itemize}
+  %   %   \item répéter pour chaque case marquée en partant de la dernière :
+  %   %   \begin{itemize}
+  %   %   \item déterminer la case atteinte en rangeant l'objet immédiatement après la case marquée (utiliser l'objet comme règle).
+  %   %   \item Si la case atteinte n'est pas marquée, placer un marqueur de l'objet.
+  %   %   \end{itemize}
+  %   %   \end{itemize}
+  %   \end{itemize}
+  % \end{algorithme}
+
+
+  \begin{remarque}{Une ouverture en profondeur de Bellman}
+    Il existe une méthode exacte plus générale pour résoudre ce type de problème : \textbf{Tester-et-Générer}.
+    Simple à comprendre et souvent facile à programmer récursivement, elle devient vite très pénible à exécuter à la main, tant elle explore toutes les possibilités par sauts de puce.
+    Après avoir déjà transpiré sur la programmation dynamique, notre patience a des limites \dots et nous n’irons pas plus loin dans cette voie !
+  \end{remarque}
+
+
+
+    \begin{remarque}{Bellman botte en touche !}
+      Il existe aussi une pléthore de méthodes approximatives plus élaborées pour s’échapper des limites des algorithmes gloutons.
+      Elles reposent souvent sur des échanges d’objets et s’inspirent librement de phénomènes naturels : colonies de fourmis, essaims d’abeilles, etc.
+
+      Mais Richard Bellman rechigne à vous en dire davantage : selon lui, même efficaces, ces approches n’ont pas tout à fait la même noblesse ni la même rigueur que les méthodes exactes.
+      Vous devrez donc les découvrir sans son aide !
+    \end{remarque}
 
 
   \section{Problèmes connexes}
   \label{sec:related}
 
   \begin{quote}
-    En programmation, chaque tâche est un cas particulier d'une idée plus générale – et on s'en rend compte parfois trop vite.
+    En programmation, chaque tâche est un cas particulier d'une idée plus générale -- et on s'en rend compte parfois trop vite.
   \end{quote}
 
 Le problème de partition appartient à une grande famille de problèmes d'optimisation étudiés en informatique et en recherche opérationnelle.
 De nombreux problèmes célèbres lui sont étroitement liés.
 
-\begin{description}
+\begin{definition}{Problème de la somme de sous-ensembles}
+  on dispose d'un sac d'entiers et d'une capacité donnée.
+  La question est de savoir s'il existe un sous-ensemble d'objets dont la
+  somme est exactement égale à cette capacité.
 
-\item[Somme de sous-ensembles]
-on dispose d'un sac d'entiers et d'une capacité donnée.
-La question est de savoir s'il existe un sous-ensemble d'objets dont la
-somme est exactement égale à cette capacité.
+  Le problème de partition en est un cas particulier où la capacité est la moitié de la somme totale des entiers.
+\end{definition}
 
-Le problème de partition en est un cas particulier où la capacité est la moitié de la somme totale des entiers.
 
-\item[Problème du sac à dos]
-chaque objet possède une taille et une valeur.
-Le but est de choisir des objets à placer dans un sac de capacité limitée de manière à maximiser la valeur totale.
+\begin{definition}{Problème du sac à dos}
+  chaque objet possède une taille et une valeur.
+  Le but est de choisir des objets à placer dans un sac de capacité limitée de manière à maximiser la valeur totale.
 
-Contrairement au problème de partition, il ne s'agit plus de trouver une somme exacte, mais de sélectionner la meilleure combinaison
-possible en termes de valeurs.
+  Contrairement au problème de partition, il ne s'agit plus de trouver une somme exacte, mais de sélectionner la meilleure combinaison possible en termes de valeurs.
+\end{definition}
 
-\item[Ordonnancement sur deux machines]
-Un problème très proche apparaît en \emph{ordonnancement}.
-Supposons que plusieurs tâches doivent être réparties sur deux machines identiques.
-Chaque tâche a une durée d'exécution.
-On cherche à minimiser le délai total, c'est-à-dire la date de fin de la dernière tâche.
-Pour cela, il faut répartir les tâches entre les deux machines de manière à équilibrer au mieux leurs durées totales.
+\begin{definition}{Problème d'ordonnancement sur deux machines}
+  Un problème très proche apparaît en \emph{ordonnancement}.
+  Supposons que plusieurs tâches doivent être réparties sur deux machines identiques.
+  Chaque tâche a une durée d'exécution.
+  On cherche à minimiser le délai total, c'est-à-dire la date de fin de la dernière tâche.
+  Pour cela, il faut répartir les tâches entre les deux machines de manière à équilibrer au mieux leurs durées totales.
 
-Ce problème revient donc à chercher une partition des durées des tâches aussi équilibrée que possible.
+  Ce problème revient donc à chercher une partition des durées des tâches aussi équilibrée que possible.
+\end{definition}
 
-\item[Problème de mise en boîtes]
+\begin{definition}{Problème de mise en boîtes}
   On dispose de plusieurs sacs de capacité fixe et d'objets de tailles différentes.
   Le but est de ranger tous les objets en utilisant le moins de sacs possible.
 
   Ce problème généralise l'idée de remplir un sac avec des objets de tailles données.
-
-\end{description}
+\end{definition}
 
 Ces problèmes~\cite{PP,SSP,KP,MS,BP} apparaissent dans de nombreux domaines : logistique, planification de tâches, allocation de ressources ou encore gestion de
 données. Ils illustrent l'importance des algorithmes pour organiser et optimiser des ressources limitées.
@@ -585,7 +604,6 @@ données. Ils illustrent l'importance des algorithmes pour organiser et optimise
   La simplicité ne précède pas la complexité, elle la suit. \\
   -- Alan J. Perlis
 \end{quote}
-
 
 
 \appendix
@@ -617,8 +635,26 @@ Le scénario dépendra aussi de la familiarité et l'intérêt de l'animateur.
   \caption[Scénario pédagogique.]{Scénario pédagogique pour les animateurs}
   \label{tab:scenario}
 \end{table}
+
+
 \section{Tableau des instances}
-  \input{instances}
+\input{instances}
+
+
+\section{Licence et reproductibilité}
+
+Cette activité est libre et ouverte, et peut être reproduite ou adaptée dans le respect des licences.
+Elle s’inscrit également dans une démarche de science reproductible, afin que toute personne puisse vérifier, reproduire et prolonger les résultats proposés.
+
+Elle contient notamment :
+\begin{itemize}
+\item le code source et les données sous la forme d'une extension R, distribué sous licence MIT ;
+\item le contenu pédagogique (textes, images, schémas, diagrammes) distribué sous licence CC BY 4.0.
+\item le source \LaTeX de tous les documents (manuel, fiche technique, solutions) ;
+\item les fichiers nécessaires à la fabrication des éléments physiques via découpeuse laser ou imprimante 3D ;
+\item les illustrations et images utilisées dans l’activité, libres de droits ou sous licence compatible ;
+\item les instructions détaillées pour la mise en place de l’activité, incluant la préparation du matériel et des variantes selon le niveau des participants.
+\end{itemize}
 
 
   \bibliographystyle{plainnat}
