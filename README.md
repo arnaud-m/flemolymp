@@ -22,11 +22,42 @@ pak::pak("arnaud-m/flemolymp")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to solve a subset sum problem with greedy search and dynamic programming:
 
 ``` r
 library(flemolymp)
-## basic example code
+# Example input: list of integer vectors representing partition instances
+inputs <- list(
+  c(11, 8, 7, 5, 2, 1),
+  c(14, 13, 11, 7, 5, 3)
+)
+
+# Compute summary statistics for the instances
+x <- SummaryInstances(inputs)
+
+# Inspect the summary statistics
+print(x$outputs)
+
+# Solve the first instance with the greedy algorithm
+solutionGreedy <- GreedySearchSSP(
+  sizes = inputs[[1]],
+  capacity = HalfSum(inputs[[1]])
+)
+
+cat("Greedy solution for instance 1:\n")
+print(solutionGreedy)
+print(inputs[[1]][sapply(solutionGreedy, isTRUE)])
+
+# Solve the second instance with dynamic programming
+reachedDP <- DynamicProgrammingSSP(
+  sizes = inputs[[2]],
+  capacity = HalfSum(inputs[[2]])
+)
+
+cat("Dynamic programming solution for instance 2:\n")
+solutionDP <- GetSolutionDP(reachedDP, inputs[[2]])
+print(solutionDP)
+print(inputs[[2]][sapply(solutionDP, isTRUE)])
 ```
 
 # Licenses
