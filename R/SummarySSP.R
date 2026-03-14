@@ -24,6 +24,7 @@ SummarySSP <-function(sizes, capacity) {
         IN.n = length(sizes),
         IN.capa = capacity,
         IN.dups = sum(duplicated(sizes)),
+        IN.even = sum(sizes) %% 2 == 0,
         GS.status = IsFeasible(solGS, sizes, capacity),
         GS.iterations = sum(is.na(solGS) | solGS),
         MTGS.status = IsFeasible(solMTGS, sizes, capacity),
