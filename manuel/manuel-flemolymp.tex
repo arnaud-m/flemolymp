@@ -1,5 +1,7 @@
 \documentclass[11pt,a4paper]{article}
 
+\usepackage[numbers,sort&compress]{natbib}
+
 \usepackage[french]{babel}
 \usepackage[utf8]{inputenc}
 
@@ -18,8 +20,6 @@
 
 \usepackage{graphicx}
 \graphicspath{{./fig}}
-
-\usepackage[numbers,sort&compress]{natbib}
 
 \newif\ifdraftmode
 \draftmodetrue
@@ -97,10 +97,10 @@ Mais une fois ce coup de maître acquis, vous pourrez enfin profiter de votre fl
 
 Prêts à devenir des champions de la flemme en domptant la puissance des algorithmes ?
 
-\begin{quote}
+\begin{epigramme}
   On croit comprendre en apprenant, on est plus confiant en écrivant, encore plus en enseignant… mais on en est vraiment sûr en programmant. \\
   -- Alan J. Perlis
-\end{quote}
+\end{epigramme}
 
 \nocite{MartelloToth1990,Mertens2003}
 \section{Description du problème}
@@ -227,15 +227,14 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
       \end{description}
   \end{exemple}
 
-  \begin{quote}
+  \begin{epigramme}
     La symétrie permet de réduire la complexité ; cherchez-la partout. \\
     -- Alan J. Perlis
-  \end{quote}
+  \end{epigramme}
 
 
 
-  \section{Partition parfaite des entiers de 1 à $n$}
-  \label{sec:unn}
+  \section{Partition parfaite des entiers de 1 à $n$}\label{sec:unn}
 
   \lettrine[lines=4,lhang=0]{\includegraphics[height=3ex]{Bronze_medal_olympic}}{}
   \footnote{Insérer une médaille en chocolat}
@@ -292,10 +291,10 @@ Votre mission est de répartir ces nombres en deux résumés parfaits et découv
   Proposer un algorithme pour trouver une partition parfaite des entiers de 1 à $n$.
 \end{exercice}
 
-\begin{quote}
+\begin{epigramme}
   Écrire un mauvais programme est facile ; comprendre un bon programme est difficile.
   -- Alan J. Perlis
-\end{quote}
+\end{epigramme}
 
 
 \section{Algorithme glouton}\label{sec:gs}
@@ -312,10 +311,10 @@ Pour appliquer les algorithmes, nous allons maintenant considérer chaque entier
 Ainsi, chaque entier du sac correspond à un objet que l'on peut placer dans un sac de capacité donnée.
 Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en gardant à l'esprit qu'il sont seulement caractérisés par un entier, leur taille.
 
-\begin{quote}
+\begin{epigramme}
   Il n'y a pas de simplicité véritable, que des simplifications.\\
   --- Léon-Paul Fargues
-\end{quote}
+\end{epigramme}
 
   \begin{definition}{Algorithme glouton}
     Un \emph{algorithme glouton} est un algorithme qui, étape par étape, fait toujours le choix considéré comme le meilleur à ce moment précis (choix \emph{localement optimal}).
@@ -394,11 +393,11 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   L’idée est donc simple : si le glouton échoue, recommençons, mais en modifiant légèrement les conditions initiales.
   C’est précisément le principe de l’algorithme glouton répété : relancer le glouton plusieurs fois pour explorer d’autres possibilités en espérant être assez chanceux pour trouver une partition parfaite.
 
-  \begin{quote}
+  \begin{epigramme}
     Si l'on écrivait des programmes dès l'enfance, on saurait probablement mieux les lire une fois adultes.
     -- Alan J. Perlis
 
-  \end{quote}
+  \end{epigramme}
 
   \begin{algorithme}{Algorithme glouton répété}
     \label{algo:mtgs}
@@ -440,10 +439,10 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   Il va falloir être rusé : la programmation dynamique est pour les champions de l’algorithmique.
 
 
-  \begin{quote}
+  \begin{epigramme}
     Pour comprendre un programme, il faut se mettre dans la peau de la machine et du programme.\\
     -- Alan J. Perlis
-  \end{quote}
+  \end{epigramme}
 
   \begin{algorithme}{Algorithme de programmation dynamique}
     \label{algo:dp}
@@ -557,9 +556,9 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \section{Problèmes connexes}
   \label{sec:related}
 
-  \begin{quote}
+  \begin{epigramme}
     En programmation, chaque tâche est un cas particulier d'une idée plus générale -- et on s'en rend compte parfois trop vite.
-  \end{quote}
+  \end{epigramme}
 
 Le problème de partition appartient à une grande famille de problèmes d'optimisation étudiés en informatique et en recherche opérationnelle.
 De nombreux problèmes célèbres lui sont étroitement liés.
@@ -600,10 +599,10 @@ De nombreux problèmes célèbres lui sont étroitement liés.
 Ces problèmes~\cite{PP,SSP,KP,MS,BP} apparaissent dans de nombreux domaines : logistique, planification de tâches, allocation de ressources ou encore gestion de
 données. Ils illustrent l'importance des algorithmes pour organiser et optimiser des ressources limitées.
 
-\begin{quote}
+\begin{epigramme}
   La simplicité ne précède pas la complexité, elle la suit. \\
   -- Alan J. Perlis
-\end{quote}
+\end{epigramme}
 
 
 \appendix

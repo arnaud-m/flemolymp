@@ -440,3 +440,6 @@ rsconnect/
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/latex,r,emacs,visualstudiocode
+
+### Mac stuff
+.DS_Store
