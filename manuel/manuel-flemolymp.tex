@@ -1,71 +1,47 @@
 \documentclass[11pt,a4paper]{article}
 
-\usepackage[numbers,sort&compress]{natbib}
-
-\usepackage[french]{babel}
-\usepackage[utf8]{inputenc}
-
-\usepackage[T1]{fontenc}
-
-
-\usepackage{booktabs}
-\usepackage[pdftex,dvipsnames,usenames]{xcolor}
-\usepackage[pdftex,colorlinks=true,urlcolor=ForestGreen,citecolor=Blue,linkcolor=BrickRed]{hyperref} % Must be loaded before cleveref
-\usepackage{amsmath,amsthm,amssymb}
-\usepackage[normalem]{ulem}
-\usepackage{nameref}
-\usepackage{cleveref}
-
-\usepackage{paralist}
-
 \usepackage{graphicx}
 \graphicspath{{./fig}}
 
-\newif\ifdraftmode
-\draftmodetrue
-\draftmodefalse
-
-
-\textwidth 16cm
-%\textheight 22cm
-\evensidemargin 0cm
-\oddsidemargin 0cm
-
 \usepackage{colors}
+\usepackage{macros}
 \usepackage{encarts}
 \usepackage{tikzstyles}
 \usepackage{theoremes}
-\usepackage{macros}
-
-\usepackage{lettrine}
-
 
 
 \title{La flemme olympique}
 \date{}
 
-\newif\ifnotikz
-\notikztrue
-\notikzfalse % <---- comment/uncomment that line
+% \draftmodetrue % By default at false
+% \notikztrue % By default at false
+% \showsolstrue % By default at false
+
 
 \ifnotikz
 \renewenvironment{tikzpicture}[1][]{
-  \comment%
-}{%
-  \endcomment%
+  \comment
+}{
+  \endcomment
+}
+\else
+\let\persistentTikz\tikzpicture
+\let\endpersistentTikz\endtikzpicture
+\renewenvironment{tikzpicture}[1][]{
+  \begin{adjustbox}{max width=0.75\linewidth}
+  \persistentTikz
+}{
+  \endpersistentTikz
+  \end{adjustbox}
 }
 \fi
-
-
-\begin{document}
-
-\newif\ifshowsols
-\showsolstrue
-\showsolsfalse % <---- comment/uncomment that line
 
 \ifdraftmode
 \selectcolormodel{gray}
 \fi
+
+
+\begin{document}
 
 \maketitle
 \tableofcontents
@@ -76,24 +52,24 @@
 
 
 Votre mission : créer le résumé parfait des Jeux Olympiques, en combinant des séquences de différents sports.
-Certaines sont courtes, d'autres longues, certaines spectaculaires, d'autres plus calmes \dots et votre objectif est de tout organiser pour que chaque segment ait exactement la bonne durée.
+Certaines sont courtes, d'autres longues, certaines spectaculaires, d'autres plus calmes\dots et votre objectif est de tout organiser pour que chaque segment ait exactement la bonne durée.
 
 Pourquoi cette précision ?
 Les diffusions reposent sur des serveurs capricieux et des automatismes stricts.
 Une vidéo trop longue ou trop courte peut bloquer tout le système, interrompre d'autres diffusions, et faire grincer des dents dans les salles de contrôle.
 
 Au début, vous tentez d'organiser les séquences à la main, en espérant gagner du temps.
-Mauvaise idée. Les vidéos s'entrechoquent, certaines séquences débordent, d'autres restent à moitié inutilisées \dots et vous commencez à désespérer.
+Mauvaise idée. Les vidéos s'entrechoquent, certaines séquences débordent, d'autres restent à moitié inutilisées\dots et vous commencez à désespérer.
 
 Mais pas de panique ! Heureusement, Richard Ernest Bellman, maître des algorithmes, peut vous aider à trouver une partition parfaite lorsque c'est possible, et la plupart du temps dans un temps raisonnable, sauf dans les pires cas.
 
-Et pour vous guider, l’esprit d’Alan Jay Perlis, pionnier de la programmation et des langages informatiques, est là pour distiller ses conseils et réflexions sur les algorithmes \dots à travers ses fameuses épigrammes~\cite{Perlis1982}.
+Et pour vous guider, l’esprit d’Alan Jay Perlis, pionnier de la programmation et des langages informatiques, est là pour distiller ses conseils et réflexions sur les algorithmes\dots à travers ses fameuses épigrammes~\cite{Perlis1982}.
 
 Sa première leçon : simplifiez le problème.
 Considérez chaque séquence comme un objet réduit à sa seule durée et préparez-vous à appliquer des algorithmes plus ou moins retors selon les situations.
 
 Alan vous avertit cependant que l'efficacité et les gains de temps n'arriveront qu'après un sérieux effort pour comprendre le problème et dompter les algorithmes.
-Mais une fois ce coup de maître acquis, vous pourrez enfin profiter de votre flemme olympique \dots sans catastrophe vidéo.
+Mais une fois ce coup de maître acquis, vous pourrez enfin profiter de votre flemme olympique\dots sans catastrophe vidéo.
 
 Prêts à devenir des champions de la flemme en domptant la puissance des algorithmes ?
 
@@ -133,7 +109,7 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
 
 
   \begin{exemple}{Partition d'un ensemble}
-    Soit un sac$S = \{1,2,3,4,5\}$.
+    Soit un sac $S = \{1,2,3,4,5\}$.
     \begin{itemize}
       \item Les sacs $S_1$ et $S_2$ forment une partition de $S$.
         \begin{itemize}
@@ -190,6 +166,12 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
 
   \end{exemple}
 
+  \begin{remarque}{}
+    Pour savoir si la somme de tous les entiers d'un sac d'entiers est paire ou impaire, il suffit de compter le nombre d'entiers impairs.
+
+    Si le nombre d'entiers impairs est pair, la somme sera paire. Si le nombre d'entiers impairs est impair, la somme sera impaire.
+  \end{remarque}
+
   \begin{definition}{Problème de partitionnement}
     En informatique, le problème de partitionnement consiste à déterminer si une partition parfaite d'un sac d'entiers existe.
 
@@ -236,8 +218,7 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
 
   \section{Partition parfaite des entiers de 1 à $n$}\label{sec:unn}
 
-  \lettrine[lines=4,lhang=0]{\includegraphics[height=3ex]{Bronze_medal_olympic}}{}
-  \footnote{Insérer une médaille en chocolat}
+  \lettrine[lines=4,lhang=0]{\includegraphics[height=3ex]{Chocolate_medal_olympic}}{}
 Avant de se lancer dans des séquences vidéo dignes des Jeux Olympiques, commençons doucement avec des petites séquences faciles à manipuler : les entiers de 1 à $n$.
 Explorez les partitions, essayez, échouez, recommencez.
 Votre mission est de répartir ces nombres en deux résumés parfaits et découvrir que comprendre un algorithme, c'est souvent plus important que le résultat immédiat.
@@ -247,7 +228,7 @@ Votre mission est de répartir ces nombres en deux résumés parfaits et découv
   Trouver une partition parfaite des entiers de 1 à $n$ pour $n = 6, 7, 8, 9$.
 \end{exercice}
 
-\begin{remarque}{Somme des entiers de1 à $n$}
+\begin{remarque}{Somme des entiers de 1 à $n$}
   La somme des entiers de $1$ à $n$ vaut
   $$1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}.$$
 
@@ -301,7 +282,7 @@ Votre mission est de répartir ces nombres en deux résumés parfaits et découv
 
 \nocite{medals}
 \lettrine[lines=4,lhang=0]{\includegraphics[height=3ex]{Bronze_medal_olympic}}{}
-Vous avez maintenant compris comment jongler avec les entiers et trouver des partitions parfaites \dots mais qui a envie de tester toutes les combinaisons possibles ?
+Vous avez maintenant compris comment jongler avec les entiers et trouver des partitions parfaites\dots mais qui a envie de tester toutes les combinaisons possibles ?
 L’algorithme glouton correspond à la manière la plus intuitive de résoudre le problème pour les débutants.
 Il construit une solution étape par étape, sans se compliquer la vie.
 Ce n’est pas toujours la voie optimale, mais c’est simple, rapide et permet de se familiariser avec les algorithmes.
@@ -361,11 +342,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     \end{itemize}
   \end{remarque}
 
-  \begin{exercice}
-    Appliquer l'algorithme glouton pour une partition parfaite des entiers de 1 à $n$ pour $n=15, 16$.
-  \end{exercice}
-
-  \textbf{TODO Insérer les solutions du glouton pour $n=15, 16$.}
+  \input{exs/ex3-GS}
 
   \begin{remarque}{Glouton et partition des entiers de 1 à $n$}
     L'algorithme glouton est optimal pour le problème de partition des entiers de $1$ à $n$ :
@@ -388,13 +365,13 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \lettrine[lines=4,lhang=0]{\includegraphics[height=3ex]{Silver_medal_olympic}}{}
   L’algorithme glouton semblait prometteur, mais il passe parfois juste à côté d’une partition parfaite.
   Et pourtant, en effectuant quelques échanges entre les objets, la solution finit par apparaître.
-  Alan J. Perlis, vous glisserait volontiers qu’un programme devient souvent plus intéressant lorsqu’on le relancer plusieurs fois.
+  Alan J. Perlis, vous glisserait volontiers qu’un programme devient souvent plus intéressant lorsqu’on le relance plusieurs fois.
 
   L’idée est donc simple : si le glouton échoue, recommençons, mais en modifiant légèrement les conditions initiales.
   C’est précisément le principe de l’algorithme glouton répété : relancer le glouton plusieurs fois pour explorer d’autres possibilités en espérant être assez chanceux pour trouver une partition parfaite.
 
   \begin{epigramme}
-    Si l'on écrivait des programmes dès l'enfance, on saurait probablement mieux les lire une fois adultes.
+    Si l'on écrivait des programmes dès l'enfance, on saurait probablement mieux les lire une fois adulte.
     -- Alan J. Perlis
 
   \end{epigramme}
@@ -487,10 +464,14 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   \input{exs/ex4-DP}
 
+  \begin{epigramme}
+    S'il n'y a pas de solution, c'est qu'il n'y a pas de problème. \\
+  -- Devise Shadok
+  \end{epigramme}
 
-  \textbf{Insérer devise shadok : S'il n'y a pas de solution, c'est qu'il n'y a pas de problème.
-    Zut, les images ne sont pas libres de droit.
-  }
+  % \textbf{Insérer devise shadok : S'il n'y a pas de solution, c'est qu'il n'y a pas de problème.
+  %   Zut, les images ne sont pas libres de droit.
+  % }
 
 \begin{remarque}{Optimalité de la programmation dynamique}
   L'algorithme de programmation dynamique garantit de trouver la partition la plus équilibrée :
@@ -539,7 +520,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \begin{remarque}{Une ouverture en profondeur de Bellman}
     Il existe une méthode exacte plus générale pour résoudre ce type de problème : \textbf{Tester-et-Générer}.
     Simple à comprendre et souvent facile à programmer récursivement, elle devient vite très pénible à exécuter à la main, tant elle explore toutes les possibilités par sauts de puce.
-    Après avoir déjà transpiré sur la programmation dynamique, notre patience a des limites \dots et nous n’irons pas plus loin dans cette voie !
+    Après avoir déjà transpiré sur la programmation dynamique, notre patience a des limites\dots et nous n’irons pas plus loin dans cette voie !
   \end{remarque}
 
 
@@ -564,7 +545,7 @@ Le problème de partition appartient à une grande famille de problèmes d'optim
 De nombreux problèmes célèbres lui sont étroitement liés.
 
 \begin{definition}{Problème de la somme de sous-ensembles}
-  on dispose d'un sac d'entiers et d'une capacité donnée.
+  On dispose d'un sac d'entiers et d'une capacité donnée.
   La question est de savoir s'il existe un sous-ensemble d'objets dont la
   somme est exactement égale à cette capacité.
 
@@ -573,7 +554,7 @@ De nombreux problèmes célèbres lui sont étroitement liés.
 
 
 \begin{definition}{Problème du sac à dos}
-  chaque objet possède une taille et une valeur.
+  Chaque objet possède une taille et une valeur.
   Le but est de choisir des objets à placer dans un sac de capacité limitée de manière à maximiser la valeur totale.
 
   Contrairement au problème de partition, il ne s'agit plus de trouver une somme exacte, mais de sélectionner la meilleure combinaison possible en termes de valeurs.
@@ -616,8 +597,8 @@ Le scénario dépendra aussi de la familiarité et l'intérêt de l'animateur.
 % Les \protect\cref{sec:unn,sec:gs,sec:mtgs,sec:dp} peuvent être abordées de manière presque indépendantes même si l'ordre du document a été soigneusement pensé.
 
 \begin{table}[htbp]
-  \small
   \centering
+  \resizebox{\linewidth}{!}{
   \begin{tabular}{lllll}
     \toprule
     Section & Objectif & Public visé & Durée & Difficulté \\
@@ -631,6 +612,7 @@ Le scénario dépendra aussi de la familiarité et l'intérêt de l'animateur.
     \nameref{sec:related} & Généralisation du problème & Tous & 15min \\
     \bottomrule
   \end{tabular}
+  }
   \caption[Scénario pédagogique.]{Scénario pédagogique pour les animateurs}
   \label{tab:scenario}
 \end{table}
@@ -649,7 +631,7 @@ Elle contient notamment :
 \begin{itemize}
 \item le code source et les données sous la forme d'une extension R, distribué sous licence MIT ;
 \item le contenu pédagogique (textes, images, schémas, diagrammes) distribué sous licence CC BY 4.0.
-\item le source \LaTeX de tous les documents (manuel, fiche technique, solutions) ;
+\item le source \LaTeX\ de tous les documents (manuel, fiche technique, solutions) ;
 \item les fichiers nécessaires à la fabrication des éléments physiques via découpeuse laser ou imprimante 3D ;
 \item les illustrations et images utilisées dans l’activité, libres de droits ou sous licence compatible ;
 \item les instructions détaillées pour la mise en place de l’activité, incluant la préparation du matériel et des variantes selon le niveau des participants.

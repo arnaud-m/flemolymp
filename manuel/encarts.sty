@@ -1,6 +1,6 @@
 
 \usepackage{tcolorbox}
-%\tcbuselibrary{skins, breakable}
+% \tcbuselibrary{skins, breakable}
 \usepackage{ifthen}
 
 \def\name#1{\ifthenelse{\equal{#1}{}}{}{~-- #1}}
@@ -10,6 +10,7 @@
 \newtcolorbox[auto counter,number within=section]{definition}[2][]{%
 colback=\colorbg{jeuBG},colframe=jeuCol,fonttitle=\bfseries,
 title=Définition~\thetcbcounter\name{#2}, nameref={#2},
+% breakable,
 #1}
 
 %%% EXEMPLE %%%
@@ -30,6 +31,7 @@ title=Exercice~\thetcbcounter\name{#2}, nameref={#2},
 \newtcolorbox[auto counter,number within=section]{remarque}[2][]{%
 colback=\colorbg{pbBG},colframe=pbCol,fonttitle=\bfseries,
 title=Remarque~\thetcbcounter\name{#2}, nameref={#2},
+% breakable,
 #1}
 
 
@@ -66,5 +68,6 @@ title=Allons plus loin\name{#2}, nameref={#2},
 %%% EPIGRAMME %%%
 \newtcolorbox{epigramme}[1][]{%
 left skip=1cm, colback=\colorbg{quoteBG}, colframe=quoteCol, fonttitle=\bfseries,
+% breakable,
 #1}
 

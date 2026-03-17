@@ -1,3 +1,26 @@
+\usepackage[numbers,sort&compress]{natbib}
+
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[T1]{fontenc}
+
+
+\usepackage{booktabs}
+\usepackage[pdftex,colorlinks=true,urlcolor=darkolympicgreen,citecolor=darkolympicblue,linkcolor=darkolympicred]{hyperref} % Must be loaded before cleveref
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[normalem]{ulem}
+\usepackage{nameref}
+\usepackage{cleveref}
+
+\textwidth 16cm
+%\textheight 22cm
+\evensidemargin 0cm
+\oddsidemargin 0cm
+
+\usepackage{paralist}
+\usepackage{lettrine}
+
 \usepackage[shortlabels]{enumitem}
 \setlist{nosep}
 
@@ -37,3 +60,14 @@
 \def\yep{\textcolor{vert}{\ding{51}}\xspace}
 \def\nope{\textcolor{rouge}{\ding{55}}\xspace}
 \def\dunno{\textcolor{orange}{\textbf{\sffamily?}}\xspace}
+
+\newif\ifdraftmode
+\draftmodefalse
+
+\newif\ifnotikz
+\notikzfalse % <---- comment/uncomment that line
+
+\newif\ifshowsols
+\showsolsfalse % <---- comment/uncomment that line
+
+\usepackage{adjustbox}
