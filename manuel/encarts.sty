@@ -67,7 +67,14 @@ title=Allons plus loin\name{#2}, nameref={#2},
 
 %%% EPIGRAMME %%%
 \newtcolorbox{epigramme}[1][]{%
-left skip=1cm, colback=\colorbg{quoteBG}, colframe=quoteCol, fonttitle=\bfseries,
-% breakable,
+colback=\colorbg{quoteBG}, colframe=quoteCol, fonttitle=\bfseries,
+title=Epigramme d'Alan J. Perlis, 
 #1}
+
+%%% CITATION %%%
+\newtcolorbox{mycitation}[2][]{%
+left skip=1cm, colback=\colorbg{quoteBG}, colframe=quoteCol,
+title=\textcolor{black}{-- #2}, detach title, after upper={\par\tcbtitle},
+#1
+}
 
