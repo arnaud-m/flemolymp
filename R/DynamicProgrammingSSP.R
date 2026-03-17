@@ -25,7 +25,7 @@ DynamicProgrammingSSP <- function(sizes, capacity, tikz = FALSE) {
         newInd <- setdiff(curInd + sizes[i], curInd)
         newInd <- subset(newInd, newInd <= capacity)
         reached[newInd] <- i
-        if(tikz) ExportTikzDP(reached, sizes, capacity, picY = - 4 * i)
+        if(tikz) ExportTikzDP(reached, sizes, capacity, picY = - 2 * i)
         if(tail(reached, 1) > 0) break
     }
     return(reached)

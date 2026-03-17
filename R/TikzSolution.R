@@ -48,7 +48,6 @@ TikzSolution <- function(sizes, capacity, algorithm, caption = NULL,  label = NU
 
   out <- c(out, "\\begin{figure}[htbp]")
   out <- c(out, "\\centering")
-  out <- c(out, "\\resizebox{0.9\\linewidth}{!}{")
   out <- c(out, "\\begin{tikzpicture}")
 
   ## Generate TikZ content depending on the algorithm
@@ -72,7 +71,6 @@ TikzSolution <- function(sizes, capacity, algorithm, caption = NULL,  label = NU
   }
 
   out <- c(out, "\\end{tikzpicture}")
-  out <- c(out, "}")
 
   ## Optional caption
   if (is.character(caption) && length(caption) == 1) {
