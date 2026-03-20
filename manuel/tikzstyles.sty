@@ -8,7 +8,11 @@
 \def\yep{\textcolor{vert}{\ding{51}}\xspace}
 \def\nope{\textcolor{rouge}{\ding{55}}\xspace}
 
-\readlist\colors{"darkolympicblack", "darkolympicyellow", "darkolympicgreen", "darkolympicred", "darkolympicviolet"}
+\usepackage{anyfontsize}
+
+\tikzstyle{img} = [inner sep = 0mm, anchor = north west]
+
+\readlist\colors{"darkolympicblack", "darkolympicyellow", "darkolympicblack", "darkolympicblack", "darkolympicviolet"}
 \def\nbcol{\colorslen}
 
 \tikzset{
@@ -19,11 +23,11 @@
     \def\s{\arg{size}}
 
     \draw (0, 0) rectangle ++ ({\s*1.5}, 1.5);
-    \draw [green] (0.45, 0.45) rectangle ++ (0.6, 0.6);
+    \draw [black] (0.45, 0.45) rectangle ++ (0.6, 0.6);
 
     \ifnum\s>1
-    \draw [green] ({(\s-1)*1.5 + 0.45}, 0.45) rectangle ++ (0.6, 0.6);
-    \draw [green] ({\s*0.75}, 0.75) node {\Large\textbf{\s}};
+    \draw [black] ({(\s-1)*1.5 + 0.45}, 0.45) rectangle ++ (0.6, 0.6);
+    \draw [black] ({\s*0.75}, 0.75) node {\Large\textbf{\s}};
     \fi
 
     % \filldraw [fill = lightgray, even odd rule] (0, 0) rectangle ++ ({\arg{size} + 1}, 2) (0.5, 0.5) rectangle ++ (\arg{size}, 1);
@@ -189,13 +193,12 @@
     \def\arg##1{\pgfkeysvalueof{/tikz/barre/##1}}%
     \edef\sizes{\pgfkeysvalueof{/tikz/barre/sizes}}
 
-    \readlist\tailles\sizes
-
     \def\val{\arg{value}}
     \def\unit{\arg{unit}}
     \def\haut{\arg{height}}
     \def\fact{\arg{factor}}
     \def\down{\arg{down}}
+    \def\img{\arg{img}}
 
     \fill [pic actions] (0, 0) rectangle ++ ({\val*\unit}, \haut);
 
@@ -212,30 +215,41 @@
       \foreach \i in {1, ..., \val} {
         ({(\i-1)*\unit + \unit/4}, {\haut - 0.08}) rectangle ++ ({\unit/2}, -0.3)
       };
+    
+    \fill [black] (0, 0.46) -- ++ (0.2, 0) arc (270:180:0.15) -- ++ (0, {\haut - 1.22}) arc (180:90:0.15) -- ++ (-0.2, 0) -- cycle;
+    \fill [black] ({\val*\unit}, 0.46) -- ++ (-0.2, 0) arc (270:360:0.15) -- ++ (0, {\haut - 1.22}) arc (0:90:0.15) -- ++ (0.2, 0) -- cycle;
 
     \ifnum\fact>0
       \pgfmathtruncatemacro{\nb}{\val/\fact}
+      \pgfmathtruncatemacro{\m}{\nb-1}
 
-      \fill [even odd rule, black] 
-        (0, 0.46) rectangle ++ ({\val*\unit}, {\haut - 0.92})
-        [rounded corners] 
-        \foreach \i in {1, ..., \nb} {
-          ({(\i-1)*\fact*\unit + 0.05}, 0.46) rectangle ++ ({\fact*\unit - 0.1}, {\haut - 0.92})
-        };
+      \ifnum\m>0
+        \foreach \i in {1, ..., \m} {
+          \fill [black] ({\i*\fact*\unit - 0.2}, 0.46) arc (270:360:0.15) -- ++ (0, {\haut - 1.22}) arc (0:90:0.15) -- ++ (0.4, 0) arc (90:180:0.15) -- ++ (0, {- \haut + 1.22}) arc (180:270:0.15) -- cycle;
+        }
+      \fi
     \else
-      \fill [even odd rule, black] 
-        (0, 0.46) rectangle ++ ({\val*\unit}, {\haut - 0.92})
-        [rounded corners] 
-        \foreach \s [remember = \s as \prev (initially 0), remember = \sum as \sum (initially 0), evaluate = \prev as \sum using {\unit*\prev + \sum}] in \sizes {
-          ({\sum + 0.05}, 0.46) rectangle ++ ({\s*\unit - 0.1}, {\haut - 0.92})
-        };
+      \readlist\tailles\sizes
+      \pgfmathtruncatemacro{\m}{\tailleslen - 1}
+
+      \foreach \s [remember = \sum as \sum (initially 0), evaluate = \s as \sum using {\unit*\s + \sum}, count = \i, evaluate = \i as \r using {int(\tailleslen - \i)}] in \sizes {
+        \ifnum\r>0
+          \fill [black] ({\sum - 0.2}, 0.46) arc (270:360:0.15) -- ++ (0, {\haut - 1.22}) arc (0:90:0.15) -- ++ (0.4, 0) arc (90:180:0.15) -- ++ (0, {- \haut + 1.22}) arc (180:270:0.15) -- cycle;
+        \fi
+      }
     \fi
 
-    \ifnum\down>0
-      \node [anchor = south west, inner sep = 0mm, black] at (0.1, 0.56) {\val};
+
+    \ifnum\img>0
+      \ifnum\down>0
+        \node [anchor = south west, inner sep = 0mm, black] at (0.1, 0.56) {\val};
+      \else
+        \node [anchor = north west, inner sep = 0mm, black] at (0.1, {\haut - 0.56}) {\val};
+      \fi
+      \node [img] at (0, \haut) {\includegraphics{fig/\val.pdf}};
     \else
-      \node [anchor = north west, inner sep = 0mm, black] at (0.1, {\haut - 0.56}) {\val};
+      {\fontsize{35}{40}\selectfont\node [inner sep = 0mm, black] at ({\unit*\val/2}, {\haut/2}) {\val};}
     \fi
 
-  }}, barre/.cd, value/.initial = 1, unit/.initial = 0.8, height/.initial = 3, sizes/.initial = {1}, factor/.initial = 0, down/.initial = 0, down/.default = 1
+  }}, barre/.cd, value/.initial = 1, unit/.initial = 0.8, height/.initial = 3, sizes/.initial = {1}, factor/.initial = 0, down/.initial = 0, down/.default = 1, img/.initial = 0, img/.default = 1
 }
