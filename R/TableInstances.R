@@ -44,7 +44,7 @@ TableInstances <- function(inputs, outputs, ind = seq_along(inputs), caption = N
 
     ## Optional type column
     if(typeCol) {
-        df <- cbind(df, "Type" = outputs$type[ind])
+        df <- cbind(df, "Type" = as.integer(outputs$type[ind]))
         align <- append(align, "c")
     }
 

@@ -53,7 +53,7 @@ SummaryInstances <- function(inputs, capacities = NULL, sort = TRUE) {
     ## Optional sorting
     stopifnot("type" %in% names(outputs))
     if (sort) {
-        ind <-   ind <- order(outputs$type, outputs$DP.solutions, -outputs$MTGS.iterations, -outputs$GS.iterations, -outputs$DP.iterations)
+        ind <-   ind <- order(outputs$type, outputs$IN.n, outputs$DP.solutions, -outputs$MTGS.iterations, -outputs$GS.iterations, -outputs$DP.iterations)
         inputs <- inputs[ind]
         outputs <- outputs[ind, , drop = FALSE]
     }
