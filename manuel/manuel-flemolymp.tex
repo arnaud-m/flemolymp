@@ -1,6 +1,7 @@
 \documentclass[11pt,a4paper]{article}
 
 \usepackage{graphicx}
+\usepackage{float}
 \graphicspath{{./fig}}
 
 \usepackage{colors}
@@ -102,7 +103,7 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
   \begin{itemize}
   \item $S_1$ et $S_2$ sont non vides; %: $S_1 \neq \emptyset$ et $S_2 \neq \emptyset$ ;
   \item $S_1$ et $S_2$ sont disjoints (aucun entier n'apparaît dans les deux sacs) ; %:  $S_1 \cap S_2 = \emptyset$) ;
-  \item $S_1$ et $S_2$ recouvrent $S$:  tous les éléments de $S$ apparaissent dans $S_1$ ou $S_2$.
+  \item $S_1$ et $S_2$ recouvrent $S$ (tous les éléments de $S$ apparaissent dans $S_1$ ou $S_2$).
   \end{itemize}
 \end{definition}
 
@@ -132,11 +133,27 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
   \end{definition}
 
   \begin{exemple}{Partition parfaite d'un sac pair}
-    $S = \{1,2,3,4\}$ est un sac  pair.
+    $S = \{1,2,3,4\}$ est un sac pair.
     \begin{itemize}
       \item $S_1 = \{1,3\}$ et $S_2 = \{2,4\}$ ne forment pas une partition parfaite, car $1 + 3 \neq 2 + 4$.
-      \item $S_1 = \{1,4\}$ et $S_2 = \{2,3\}$ forment une partition parfaite $1 + 4 = 2 + 3$.
+      \item $S_1 = \{1,4\}$ et $S_2 = \{2,3\}$ forment une partition parfaite, car $1 + 4 = 2 + 3$.
     \end{itemize}
+  \end{exemple}
+
+  \begin{exercice}{}
+    Trouver une partition parfaite pour un sac de quatre entiers consécutifs.
+  \end{exercice}
+
+
+  \begin{exemple}{Partition de quatre entiers consécutifs}
+    La partition pour les entiers de 1 à 4 se généralisent pour les sacs de quatre entiers consécutifs.
+    Ce sac $S = \{ n + 1, n + 2, n + 3, n + 4\}$ est pair ($n \geq 0$).
+    \begin{itemize}
+    \item $S_1 = \{ n + 1, n + 4\}$, de somme $n + 1 + n + 4 = 2n + 5$,
+    \item et $S_2 = \{n + 2, n + 3\}$, de somme $n + 2 + n + 3 = 2n + 5$,
+    \item forment une partition parfaite, car leurs sommes sont égales.
+    \end{itemize}
+
   \end{exemple}
 
   \begin{definition}{Partition parfaite d'un sac impair}
@@ -151,10 +168,9 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
     possible est donc celle où les deux sommes diffèrent de $1$.
   \end{definition}
 
+
   \begin{exemple}{Partition parfaite d'un sac impair}
-
     Le sac $S = \{1,2,3,4,5\}$ est impair car $1+2+3+4+5 = 15$.
-
     \begin{itemize}
     \item $S_1 = \{2,4\}$ et $S_2 = \{1,3,5\}$ ne forment pas une partition parfaite,
       car $2 + 4 = 6$ et $1 + 3 + 5 = 9$.
@@ -162,14 +178,35 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
     \item $S_1 = \{1,2,5\}$ et $S_2 = \{3,4\}$ forment une partition parfaite,
       car $1 + 2 + 5 = 8$ et $3 + 4 = 7$, et la différence entre les deux sommes est $1$.
     \end{itemize}
-
   \end{exemple}
 
   \begin{remarque}{}
     Pour savoir si la somme de tous les entiers d'un sac d'entiers est paire ou impaire, il suffit de compter le nombre d'entiers impairs.
+    \begin{itemize}
+    \item Si le nombre d'entiers impairs est pair, la somme sera paire.
+    \item Si le nombre d'entiers impairs est impair, la somme sera impaire.
+    \end{itemize}
 
-    Si le nombre d'entiers impairs est pair, la somme sera paire. Si le nombre d'entiers impairs est impair, la somme sera impaire.
+
   \end{remarque}
+
+
+  \begin{exercice}{}
+    Trouver une partition parfaite pour un sac de six entiers consécutifs.
+  \end{exercice}
+
+  \begin{exemple}{Partition de six entiers consécutifs}
+    Le sac $S = \{ n + 1, n + 2, n + 3, n + 4, n + 5, n + 6\}$ est impair ($n \geq 0$).
+    \begin{itemize}
+    \item $S_1 = \{ n + 1, n + 4, n + 6\}$, de somme $n + 1 + n + 4 + n + 6 = 3n + 11$,
+    \item et $S_2 = \{n + 2, n + 3, n + 5\}$, de somme $n + 2 + n + 3 + n + 5 = 3n + 10$,
+    \item forment une partition parfaite, car la différence entre les deux sommes est $1$.
+    \end{itemize}
+
+
+  \end{exemple}
+
+
 
   \begin{definition}{Problème de partitionnement}
     En informatique, le problème de partitionnement consiste à déterminer si une partition parfaite d'un sac d'entiers existe.
@@ -216,14 +253,14 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
 
   \section{Partition parfaite des entiers de 1 à $n$}\label{sec:unn}
 
-  \lettrine[lines=4,lhang=0]{\includegraphics[height=3ex]{Chocolate_medal_olympic}}{}
+  \lettrine[lines=4,lhang=0]{\includegraphics[height=1.75ex]{Chocolate_medal_olympic}}{}
 Avant de se lancer dans des séquences vidéo dignes des Jeux Olympiques, commençons doucement avec des petites séquences faciles à manipuler : les entiers de 1 à $n$.
 Explorez les partitions, essayez, échouez, recommencez.
 Votre mission est de répartir ces nombres en deux résumés parfaits et découvrir que comprendre un algorithme, c'est souvent plus important que le résultat immédiat.
 
 
 \begin{exercice}{}
-  Trouver une partition parfaite des entiers de 1 à $n$ pour $n = 6, 7, 8, 9$.
+  Trouver une partition parfaite des entiers de 1 à $n$ pour $n = 7, 8, 9$.
 \end{exercice}
 
 \begin{remarque}{Somme des entiers de 1 à $n$}
@@ -278,7 +315,7 @@ Votre mission est de répartir ces nombres en deux résumés parfaits et découv
 \section{Algorithme glouton}\label{sec:gs}
 
 \nocite{medals}
-\lettrine[lines=4,lhang=0]{\includegraphics[height=3ex]{Bronze_medal_olympic}}{}
+\lettrine[lines=4,lhang=0]{\includegraphics[height=1.75ex]{Bronze_medal_olympic}}{}
 Vous avez maintenant compris comment jongler avec les entiers et trouver des partitions parfaites\dots mais qui a envie de tester toutes les combinaisons possibles ?
 L’algorithme glouton correspond à la manière la plus intuitive de résoudre le problème pour les débutants.
 Il construit une solution étape par étape, sans se compliquer la vie.
@@ -338,7 +375,15 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     \end{itemize}
   \end{remarque}
 
-  \input{exs/ex3-GS}
+
+  \begin{exercice}[label=ex1-GS]{}
+    Appliquer l'algorithme glouton pour une partition parfaite des entiers de 1 à $n = 15, 16$.
+  \end{exercice}
+
+  \input{tex/partition-15}
+  \ifshowsols
+    \input{tex/partition-16}
+  \fi
 
   \begin{remarque}{Glouton et partition des entiers de 1 à $n$}
     L'algorithme glouton est optimal pour le problème de partition des entiers de $1$ à $n$ :
@@ -358,7 +403,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \section{Algorithme glouton répété}
   \label{sec:mtgs}
 
-  \lettrine[lines=4,lhang=0]{\includegraphics[height=3ex]{Silver_medal_olympic}}{}
+  \lettrine[lines=4,lhang=0]{\includegraphics[height=1.75ex]{Silver_medal_olympic}}{}
   L’algorithme glouton semblait prometteur, mais il passe parfois juste à côté d’une partition parfaite.
   Et pourtant, en effectuant quelques échanges entre les objets, la solution finit par apparaître.
   Alan J. Perlis, vous glisserait volontiers qu’un programme devient souvent plus intéressant lorsqu’on le relance plusieurs fois.
@@ -397,7 +442,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \section{Programmation dynamique}
   \label{sec:dp}
 
-  \lettrine[lines=4,lhang=0]{\includegraphics[height=3ex]{Gold_medal_olympic}}{}
+  \lettrine[lines=4,lhang=0]{\includegraphics[height=1.75ex]{Gold_medal_olympic}}{}
   Cette fois, vous avez tout essayé.
   Le glouton répété n'a rien trouvé et vos tentativces d'échanges sont restées vaines.
   Malgré tous vos efforts la partition parfaite reste introuvable ou peut-être simplement bien cachée.
@@ -610,7 +655,8 @@ Le scénario dépendra aussi de la familiarité et l'intérêt de l'animateur.
 
 
 \section{Tableau des instances}
-\input{instances}
+
+\input{tex/instances}
 
 
 \section{Licence et reproductibilité}

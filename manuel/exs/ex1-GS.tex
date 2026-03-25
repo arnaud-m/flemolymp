@@ -1,87 +1,126 @@
-\begin{exercice}[label=ex1-GS]{}
-Appliquer l'algorithme glouton sur une instance de type 1.
-\begin{center}
-\begin{tabular}{ccclc}
-\toprule
-\# & Type & Taille & Entiers & Capacité \\
-\midrule
-1 & 1 & 6 & 11, 8, 7, 5, 2, 1 & 17 \\
-2 & 1 & 6 & 16, 11, 10, 8, 4, 1 & 25 \\
-3 & 1 & 9 & 15, 13, 8, 7, 6, 5, 4, 2, 1 & 30 \\
-4 & 1 & 9 & 16, 12, 10, 9, 6, 5, 3, 2, 1 & 32 \\
-5 & 1 & 12 & 16, 15, 13, 12, 9, 8, 6, 5, 4, 3, 2, 1 & 47 \\
-\bottomrule
+\begin{exercice}[label=ex:GS1]{}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cclc}
+  \toprule
+Id & Taille & Entiers & Capacité \\ 
+  \midrule
+  1 &   6 & 25, 22, 14, 12, 9, 4 &  43 \\ 
+    2 &   6 & 25, 20, 18, 11, 4, 2 &  40 \\ 
+    3 &   9 & 21, 17, 15, 13, 9, 6, 5, 4, 2 &  46 \\ 
+    4 &   9 & 24, 18, 15, 14, 13, 7, 6, 2, 1 &  50 \\ 
+    5 &  12 & 25, 23, 22, 20, 13, 11, 9, 7, 6, 5, 3, 2 &  73 \\ 
+    6 &  15 & 25, 23, 22, 20, 19, 18, 16, 15, 12, 11, 8, 5, 3, 2, 1 & 100 \\ 
+   \bottomrule
 \end{tabular}
-\end{center}
+\caption{Appliquer l'algorithme glouton sur une instance de type 1.} 
+\label{tab:GS1}
+\end{table}
+
 \end{exercice}
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-\pic at (0, -2) {subset sum = {capacity = 17, sizes = {11,8,7,5,2,1}, deck = {1,0,0,0,0,0}}};
-\pic at (0, -4) {subset sum = {capacity = 17, sizes = {11,8,7,5,2,1}, deck = {1,2,0,0,0,0}}};
-\pic at (0, -6) {subset sum = {capacity = 17, sizes = {11,8,7,5,2,1}, deck = {1,2,2,0,0,0}}};
-\pic at (0, -8) {subset sum = {capacity = 17, sizes = {11,8,7,5,2,1}, deck = {1,2,2,1,0,0}}};
-\pic at (0, -10) {subset sum = {capacity = 17, sizes = {11,8,7,5,2,1}, deck = {1,2,2,1,2,0}}};
-\pic at (0, -12) {subset sum = {capacity = 17, sizes = {11,8,7,5,2,1}, deck = {1,2,2,1,2,1}}};
+\pic at (0, -2) {subset sum = {capacity = 43, sizes = {25,22,14,12,9,4}, deck = {1,0,0,0,0,0}}};
+\pic at (0, -4) {subset sum = {capacity = 43, sizes = {25,22,14,12,9,4}, deck = {1,2,0,0,0,0}}};
+\pic at (0, -6) {subset sum = {capacity = 43, sizes = {25,22,14,12,9,4}, deck = {1,2,1,0,0,0}}};
+\pic at (0, -8) {subset sum = {capacity = 43, sizes = {25,22,14,12,9,4}, deck = {1,2,1,2,0,0}}};
+\pic at (0, -10) {subset sum = {capacity = 43, sizes = {25,22,14,12,9,4}, deck = {1,2,1,2,2,0}}};
+\pic at (0, -12) {subset sum = {capacity = 43, sizes = {25,22,14,12,9,4}, deck = {1,2,1,2,2,1}}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton sur l'instance \#1 de type 1.}
+\caption{Application de l'algorithme glouton sur l'instance \#1.}
+\label{fig:GS1-1}
 \end{figure}
+
+
 \ifshowsols
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-\pic at (0, -2) {subset sum = {capacity = 25, sizes = {16,11,10,8,4,1}, deck = {1,0,0,0,0,0}}};
-\pic at (0, -4) {subset sum = {capacity = 25, sizes = {16,11,10,8,4,1}, deck = {1,2,0,0,0,0}}};
-\pic at (0, -6) {subset sum = {capacity = 25, sizes = {16,11,10,8,4,1}, deck = {1,2,2,0,0,0}}};
-\pic at (0, -8) {subset sum = {capacity = 25, sizes = {16,11,10,8,4,1}, deck = {1,2,2,1,0,0}}};
-\pic at (0, -10) {subset sum = {capacity = 25, sizes = {16,11,10,8,4,1}, deck = {1,2,2,1,2,0}}};
-\pic at (0, -12) {subset sum = {capacity = 25, sizes = {16,11,10,8,4,1}, deck = {1,2,2,1,2,1}}};
+\pic at (0, -2) {subset sum = {capacity = 40, sizes = {25,20,18,11,4,2}, deck = {1,0,0,0,0,0}}};
+\pic at (0, -4) {subset sum = {capacity = 40, sizes = {25,20,18,11,4,2}, deck = {1,2,0,0,0,0}}};
+\pic at (0, -6) {subset sum = {capacity = 40, sizes = {25,20,18,11,4,2}, deck = {1,2,2,0,0,0}}};
+\pic at (0, -8) {subset sum = {capacity = 40, sizes = {25,20,18,11,4,2}, deck = {1,2,2,1,0,0}}};
+\pic at (0, -10) {subset sum = {capacity = 40, sizes = {25,20,18,11,4,2}, deck = {1,2,2,1,1,0}}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton sur l'instance \#2 de type 1.}
+\caption{Application de l'algorithme glouton sur l'instance \#2.}
+\label{fig:GS1-2}
 \end{figure}
+
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-\pic at (0, -2) {subset sum = {capacity = 30, sizes = {15,13,8,7,6,5,4,2,1}, deck = {1,0,0,0,0,0,0,0,0}}};
-\pic at (0, -4) {subset sum = {capacity = 30, sizes = {15,13,8,7,6,5,4,2,1}, deck = {1,1,0,0,0,0,0,0,0}}};
-\pic at (0, -6) {subset sum = {capacity = 30, sizes = {15,13,8,7,6,5,4,2,1}, deck = {1,1,2,0,0,0,0,0,0}}};
-\pic at (0, -8) {subset sum = {capacity = 30, sizes = {15,13,8,7,6,5,4,2,1}, deck = {1,1,2,2,0,0,0,0,0}}};
-\pic at (0, -10) {subset sum = {capacity = 30, sizes = {15,13,8,7,6,5,4,2,1}, deck = {1,1,2,2,2,0,0,0,0}}};
-\pic at (0, -12) {subset sum = {capacity = 30, sizes = {15,13,8,7,6,5,4,2,1}, deck = {1,1,2,2,2,2,0,0,0}}};
-\pic at (0, -14) {subset sum = {capacity = 30, sizes = {15,13,8,7,6,5,4,2,1}, deck = {1,1,2,2,2,2,2,0,0}}};
-\pic at (0, -16) {subset sum = {capacity = 30, sizes = {15,13,8,7,6,5,4,2,1}, deck = {1,1,2,2,2,2,2,1,0}}};
+\pic at (0, -2) {subset sum = {capacity = 46, sizes = {21,17,15,13,9,6,5,4,2}, deck = {1,0,0,0,0,0,0,0,0}}};
+\pic at (0, -4) {subset sum = {capacity = 46, sizes = {21,17,15,13,9,6,5,4,2}, deck = {1,1,0,0,0,0,0,0,0}}};
+\pic at (0, -6) {subset sum = {capacity = 46, sizes = {21,17,15,13,9,6,5,4,2}, deck = {1,1,2,0,0,0,0,0,0}}};
+\pic at (0, -8) {subset sum = {capacity = 46, sizes = {21,17,15,13,9,6,5,4,2}, deck = {1,1,2,2,0,0,0,0,0}}};
+\pic at (0, -10) {subset sum = {capacity = 46, sizes = {21,17,15,13,9,6,5,4,2}, deck = {1,1,2,2,2,0,0,0,0}}};
+\pic at (0, -12) {subset sum = {capacity = 46, sizes = {21,17,15,13,9,6,5,4,2}, deck = {1,1,2,2,2,1,0,0,0}}};
+\pic at (0, -14) {subset sum = {capacity = 46, sizes = {21,17,15,13,9,6,5,4,2}, deck = {1,1,2,2,2,1,2,0,0}}};
+\pic at (0, -16) {subset sum = {capacity = 46, sizes = {21,17,15,13,9,6,5,4,2}, deck = {1,1,2,2,2,1,2,2,0}}};
+\pic at (0, -18) {subset sum = {capacity = 46, sizes = {21,17,15,13,9,6,5,4,2}, deck = {1,1,2,2,2,1,2,2,1}}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton sur l'instance \#3 de type 1.}
+\caption{Application de l'algorithme glouton sur l'instance \#3.}
+\label{fig:GS1-3}
 \end{figure}
+
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-\pic at (0, -2) {subset sum = {capacity = 32, sizes = {16,12,10,9,6,5,3,2,1}, deck = {1,0,0,0,0,0,0,0,0}}};
-\pic at (0, -4) {subset sum = {capacity = 32, sizes = {16,12,10,9,6,5,3,2,1}, deck = {1,1,0,0,0,0,0,0,0}}};
-\pic at (0, -6) {subset sum = {capacity = 32, sizes = {16,12,10,9,6,5,3,2,1}, deck = {1,1,2,0,0,0,0,0,0}}};
-\pic at (0, -8) {subset sum = {capacity = 32, sizes = {16,12,10,9,6,5,3,2,1}, deck = {1,1,2,2,0,0,0,0,0}}};
-\pic at (0, -10) {subset sum = {capacity = 32, sizes = {16,12,10,9,6,5,3,2,1}, deck = {1,1,2,2,2,0,0,0,0}}};
-\pic at (0, -12) {subset sum = {capacity = 32, sizes = {16,12,10,9,6,5,3,2,1}, deck = {1,1,2,2,2,2,0,0,0}}};
-\pic at (0, -14) {subset sum = {capacity = 32, sizes = {16,12,10,9,6,5,3,2,1}, deck = {1,1,2,2,2,2,1,0,0}}};
-\pic at (0, -16) {subset sum = {capacity = 32, sizes = {16,12,10,9,6,5,3,2,1}, deck = {1,1,2,2,2,2,1,2,0}}};
-\pic at (0, -18) {subset sum = {capacity = 32, sizes = {16,12,10,9,6,5,3,2,1}, deck = {1,1,2,2,2,2,1,2,1}}};
+\pic at (0, -2) {subset sum = {capacity = 50, sizes = {24,18,15,14,13,7,6,2,1}, deck = {1,0,0,0,0,0,0,0,0}}};
+\pic at (0, -4) {subset sum = {capacity = 50, sizes = {24,18,15,14,13,7,6,2,1}, deck = {1,1,0,0,0,0,0,0,0}}};
+\pic at (0, -6) {subset sum = {capacity = 50, sizes = {24,18,15,14,13,7,6,2,1}, deck = {1,1,2,0,0,0,0,0,0}}};
+\pic at (0, -8) {subset sum = {capacity = 50, sizes = {24,18,15,14,13,7,6,2,1}, deck = {1,1,2,2,0,0,0,0,0}}};
+\pic at (0, -10) {subset sum = {capacity = 50, sizes = {24,18,15,14,13,7,6,2,1}, deck = {1,1,2,2,2,0,0,0,0}}};
+\pic at (0, -12) {subset sum = {capacity = 50, sizes = {24,18,15,14,13,7,6,2,1}, deck = {1,1,2,2,2,1,0,0,0}}};
+\pic at (0, -14) {subset sum = {capacity = 50, sizes = {24,18,15,14,13,7,6,2,1}, deck = {1,1,2,2,2,1,2,0,0}}};
+\pic at (0, -16) {subset sum = {capacity = 50, sizes = {24,18,15,14,13,7,6,2,1}, deck = {1,1,2,2,2,1,2,2,0}}};
+\pic at (0, -18) {subset sum = {capacity = 50, sizes = {24,18,15,14,13,7,6,2,1}, deck = {1,1,2,2,2,1,2,2,1}}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton sur l'instance \#4 de type 1.}
+\caption{Application de l'algorithme glouton sur l'instance \#4.}
+\label{fig:GS1-4}
 \end{figure}
+
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-\pic at (0, -2) {subset sum = {capacity = 47, sizes = {16,15,13,12,9,8,6,5,4,3,2,1}, deck = {1,0,0,0,0,0,0,0,0,0,0,0}}};
-\pic at (0, -4) {subset sum = {capacity = 47, sizes = {16,15,13,12,9,8,6,5,4,3,2,1}, deck = {1,1,0,0,0,0,0,0,0,0,0,0}}};
-\pic at (0, -6) {subset sum = {capacity = 47, sizes = {16,15,13,12,9,8,6,5,4,3,2,1}, deck = {1,1,1,0,0,0,0,0,0,0,0,0}}};
-\pic at (0, -8) {subset sum = {capacity = 47, sizes = {16,15,13,12,9,8,6,5,4,3,2,1}, deck = {1,1,1,2,0,0,0,0,0,0,0,0}}};
-\pic at (0, -10) {subset sum = {capacity = 47, sizes = {16,15,13,12,9,8,6,5,4,3,2,1}, deck = {1,1,1,2,2,0,0,0,0,0,0,0}}};
-\pic at (0, -12) {subset sum = {capacity = 47, sizes = {16,15,13,12,9,8,6,5,4,3,2,1}, deck = {1,1,1,2,2,2,0,0,0,0,0,0}}};
-\pic at (0, -14) {subset sum = {capacity = 47, sizes = {16,15,13,12,9,8,6,5,4,3,2,1}, deck = {1,1,1,2,2,2,2,0,0,0,0,0}}};
-\pic at (0, -16) {subset sum = {capacity = 47, sizes = {16,15,13,12,9,8,6,5,4,3,2,1}, deck = {1,1,1,2,2,2,2,2,0,0,0,0}}};
-\pic at (0, -18) {subset sum = {capacity = 47, sizes = {16,15,13,12,9,8,6,5,4,3,2,1}, deck = {1,1,1,2,2,2,2,2,2,0,0,0}}};
-\pic at (0, -20) {subset sum = {capacity = 47, sizes = {16,15,13,12,9,8,6,5,4,3,2,1}, deck = {1,1,1,2,2,2,2,2,2,1,0,0}}};
+\pic at (0, -2) {subset sum = {capacity = 73, sizes = {25,23,22,20,13,11,9,7,6,5,3,2}, deck = {1,0,0,0,0,0,0,0,0,0,0,0}}};
+\pic at (0, -4) {subset sum = {capacity = 73, sizes = {25,23,22,20,13,11,9,7,6,5,3,2}, deck = {1,1,0,0,0,0,0,0,0,0,0,0}}};
+\pic at (0, -6) {subset sum = {capacity = 73, sizes = {25,23,22,20,13,11,9,7,6,5,3,2}, deck = {1,1,1,0,0,0,0,0,0,0,0,0}}};
+\pic at (0, -8) {subset sum = {capacity = 73, sizes = {25,23,22,20,13,11,9,7,6,5,3,2}, deck = {1,1,1,2,0,0,0,0,0,0,0,0}}};
+\pic at (0, -10) {subset sum = {capacity = 73, sizes = {25,23,22,20,13,11,9,7,6,5,3,2}, deck = {1,1,1,2,2,0,0,0,0,0,0,0}}};
+\pic at (0, -12) {subset sum = {capacity = 73, sizes = {25,23,22,20,13,11,9,7,6,5,3,2}, deck = {1,1,1,2,2,2,0,0,0,0,0,0}}};
+\pic at (0, -14) {subset sum = {capacity = 73, sizes = {25,23,22,20,13,11,9,7,6,5,3,2}, deck = {1,1,1,2,2,2,2,0,0,0,0,0}}};
+\pic at (0, -16) {subset sum = {capacity = 73, sizes = {25,23,22,20,13,11,9,7,6,5,3,2}, deck = {1,1,1,2,2,2,2,2,0,0,0,0}}};
+\pic at (0, -18) {subset sum = {capacity = 73, sizes = {25,23,22,20,13,11,9,7,6,5,3,2}, deck = {1,1,1,2,2,2,2,2,2,0,0,0}}};
+\pic at (0, -20) {subset sum = {capacity = 73, sizes = {25,23,22,20,13,11,9,7,6,5,3,2}, deck = {1,1,1,2,2,2,2,2,2,2,0,0}}};
+\pic at (0, -22) {subset sum = {capacity = 73, sizes = {25,23,22,20,13,11,9,7,6,5,3,2}, deck = {1,1,1,2,2,2,2,2,2,2,1,0}}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton sur l'instance \#5 de type 1.}
+\caption{Application de l'algorithme glouton sur l'instance \#5.}
+\label{fig:GS1-5}
 \end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\pic at (0, -2) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}}};
+\pic at (0, -4) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}}};
+\pic at (0, -6) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0}}};
+\pic at (0, -8) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,1,1,1,0,0,0,0,0,0,0,0,0,0,0}}};
+\pic at (0, -10) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,1,1,1,2,0,0,0,0,0,0,0,0,0,0}}};
+\pic at (0, -12) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,1,1,1,2,2,0,0,0,0,0,0,0,0,0}}};
+\pic at (0, -14) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,1,1,1,2,2,2,0,0,0,0,0,0,0,0}}};
+\pic at (0, -16) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,1,1,1,2,2,2,2,0,0,0,0,0,0,0}}};
+\pic at (0, -18) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,1,1,1,2,2,2,2,2,0,0,0,0,0,0}}};
+\pic at (0, -20) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,1,1,1,2,2,2,2,2,2,0,0,0,0,0}}};
+\pic at (0, -22) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,1,1,1,2,2,2,2,2,2,1,0,0,0,0}}};
+\pic at (0, -24) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,1,1,1,2,2,2,2,2,2,1,2,0,0,0}}};
+\pic at (0, -26) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,1,1,1,2,2,2,2,2,2,1,2,2,0,0}}};
+\pic at (0, -28) {subset sum = {capacity = 100, sizes = {25,23,22,20,19,18,16,15,12,11,8,5,3,2,1}, deck = {1,1,1,1,2,2,2,2,2,2,1,2,2,1,0}}};
+\end{tikzpicture}
+\caption{Application de l'algorithme glouton sur l'instance \#6.}
+\label{fig:GS1-6}
+\end{figure}
+
 \fi
