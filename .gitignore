@@ -308,6 +308,9 @@ pythontex-files-*/
 *.ttt
 *.fff
 
+# exercice
+*.loexo
+
 # Latexian
 TSWLatexianTemp*
 

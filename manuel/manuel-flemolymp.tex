@@ -12,6 +12,9 @@
 
 
 \title{La flemme olympique}
+\author{Arnaud Malapert et Marie Pelleau \\
+Université Côte d'Azur, CNRS, I3S, France
+}
 \date{}
 
 % \draftmodetrue % By default at false
@@ -140,7 +143,7 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
     \end{itemize}
   \end{exemple}
 
-  \begin{exercice}{TODO titre}{TODO temps}
+  \begin{exercice}{Partition de quatre entiers consécutifs}{5}
     Trouver une partition parfaite pour un sac de quatre entiers consécutifs.
   \end{exercice}
 
@@ -153,8 +156,18 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
     \item et $S_2 = \{n + 2, n + 3\}$, de somme $n + 2 + n + 3 = 2n + 5$,
     \item forment une partition parfaite, car leurs sommes sont égales.
     \end{itemize}
-
   \end{exemple}
+
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+      \pic at (0, 0) {subset sum = {capacity = 13, sizes = {5,6,7,8}, deck = {1,2,2,1}}};
+      \pic at (0, -2) {subset sum = {capacity = 13, sizes = {5,6,7,8}, deck = {2,1,1,2}}};
+    \end{tikzpicture}
+    \caption{Partition de quatre entiers consécutifs.}
+    \label{fig:quatre}
+  \end{figure}
+
 
   \begin{definition}{Partition parfaite d'un sac impair}
 
@@ -186,12 +199,10 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
     \item Si le nombre d'entiers impairs est pair, la somme sera paire.
     \item Si le nombre d'entiers impairs est impair, la somme sera impaire.
     \end{itemize}
-
-
   \end{remarque}
 
 
-  \begin{exercice}{TODO titre}{TODO temps}
+  \begin{exercice}{Partition de six entiers consécutifs}{5}
     Trouver une partition parfaite pour un sac de six entiers consécutifs.
   \end{exercice}
 
@@ -202,10 +213,17 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
     \item et $S_2 = \{n + 2, n + 3, n + 5\}$, de somme $n + 2 + n + 3 + n + 5 = 3n + 10$,
     \item forment une partition parfaite, car la différence entre les deux sommes est $1$.
     \end{itemize}
-
-
   \end{exemple}
 
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+      \pic at (0, 0) {subset sum = {capacity = 23, sizes = {5,6,7,8,9,10}, deck = {1,2,2,1,2,1}}};
+      \pic at (0, -2) {subset sum = {capacity = 22, sizes = {5,6,7,8,9,10}, deck = {2,1,1,2,1,2}}};
+    \end{tikzpicture}
+    \caption{Partition de six entiers consécutifs.}
+    \label{fig:six}
+  \end{figure}
 
 
   \begin{definition}{Problème de partitionnement}
@@ -259,7 +277,7 @@ Explorez les partitions, essayez, échouez, recommencez.
 Votre mission est de répartir ces nombres en deux résumés parfaits et découvrir que comprendre un algorithme, c'est souvent plus important que le résultat immédiat.
 
 
-\begin{exercice}{Partition parfaite}{10}
+\begin{exercice}{Partition parfaite de 1 à $n$}{10}
   Trouver une partition parfaite des entiers de 1 à $n$ pour $n = 7, 8, 9$.
 \end{exercice}
 
@@ -284,6 +302,18 @@ Votre mission est de répartir ces nombres en deux résumés parfaits et découv
 
   Cette formule permet notamment de connaître rapidement la somme totale des objets, ce qui sera utile pour déterminer la capacité du sac dans les problèmes de partition.
 \end{remarque}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \pic at (0, 0) {subset sum = {capacity = 14, sizes = {7,6,5,4,3,2,1}, deck = {1,1,2,2,2,2,1}}};
+    \pic at (0, -2) {subset sum = {capacity = 18, sizes = {8,7,6,5,4,3,2,1}, deck = {1,1,2,2,2,1,2,2}}};
+    \pic at (0, -4) {subset sum = {capacity = 22, sizes = {9,8,7,6,5,4,3,2,1}, deck = {1,1,2,2,1,2,2,2,2}}};
+  \end{tikzpicture}
+  \caption{Partition parfaite des entiers de 1 à $n$ pour $n = 7, 8, 9$.}
+  \label{fig:part79}
+\end{figure}
+
 
 \begin{exercice}{Échanges partiels}{10}
   Trouvez d'autres partitions parfaites en effectuant des échanges partiels d'entiers entre les deux sacs.
@@ -376,7 +406,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \end{remarque}
 
 
-  \begin{exercice}[label=ex1-GS]{TODO titre}{TODO temps}
+  \begin{exercice}[label=ex1-GS]{Glouton pour partition de 1 à $n$}{15}
     Appliquer l'algorithme glouton pour une partition parfaite des entiers de 1 à $n = 15, 16$.
   \end{exercice}
 

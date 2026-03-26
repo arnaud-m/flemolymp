@@ -1,4 +1,3 @@
-
 \usepackage{tcolorbox}
 % \tcbuselibrary{skins, breakable}
 \usepackage{ifthen}
@@ -27,9 +26,9 @@ title=Exemple~\name{#2}, nameref={#2},
 %%% EXERCICE %%%
 \newtcolorbox[auto counter,number within=section,list inside=loexo]{exercice}[3][]{%
 colback=\colorbg{pedagoBG},colframe=pedagoCol,fonttitle=\bfseries,
-title=Exercice~\thetcbcounter\name{#2}, nameref={#2},
+title=Exercice~\thetcbcounter\name{#2} (#3~min), nameref={#2},
 #1,
-list text={#2 -- #3 minutes}}
+list text={#2 (#3~min)}}
 
 %%% REMARQUE %%%
 \newtcolorbox[auto counter,number within=section]{remarque}[2][]{%
@@ -72,7 +71,7 @@ title=Allons plus loin\name{#2}, nameref={#2},
 %%% EPIGRAMME %%%
 \newtcolorbox{epigramme}[1][]{%
 colback=\colorbg{quoteBG}, colframe=quoteCol, fonttitle=\bfseries,
-title=Epigramme d'Alan J. Perlis, 
+title=Epigramme d'Alan J. Perlis,
 #1}
 
 %%% CITATION %%%
@@ -81,4 +80,3 @@ left skip=1cm, colback=\colorbg{quoteBG}, colframe=quoteCol,
 title=\textcolor{black}{-- #2}, detach title, after upper={\par\tcbtitle},
 #1
 }
-

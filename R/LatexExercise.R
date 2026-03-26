@@ -42,10 +42,14 @@ LatexExercise <- function(inputs, outputs, algorithm, type) {
         stop("No instance found for type ", type)
     }
 
+
+    ## Algorithm titles (for exercise titles)
+    algotitles <- c(GS = "Algorithme glouton",
+                  MTGS = "Algorithme glouton r\u00E9p\u00E9t\u00E9",
+                  DP = "Programmation dynamique")
+
     ## Algorithm names (for captions)
-    algonames = c(GS = "l'algorithme glouton",
-                  MTGS = "l'algorithme glouton r\u00E9p\u00E9t\u00E9",
-                  DP = "la programmation dynamique")
+    algonames <- paste0(c("l'", "l'", "la "), tolower(algotitles))
 
     ## Shared label postfix
     label <- sprintf("%s%d", algorithm, type)
@@ -54,7 +58,7 @@ LatexExercise <- function(inputs, outputs, algorithm, type) {
     tex <- character()
 
     ## Exercise
-    tex <- c(tex, sprintf("\\begin{exercice}[label=ex:%s]{}\n", label))
+    tex <- c(tex, sprintf("\\begin{exercice}[label=ex:%s]{%s (type %d)}{TODO Temps}\n", label, algotitles[algorithm], type))
     ## Instances table
     tex <- c(tex,
              TableInstances(inputs, outputs, ind,
