@@ -17,13 +17,12 @@
 ##' DynamicProgrammingSSP(sizes = sizes, capacity = capacity, tikz = TRUE)
 ##' @export
 DynamicProgrammingSSP <- function(sizes, capacity, tikz = FALSE) {
-    capacity <- capacity + 1
-    reached <- numeric(capacity)
+    reached <- numeric(capacity + 1)
     reached[1] <- Inf
     for(i in seq_along(sizes)) {
         curInd <- which(reached > 0)
         newInd <- setdiff(curInd + sizes[i], curInd)
-        newInd <- subset(newInd, newInd <= capacity)
+        newInd <- subset(newInd, newInd <= capacity + 1)
         reached[newInd] <- i
         if(tikz) ExportTikzDP(reached, sizes, capacity, picY = - 2 * i)
         if(tail(reached, 1) > 0) break

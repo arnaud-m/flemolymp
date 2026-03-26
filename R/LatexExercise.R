@@ -50,6 +50,7 @@ LatexExercise <- function(inputs, outputs, algorithm, type) {
 
     ## Algorithm names (for captions)
     algonames <- paste0(c("l'", "l'", "la "), tolower(algotitles))
+    names(algonames) <- names(algotitles)
 
     ## Shared label postfix
     label <- sprintf("%s%d", algorithm, type)
@@ -58,14 +59,14 @@ LatexExercise <- function(inputs, outputs, algorithm, type) {
     tex <- character()
 
     ## Exercise
-    tex <- c(tex, sprintf("\\begin{exercice}[label=ex:%s]{%s (type %d)}{TODO Temps}\n", label, algotitles[algorithm], type))
+    tex <- c(tex, sprintf("\\begin{exercice}[label=ex:%s]{%s avec type %d}{TODO Temps}\n", label, algotitles[algorithm], type))
     ## Instances table
     tex <- c(tex,
              TableInstances(inputs, outputs, ind,
                             caption = sprintf("Appliquer %s sur une instance de type %d.", algonames[algorithm], type),
                             label = paste0("tab:", label),
                             typeCol = FALSE))
-    tex <- c(tex, "\\end{exercice}")
+    tex <- c(tex, "\\end{exercice}\n")
 
     ## Generate TikZ solutions
     for(i in seq_along(ind)) {
@@ -74,7 +75,7 @@ LatexExercise <- function(inputs, outputs, algorithm, type) {
                               caption = sprintf("Application de %s sur l'instance \\#%d.", algonames[algorithm], ind[i]),
                               label = paste0("fig:", label, "-", ind[i])))
         if(i == 1) {
-            tex <- c(tex, "\n\\ifshowsols")
+            tex <- c(tex, "\\ifshowsols\n")
         }
     }
     ## Show solutions conditionally in LaTeX

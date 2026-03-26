@@ -11,7 +11,7 @@
 ExportTikzDP <- function(reached, sizes, capacity, picX = 0, picY = 0) {
     ind <- tail(which(reached > 0), -1)
     solution <- rep(0, length(sizes))
-    solution[ unique(reached[ind]) ] <- 1
+    solution[unique(reached[ind]) ] <- 1
     cat(
         sprintf(
             "\\pic at (%d, %d) {prog dyn = {capacity = %d, sizes = {%s}, deck = {%s}, marks = {%s}}};\n",
