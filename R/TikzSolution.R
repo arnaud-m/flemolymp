@@ -64,7 +64,7 @@ TikzSolution <- function(sizes, capacity, algorithm, caption = NULL,  label = NU
   } else if (algorithm == "DP") {
       out <- c(out,
                utils::capture.output(
-                   ExportTikz(GetSolutionDP(DynamicProgrammingSSP(sizes, capacity, tikz = TRUE), sizes), sizes, capacity)
+                   ExportTikz(GetSolutionDP(DynamicProgrammingSSP(sizes, capacity, tikz = TRUE), sizes), sizes, capacity, offset = 1)
                ))
   } else {
       stop("Unknown algorithm: ", algorithm)

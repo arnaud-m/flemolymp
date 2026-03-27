@@ -7,12 +7,12 @@
 ##' @param picY The y-coordinate in the TikZ drawing
 ##' @encoding UTF-8
 ##' @keywords internal
-ExportTikz <- function(solution, sizes, capacity, picX = 0, picY = 0) {
+ExportTikz <- function(solution, sizes, capacity, picX = 0, picY = 0, offset = 0) {
     solution[ is.na(solution)] <- 2
     cat(
         sprintf(
-            "\\pic at (%d, %d) {subset sum = {capacity = %d, sizes = {%s}, deck = {%s}}};\n",
-            picX, picY, capacity, paste(sizes, collapse = ","), paste(solution, collapse = ",")
+            "\\pic at (%d, %d) {subset sum = {capacity = %d, sizes = {%s}, deck = {%s}, offset = {%d}}};\n",
+            picX, picY, capacity, paste(sizes, collapse = ","), paste(solution, collapse = ","), offset
         )
     )
     return(invisible(NULL))

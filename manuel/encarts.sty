@@ -2,10 +2,6 @@
 % \tcbuselibrary{skins, breakable}
 \usepackage{ifthen}
 
-\newcommand*\l@easy{EZ\@dottedtocline{1}{1.5em}{2.3em}}
-\newcommand*\l@medium{MED\@dottedtocline{1}{1.5em}{2.3em}}
-\newcommand*\l@hard{HD\@dottedtocline{1}{1.5em}{2.3em}}
-
 \def\name#1{\ifthenelse{\equal{#1}{}}{}{~-- #1}}
 \def\colorbg#1{\ifdraftmode white\else #1\fi}
 

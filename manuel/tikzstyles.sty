@@ -52,6 +52,7 @@
     \def\unit{\arg{unit}}
     \def\nd{\arg{no deck}}
     \def\db{\arg{deck below}}
+    \def\xdec{\arg{offset}}
 
     \ifnum\db>0
     \edef\xsac{0}
@@ -63,9 +64,9 @@
     \else
     \edef\ysac{0}
     \ifnum\nd>0
-    \edef\xsac{0}
+    \edef\xsac{\xdec*\unit}
     \else
-    \edef\xsac{(\tailleslen + 1)*\unit}
+    \edef\xsac{(\tailleslen + 1 + \xdec)*\unit}
     \fi
     \fi
 
@@ -112,7 +113,7 @@
       \fi
       \draw ({\xsac + \x - \unit/2}, {\ysac + \unit}) node [above] {\i};
     }
-  }}, subset sum/.cd, unit/.initial = 1, capacity/.initial = 10, sizes/.initial={1}, deck/.initial={0}, no deck/.initial=0, no deck/.default=1, deck below/.initial=0, deck below/.default=1
+  }}, subset sum/.cd, unit/.initial = 1, capacity/.initial = 10, sizes/.initial = {1}, deck/.initial = {0}, no deck/.initial = 0, no deck/.default = 1, deck below/.initial = 0, deck below/.default = 1, offset/.initial = 0, offset/.default = 1
 }
 
 
@@ -144,7 +145,7 @@
     \ifnum\nd>0
     \edef\xsac{0}
     \else
-    \edef\xsac{(\tailleslen + 1)*\unit}
+    \edef\xsac{(\tailleslen + 2)*\unit}
     \fi
     \fi
 
@@ -166,12 +167,15 @@
     }
     \fi
 
+    \filldraw [fill = gray] ({\xsac}, {\ysac}) rectangle ++ (-\unit, \unit);
+    \node [white] at ({\xsac - \unit/2}, {\ysac + \unit/2}) {\large\textbf{0}};
+
     \foreach \i/\m [evaluate = \i as \x using {(\i-1)*\unit}, evaluate = \m as \s using {\tailles[\m]}, evaluate = \s as \c using {int(Mod(\s-1, \nbcol)+1)}, evaluate = \c as \col using {\colors[\c]}, evaluate = \s as \o using {int(20*\s/\nbcol)}] in \marks {
         \fill [\col] ({\xsac + \x}, \ysac) rectangle ++ (\unit, \unit);
         \node [white] at ({\xsac + \x + \unit/2}, {\ysac + \unit/2}) {\large\textbf{\s}};
     }
 
-    \draw ({\xsac}, \ysac) rectangle ++ (\capa*\unit, \unit);
+    \draw ({\xsac}, {\ysac}) rectangle ++ (\capa*\unit, \unit);
 
     \foreach \i [evaluate = \i as \x using {\i*\unit}, evaluate = \i as \m using {int(Mod(\i, 5))}] in {1, ..., \capa} {
       \ifnum\i<\capa
@@ -183,7 +187,7 @@
       \fi
       \draw ({\xsac + \x - \unit/2}, {\ysac + \unit}) node [above] {\i};
     }
-  }}, prog dyn/.cd, unit/.initial = 1, capacity/.initial = 10, sizes/.initial={1}, deck/.initial={0}, no deck/.initial=0, no deck/.default=1, marks/.initial = {0}, deck below/.initial=0, deck below/.default=1
+  }}, prog dyn/.cd, unit/.initial = 1, capacity/.initial = 10, sizes/.initial = {1}, deck/.initial = {0}, no deck/.initial = 0, no deck/.default = 1, marks/.initial = {0}, deck below/.initial = 0, deck below/.default = 1
 }
 
 
