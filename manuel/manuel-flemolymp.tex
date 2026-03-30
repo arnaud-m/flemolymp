@@ -20,34 +20,15 @@ Université Côte d'Azur, CNRS, I3S, France
 % \draftmodetrue % By default at false
 % \notikztrue % By default at false
 % \showsolstrue % By default at false
+% \leaflettrue % By default at false
 
-
-\ifnotikz
-\renewenvironment{tikzpicture}[1][]{
-  \comment
-}{
-  \endcomment
-}
-\else
-\let\persistentTikz\tikzpicture
-\let\endpersistentTikz\endtikzpicture
-\renewenvironment{tikzpicture}[1][]{
-  \begin{adjustbox}{max width=0.9\linewidth}
-  \persistentTikz
-}{
-  \endpersistentTikz
-  \end{adjustbox}
-}
-\fi
-
-\ifdraftmode
-\selectcolormodel{gray}
-\fi
+\initdocument
 
 
 \begin{document}
 
-\maketitle
+\mymaketitle
+
 \tableofcontents
 
 
@@ -651,6 +632,9 @@ données. Ils illustrent l'importance des algorithmes pour organiser et optimise
   La simplicité ne précède pas la complexité, elle la suit.
 \end{epigramme}
 
+\ifleaflet
+\clearpage
+\fi
 
 \appendix
 
@@ -709,5 +693,10 @@ Elle contient notamment :
 
   \bibliographystyle{plainnat}
   \bibliography{flemolymp}
+
+\ifleaflet
+\clearpage
+\emptypage
+\fi
 
 \end{document}

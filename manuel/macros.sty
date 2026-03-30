@@ -24,43 +24,6 @@
 \usepackage[shortlabels]{enumitem}
 \setlist{nosep}
 
-\usepackage{xspace}
-
-\usepackage{subfig}
-
-\newcounter{subFigure}
-\def\thesubFigure{\textit{(\roman{subFigure})}\xspace}
-
-% \usepackage{twemojis}
-\usepackage{skak}
-\usepackage{pifont}
-
-\def\etc{\textit{etc.}\xspace}
-
-
-\newcommand{\ds}{\displaystyle}
-\newcommand{\vs}{\vspace{12pt}}
-\newcommand{\R}{\mathbf{R}}
-\newcommand{\vsp}{\vspace{6pt}}
-
-%\newcommand{\reponse}{\paragraph{\it R\'eponse~:}}
-
-\newcommand{\suggestion}{\paragraph{\it \underline{Suggestion}.}}
-
-\newcommand{\mep}{\paragraph{Mise en place.}}
-
-\newcommand{\dm}[1]{\textcolor{red}{\textbf{Dorian: #1}}}
-
-\newcommand{\FH}[1]{{\color{red} {\bf Fred :} #1}}
-
-\def\mp#1{\textcolor{purple}{Marie : #1}}
-\newcommand{\correct}[2]{\textcolor{magenta}{\sout{#1} #2}}
-
-
-\def\yep{\textcolor{vert}{\ding{51}}\xspace}
-\def\nope{\textcolor{rouge}{\ding{55}}\xspace}
-\def\dunno{\textcolor{orange}{\textbf{\sffamily?}}\xspace}
-
 \newif\ifdraftmode
 \draftmodefalse
 
@@ -71,3 +34,66 @@
 \showsolsfalse % <---- comment/uncomment that line
 
 \usepackage{adjustbox}
+
+\newif\ifleaflet
+\leafletfalse
+
+\def\emptypage{
+~
+\thispagestyle{empty}
+\setcounter{page}{0}
+\clearpage
+}
+
+\def\initdocument{
+\ifleaflet
+\adjustboxset{rotate = 90}
+\fi
+
+\adjustboxset{max totalsize={0.95\textwidth}{0.95\textheight}}%
+
+\ifnotikz
+\renewenvironment{tikzpicture}[1][]{
+  \comment
+}{
+  \endcomment
+}
+\else
+\let\persistentTikz\tikzpicture
+\let\endpersistentTikz\endtikzpicture
+\renewenvironment{tikzpicture}[1][]{
+  \begin{adjustbox}{}
+  \persistentTikz
+}{
+  \endpersistentTikz
+  \end{adjustbox}
+}
+\fi
+
+\ifdraftmode
+\selectcolormodel{gray}
+\fi
+}
+
+\def\mymaketitle{
+\ifleaflet
+\makeatletter
+\begin{titlepage}
+\vfill
+\includegraphics[width = 15cm]{fig/logo.pdf}
+\vfill
+\centering\Large\@author
+\end{titlepage}
+\makeatother
+\emptypage
+\else
+\makeatletter
+\begin{center}
+\includegraphics[width = 4cm]{fig/logo.pdf}
+
+\vspace{5mm}
+\large\@author
+\end{center}
+\makeatother
+\fi
+}
