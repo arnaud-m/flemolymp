@@ -20,12 +20,15 @@ Université Côte d'Azur, CNRS, I3S, France
 % \draftmodetrue % By default at false
 % \notikztrue % By default at false
 % \showsolstrue % By default at false
-% \leaflettrue % By default at false
+\leaflettrue % By default at false
 
 \initdocument
 
 
 \begin{document}
+\ifleaflet
+\fontsize{14}{17}\selectfont
+\fi
 
 \mymaketitle
 
@@ -34,7 +37,7 @@ Université Côte d'Azur, CNRS, I3S, France
 \begin{abstract}
   \noindent Et si créer des vidéos des Jeux Olympiques devenait un défi d’algorithmique ?
 
-  L’activité Flemme Olympique propose une approche ludique de l’algorithmique à travers un problème de partition.
+  \noindent L’activité Flemme Olympique propose une approche ludique de l’algorithmique à travers un problème de partition.
   Elle permet d’explorer concrètement des stratégies algorithmiques dans un cadre débranché et de développer la pensée logique.
 \end{abstract}
 
@@ -55,7 +58,7 @@ Les diffusions reposent sur des serveurs capricieux et des automatismes stricts.
 Une vidéo trop longue ou trop courte peut bloquer tout le système, interrompre d'autres diffusions, et faire grincer des dents dans les salles de contrôle.
 
 La flemme !
-Vous partez la tête basse \dots adieu les rêves de lumière \dots et en route pour la salle de montage obscure.
+Vous partez la tête basse\dots adieu les rêves de lumière\dots et en route pour la salle de montage obscure.
 Au début, vous tentez d'organiser les séquences à la main, en espérant gagner du temps.
 Mauvaise idée. Les vidéos s'entrechoquent, certaines séquences débordent, d'autres restent à moitié inutilisées\dots et vous commencez à désespérer.
 
@@ -70,7 +73,7 @@ Sa première leçon : simplifiez le problème.
 Considérez chaque séquence comme un objet réduit à sa seule durée et préparez-vous à appliquer des algorithmes plus ou moins retors selon les situations.
 
 Alan vous avertit cependant que l'efficacité et les gains de temps n'arriveront qu'après un sérieux effort pour comprendre le problème et dompter les algorithmes.
-Mais une fois ce coup de maître acquis, vous pourrez enfin profiter de votre flemme olympique \dots sans catastrophe vidéo.
+Mais une fois ce coup de maître acquis, vous pourrez enfin profiter de votre flemme olympique\dots sans catastrophe vidéo.
 
 Prêts à devenir des champions de la flemme en domptant la puissance des algorithmes ?
 
@@ -265,10 +268,10 @@ En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
     $$S_1 = \{6, 9\}, \quad S_2 = \{1, 2, 4, 8\}.$$
 
     \begin{description}
-    \item[Inversion de la partition] On peut inverser la partition et les sommes restent identiques.
+    \item[Inversion de la partition :] on peut inverser la partition et les sommes restent identiques.
       $$S_1 = \{1, 2, 4, 8\}, \quad S_2 = \{6, 9\}$$
 
-    \item[Échange partiel de nombres] On peut aussi échanger des nombres sans changer les sommes, par exemple en remplaçant $6 \in S_1$ par $2,\ 4 \in S_2$.
+    \item[Échange partiel de nombres :] on peut aussi échanger des nombres sans changer les sommes, par exemple en remplaçant $6 \in S_1$ par $2,\ 4 \in S_2$.
       $$S_1 = \{2, 4, 9\}, \quad S_2 = \{1, 6, 8\},$$
       \end{description}
   \end{exemple}
@@ -644,7 +647,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     À ce prix seulement, vous pourrez espérer rejoindre le panthéon des partitions.
 
 
-    Et qui sait ? Peut-être pourrez-vous enfin profiter des Jeux \dots autrement que derrière un écran.
+    Et qui sait ? Peut-être pourrez-vous enfin profiter des Jeux\dots autrement que derrière un écran.
 
     \begin{epigramme}
       % 67. Think of all the psychic energy expended in seeking a fundamental distinction between "algorithm" and "program"
@@ -664,7 +667,7 @@ Le problème de partition appartient à une grande famille de problèmes d'optim
 De nombreux problèmes célèbres lui sont étroitement liés.
 \begin{epigramme}
   % 16. Every program has (at least) two purposes: the one for which it was written and another for which it wasn't.
-  Tout programme fait au moins deux choses : ce pour quoi il a été conçu \dots et une autre pour laquelle il ne l'a pas été.
+  Tout programme fait au moins deux choses : ce pour quoi il a été conçu\dots et une autre pour laquelle il ne l'a pas été.
 \end{epigramme}
 
 \begin{definition}{Problème de la somme de sous-ensembles}
@@ -730,7 +733,7 @@ Le scénario dépendra aussi de la familiarité et l'intérêt de l'animateur.
 
 \begin{table}[htbp]
   \centering
-  \resizebox{\linewidth}{!}{
+  \begin{adjustbox}{max totalsize={0.95\textwidth}{0.95\textheight}}
   \begin{tabular}{lllll}
     \toprule
     Section & Objectif & Public visé & Durée & Difficulté \\
@@ -744,7 +747,7 @@ Le scénario dépendra aussi de la familiarité et l'intérêt de l'animateur.
     \nameref{sec:related} & Généralisation du problème & Tous & 15min \\
     \bottomrule
   \end{tabular}
-  }
+  \end{adjustbox}
   \caption[Scénario pédagogique.]{Scénario pédagogique pour les animateurs}
   \label{tab:scenario}
 \end{table}
@@ -779,10 +782,5 @@ Elle contient notamment :
 
   \bibliographystyle{plainnat}
   \bibliography{flemolymp}
-
-\ifleaflet
-\clearpage
-\emptypage
-\fi
 
 \end{document}

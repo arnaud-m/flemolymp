@@ -7,69 +7,72 @@
 \usepackage{fontspec}
 \setmainfont{Poppins}
 
+\def\u{0.8}
+
 \begin{document}
   \huge\bfseries
-    \begin{tikzpicture}
-    \pic [olympicred] at (0, 0) {barre = {value = 1, factor = 1}};
+  \begin{tikzpicture}
+    \begin{scope}[olympicred]
+      \pic at (0, 0) {barre = {value = 1, factor = 1, unit = \u}};
 
-    \pic [olympicred] at (1.3, 0) {barre = {value = 6, factor = 3, img}};
+      \pic at ({\u + 0.5}, 0) {barre = {value = 6, factor = 3, img, unit = \u}};
 
-    \pic [olympicred] at (6.6, 0) {barre = {value = 11, sizes = {4, 4, 3}, img}};
+      \pic at ({7*\u + 1}, 0) {barre = {value = 11, sizes = {4, 4, 3}, img, unit = \u}};
 
-    \pic [olympicred] at (15.9, 0) {barre = {value = 16, factor = 4, img}};
+      \pic at ({18*\u + 1.5}, 0) {barre = {value = 16, factor = 4, img, unit = \u}};
 
-    \pic [olympicred] at (29.2, 0) {barre = {value = 21, sizes = {4, 4, 4, 4, 5}, img}};
+      \pic at ({34*\u + 2}, 0) {barre = {value = 21, sizes = {4, 4, 4, 4, 5}, img, unit = \u}};
+    \end{scope}
 
+    \begin{scope}[yshift = -3.5cm, olympicviolet]
+      \pic at (0, 0) {barre = {value = 2, factor = 2, img, unit = \u}};
 
-    \begin{scope}[yshift = -3.5cm]
-      \pic [olympicviolet] at (0, 0) {barre = {value = 2, factor = 2, img}};
+      \pic at ({2*\u + 0.5}, 0) {barre = {value = 7, sizes = {4, 3}, img, unit = \u}};
 
-      \pic [olympicviolet] at (2.1, 0) {barre = {value = 7, sizes = {4, 3}, img}};
+      \pic at ({9*\u + 1}, 0) {barre = {value = 12, factor = 4, img, unit = \u}};
 
-      \pic [olympicviolet] at (8.2, 0) {barre = {value = 12, factor = 4, img}};
+      \pic at ({21*\u + 1.5}, 0) {barre = {value = 17, sizes = {4, 4, 4, 5}, img, unit = \u}};
 
-      \pic [olympicviolet] at (18.3, 0) {barre = {value = 17, sizes = {4, 4, 4, 5}, img}};
-
-      \pic [olympicviolet] at (32.4, 0) {barre = {value = 22, sizes = {4, 4, 4, 5, 5}, img}};
+      \pic at ({38*\u + 2}, 0) {barre = {value = 22, sizes = {4, 4, 4, 5, 5}, img, unit = \u}};
     \end{scope}
 
 
-    \begin{scope}[yshift = -7cm]
-      \pic [olympicgreen] at (0, 0) {barre = {value = 3, factor = 3, img}};
+    \begin{scope}[yshift = -7cm, olympicgreen]
+      \pic at (0, 0) {barre = {value = 3, factor = 3, img, unit = \u}};
 
-      \pic [olympicgreen] at (2.9, 0) {barre = {value = 8, factor = 4, img}};
+      \pic at ({3*\u + 0.5}, 0) {barre = {value = 8, factor = 4, img, unit = \u}};
 
-      \pic [olympicgreen] at (9.8, 0) {barre = {value = 13, sizes = {4, 4, 5}, img}};
+      \pic at ({11*\u + 1}, 0) {barre = {value = 13, sizes = {4, 4, 5}, img, unit = \u}};
 
-      \pic [olympicgreen] at (20.7, 0) {barre = {value = 18, factor = 3, img}};
+      \pic at ({24*\u + 1.5}, 0) {barre = {value = 18, factor = 3, img, unit = \u}};
 
-      \pic [olympicgreen] at (35.6, 0) {barre = {value = 23, sizes = {4, 4, 4, 4, 4, 3}, img}};
+      \pic at ({42*\u + 2}, 0) {barre = {value = 23, sizes = {4, 4, 4, 4, 4, 3}, img, unit = \u}};
     \end{scope}
 
 
-    \begin{scope}[yshift = -10.5cm]
-      \pic [olympicyellow] at (0, 0) {barre = {value = 4, factor = 4, img}};
+    \begin{scope}[yshift = -10.5cm, olympicyellow]
+      \pic at (0, 0) {barre = {value = 4, factor = 4, img, unit = \u}};
 
-      \pic [olympicyellow] at (3.7, 0) {barre = {value = 9, sizes = {4, 5}, img}};
+      \pic at ({4*\u + 0.5}, 0) {barre = {value = 9, sizes = {4, 5}, img, unit = \u}};
 
-      \pic [olympicyellow] at (11.4, 0) {barre = {value = 14, sizes = {5, 5, 4}, img}};
+      \pic at ({13*\u + 1}, 0) {barre = {value = 14, sizes = {5, 5, 4}, img, unit = \u}};
 
-      \pic [olympicyellow] at (23.1, 0) {barre = {value = 19, sizes = {5, 5, 5, 4}, img}};
+      \pic at ({27*\u + 1.5}, 0) {barre = {value = 19, sizes = {5, 5, 5, 4}, img, unit = \u}};
 
-      \pic [olympicyellow] at (38.8, 0) {barre = {value = 24, factor = 4, img}};
+      \pic at ({46*\u + 2}, 0) {barre = {value = 24, factor = 4, img, unit = \u}};
     \end{scope}
 
 
-    \begin{scope}[yshift = -14cm]
-      \pic [olympicblue] at (0, 0) {barre = {value = 5, factor = 5, img}};
+    \begin{scope}[yshift = -14cm, olympicblue]
+      \pic at (0, 0) {barre = {value = 5, factor = 5, img, unit = \u}};
 
-      \pic [olympicblue] at (4.5, 0) {barre = {value = 10, factor = 5, img}};
+      \pic at ({5*\u + 0.5}, 0) {barre = {value = 10, factor = 5, img, unit = \u}};
 
-      \pic [olympicblue] at (13, 0) {barre = {value = 15, factor = 5, img}};
+      \pic at ({15*\u + 1}, 0) {barre = {value = 15, factor = 5, img, unit = \u}};
 
-      \pic [olympicblue] at (25.5, 0) {barre = {value = 20, factor = 5, img}};
+      \pic at ({30*\u + 1.5}, 0) {barre = {value = 20, factor = 5, img, unit = \u}};
 
-      \pic [olympicblue] at (42, 0) {barre = {value = 25, factor = 5, img}};
+      \pic at ({50*\u + 2}, 0) {barre = {value = 25, factor = 5, img, unit = \u}};
     \end{scope}
   \end{tikzpicture}
 \end{document}

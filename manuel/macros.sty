@@ -7,7 +7,7 @@
 
 
 \usepackage{booktabs}
-\usepackage[pdftex,colorlinks=true,urlcolor=darkolympicgreen,citecolor=darkolympicblue,linkcolor=darkolympicviolet]{hyperref} % Must be loaded before cleveref
+\usepackage[pdftex,colorlinks=true,urlcolor=darkolympicgreen,citecolor=darkolympicblue,linkcolor=darkolympicviolet!80!black]{hyperref} % Must be loaded before cleveref
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage[normalem]{ulem}
 \usepackage{nameref}
@@ -28,10 +28,10 @@
 \draftmodefalse
 
 \newif\ifnotikz
-\notikzfalse % <---- comment/uncomment that line
+\notikzfalse
 
 \newif\ifshowsols
-\showsolsfalse % <---- comment/uncomment that line
+\showsolsfalse
 
 \usepackage{adjustbox}
 
@@ -41,7 +41,7 @@
 \def\emptypage{
 ~
 \thispagestyle{empty}
-\setcounter{page}{0}
+\addtocounter{page}{-1}
 \clearpage
 }
 
@@ -49,8 +49,6 @@
 \ifleaflet
 \adjustboxset{rotate = 90}
 \fi
-
-\adjustboxset{max totalsize={0.95\textwidth}{0.95\textheight}}%
 
 \ifnotikz
 \renewenvironment{tikzpicture}[1][]{
@@ -62,7 +60,7 @@
 \let\persistentTikz\tikzpicture
 \let\endpersistentTikz\endtikzpicture
 \renewenvironment{tikzpicture}[1][]{
-  \begin{adjustbox}{}
+  \begin{adjustbox}{max totalsize={0.95\textwidth}{0.95\textheight}}
   \persistentTikz
 }{
   \endpersistentTikz
