@@ -1,0 +1,21 @@
+\documentclass[11pt, landscape, a5paper]{article}
+
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{./fig}}
+
+\usepackage{../colors}
+\usepackage{../encarts}
+
+\usepackage[margin = 2cm]{geometry}
+
+\usepackage{fontspec}
+\setmainfont{Poppins}
+
+\begin{document}
+  \pagestyle{empty}
+
+  \begin{tcolorbox}[colback = bronze!30, colframe = bronze, fonttitle = \bfseries, halign title = center, title = Algorithme glouton]
+    \input{../algo/GS}
+  \end{tcolorbox}
+\end{document}
