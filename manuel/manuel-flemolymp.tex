@@ -20,7 +20,7 @@ Université Côte d'Azur, CNRS, I3S, France
 % \draftmodetrue % By default at false
 % \notikztrue % By default at false
 % \showsolstrue % By default at false
-\leaflettrue % By default at false
+% \leaflettrue % By default at false
 
 \initdocument
 
@@ -384,16 +384,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   \begin{algorithme}{Algorithme glouton}
     \label{algo:gs}
-    \begin{itemize}
-    \item Déterminer la capacité du sac.
-    \item Trier les objets par ordre décroissant de taille.
-    \item Tant qu'il reste des objets à placer :
-      \begin{itemize}
-      \item placer le plus grand objet dans le sac si sa capacité le permet ;
-      \item Sinon, retirer l'objet ;
-      \item Si le sac est rempli, arrêter l'algorithme.
-      \end{itemize}
-  \end{itemize}
+    \input{algo/GS}
   \end{algorithme}
 
   \input{exs/ex1-GS}
@@ -466,12 +457,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   \begin{algorithme}{Algorithme glouton répété}
     \label{algo:mtgs}
-    Répéter tant que le sac n'est pas complètement rempli :
-    \begin{itemize}
-    \item Appliquer l'algorithme glouton.
-    \item Si le sac est rempli, arrêter l'algorithme.
-    \item Sinon, retirer le plus grand objet du sac restant et recommencer.
-    \end{itemize}
+    \input{algo/MTGS}
   \end{algorithme}
 
   \input{exs/ex2-MTGS}
@@ -514,27 +500,11 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   \begin{algorithme}{Algorithme de programmation dynamique}
     \label{algo:dp}
-    \begin{itemize}
-    \item Déterminer la capacité du sac.
-    \item Trier les objets par ordre décroissant.
-    \item Répéter tant qu'il reste des objets à placer :
-      \begin{itemize}
-      \item Pour chaque case marquée, en partant de la dernière :
-        \begin{itemize}
-        \item Calculer la case atteinte en plaçant immédiatement l'objet après la case marquée.
-        \item Si cette case n'est pas encore marquée, placer un marqueur correspondant à l'objet.
-        \end{itemize}
-      \item Si la dernière case (capacité) est marquée, le sac est rempli et l'algorithme s'arrête.
-      \end{itemize}
-    \end{itemize}
+    \input{algo/DP}
   \end{algorithme}
 
   \begin{algorithme}{Reconstruction du sac en programmation dynamique}
-    Tant qu'il reste des marqueurs dans le sac :
-    \begin{itemize}
-    \item Sélectionner le marqueur le plus à droite.
-    \item Placer l'objet correspondant à ce marqueur dans le sac en retirant les marqueurs sous l'objet.
-    \end{itemize}
+    \input{algo/DP-sol}
   \end{algorithme}
 
   \input{exs/ex3-DP}
