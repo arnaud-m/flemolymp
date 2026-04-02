@@ -29,24 +29,40 @@ Université Côte d'Azur, CNRS, I3S, France
 
 \mymaketitle
 
-\tableofcontents
 
+
+\begin{abstract}
+  \noindent Et si créer des vidéos des Jeux Olympiques devenait un défi d’algorithmique ?
+
+  L’activité Flemme Olympique propose une approche ludique de l’algorithmique à travers un problème de partition.
+  Elle permet d’explorer concrètement des stratégies algorithmiques dans un cadre débranché et de développer la pensée logique.
+\end{abstract}
+
+\tableofcontents
+\clearpage
 
 \section{Bienvenue aux Flemmes Olympiques !}
 \label{sec:flemo}
 
+C'est le premier jour de votre stage dans une société de production audiovisuelle pour couvrir les jeux olympiques.
+Vous rêvez d'assister à des exploits sportifs, d'interviewer les plus grands athlètes dans des enceintes célèbres !
 
-Votre mission : créer le résumé parfait des Jeux Olympiques, en combinant des séquences de différents sports.
-Certaines sont courtes, d'autres longues, certaines spectaculaires, d'autres plus calmes\dots et votre objectif est de tout organiser pour que chaque segment ait exactement la bonne durée.
+Après quelques formalités, vous rencontrez enfin votre chef qui vous décrit votre mission : créer le résumé parfait des Jeux Olympiques, en combinant des séquences de différents sports.
+ Certaines sont courtes, d'autres longues, certaines spectaculaires, d'autres plus calmes\dots et votre objectif est de tout organiser pour créer deux séquences de durée identiques pour les génériques de début et de fin d'une émission.
 
 Pourquoi cette précision ?
 Les diffusions reposent sur des serveurs capricieux et des automatismes stricts.
 Une vidéo trop longue ou trop courte peut bloquer tout le système, interrompre d'autres diffusions, et faire grincer des dents dans les salles de contrôle.
 
+La flemme !
+Vous partez la tête basse \dots adieu les rêves de lumière \dots et en route pour la salle de montage obscure.
 Au début, vous tentez d'organiser les séquences à la main, en espérant gagner du temps.
 Mauvaise idée. Les vidéos s'entrechoquent, certaines séquences débordent, d'autres restent à moitié inutilisées\dots et vous commencez à désespérer.
 
-Mais pas de panique ! Heureusement, Richard Ernest Bellman, maître des algorithmes, peut vous aider à trouver une partition parfaite lorsque c'est possible, et la plupart du temps dans un temps raisonnable, sauf dans les pires cas.
+Après plusieurs heures de vains efforts, un homme a l'air vif et intelligent se présente à vous :
+\og Richard Ernest Bellman, maître des algorithmes, appelé à la rescousse !
+Je vais vous aider à trouver une partition parfaite lorsque c'est possible, et la plupart du temps dans un temps raisonnable, sauf dans les pires cas.
+\fg
 
 Et pour vous guider, l’esprit d’Alan Jay Perlis, pionnier de la programmation et des langages informatiques, est là pour distiller ses conseils et réflexions sur les algorithmes\dots à travers ses fameuses épigrammes~\cite{Perlis1982}.
 
@@ -54,7 +70,7 @@ Sa première leçon : simplifiez le problème.
 Considérez chaque séquence comme un objet réduit à sa seule durée et préparez-vous à appliquer des algorithmes plus ou moins retors selon les situations.
 
 Alan vous avertit cependant que l'efficacité et les gains de temps n'arriveront qu'après un sérieux effort pour comprendre le problème et dompter les algorithmes.
-Mais une fois ce coup de maître acquis, vous pourrez enfin profiter de votre flemme olympique\dots sans catastrophe vidéo.
+Mais une fois ce coup de maître acquis, vous pourrez enfin profiter de votre flemme olympique \dots sans catastrophe vidéo.
 
 Prêts à devenir des champions de la flemme en domptant la puissance des algorithmes ?
 
@@ -62,9 +78,22 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
   On croit comprendre en apprenant, on est plus confiant en écrivant, encore plus en enseignant\dots mais on en est vraiment sûr en programmant.
 \end{epigramme}
 
+% 58. Fools ignore complexity. Pragmatists suffer it. Some can avoid it, Geniuses remove it.
+% 61. In programming, as in everything else, to be in error is to be reborn
+% 67. Think of all the psychic energy expended in seeking a fundamental distinction between "algorithm" and "program"
+% 98. In computing, the mean time to failure keeps getting shorter.
+
 \nocite{MartelloToth1990,Mertens2003}
 \section{Description du problème}
 \label{sec:partition}
+
+Après la simplification, il faut mettre un peu d’ordre dans tout ça : définir clairement le problème et en explorer les propriétés.
+Car soyons honnêtes : concevoir -- ou même comprendre -- un algorithme pour un problème qui nous est étranger, c'est un peu comme écouter une conversation dans une langue étrangère.
+
+Que comprendriez-vous, par exemple, aux conseils d’un marin en pleine régate olympique, si vous n'avez jamais mis un pied sur un bateau ?
+\og Je ne vais pas trop tendre le cunningham ni forcer sur le hale-bas au près ; je vais plutôt jouer sur l’équilibre du bateau en déplaçant mon poids et ajuster finement le cap, vu la petite brise. \fg
+
+En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
 
 \begin{definition}{Sac d'entiers}
   Un \emph{sac d'entiers} est une collection d'entiers naturels dans laquelle un même nombre peut apparaître plusieurs fois.
@@ -207,8 +236,8 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
   \end{figure}
 
 
-  \begin{definition}{Problème de partitionnement}
-    En informatique, le problème de partitionnement consiste à déterminer si une partition parfaite d'un sac d'entiers existe.
+  \begin{definition}{Problème de partition}
+    En informatique, le problème de partition consiste à déterminer si une partition parfaite d'un sac d'entiers existe.
 
     Ce problème est connu pour être difficile en informatique théorique, classé \emph{NP-complet} :
     \begin{itemize}
@@ -243,6 +272,10 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
       $$S_1 = \{2, 4, 9\}, \quad S_2 = \{1, 6, 8\},$$
       \end{description}
   \end{exemple}
+
+  \begin{exercice}{Échanges partiels}{5}
+    Trouver d'autres partitions parfaites de six entiers consécutifs en effectuant des échanges partiels d'entiers entre les deux sacs.
+  \end{exercice}
 
   \begin{epigramme}
     La symétrie permet de réduire la complexité ; cherchez-la partout.
@@ -296,11 +329,6 @@ Votre mission est de répartir ces nombres en deux résumés parfaits et découv
 \end{figure}
 
 
-\begin{exercice}{Échanges partiels}{5}
-  Trouver d'autres partitions parfaites en effectuant des échanges partiels d'entiers entre les deux sacs.
-\end{exercice}
-
-
 \begin{definition}{Algorithme}
   Un \emph{algorithme} est une suite d'étapes simples qui permet de résoudre un problème.
   Le nombre d'étapes peut varier en fonction de la taille des données.
@@ -337,16 +365,18 @@ Pour appliquer les algorithmes, nous allons maintenant considérer chaque entier
 Ainsi, chaque entier du sac correspond à un objet que l'on peut placer dans un sac de capacité donnée.
 Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en gardant à l'esprit qu'il sont seulement caractérisés par un entier, leur taille.
 
-\begin{mycitation}{Léon-Paul Fargues}
-  Il n'y a pas de simplicité véritable, que des simplifications.
-\end{mycitation}
-
   \begin{definition}{Algorithme glouton}
     Un \emph{algorithme glouton} est un algorithme qui, étape par étape, fait toujours le choix considéré comme le meilleur à ce moment précis (choix \emph{localement optimal}).
 
     Dans certains problèmes, cette approche conduit à un optimum global.
     Dans le cas général, c'est une \emph{heuristique} qui ne garantit pas de trouver l'optimum global.
   \end{definition}
+
+
+  \begin{epigramme}
+    % 17. If a listener nods his head when you're explaining your program, wake him up.
+    Si quelqu’un hoche la tête pendant que vous expliquez un algorithme, réveillez-le.
+  \end{epigramme}
 
 
   \begin{algorithme}{Algorithme glouton}
@@ -376,6 +406,11 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     trouve une partition presque sans transpirer.
   \end{remarque}
 
+  \begin{epigramme}
+    % 105. You can't communicate complexity, only an awareness of it.
+    La complexité ne se communique pas, elle se pressent.
+  \end{epigramme}
+
   \input{exs/ex2-GS}
 
   \begin{remarque}{À propos de l'algorithme glouton}
@@ -396,7 +431,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     \input{tex/partition-16}
   \fi
 
-  \begin{remarque}{Glouton et partition des entiers de 1 à $n$}
+  \begin{remarque}{Optimalité du glouton pour la partition des entiers de 1 à $n$}
     L'algorithme glouton est optimal pour le problème de partition des entiers de $1$ à $n$ :
     \begin{itemize}
     \item il existe toujours une partition parfaite des entiers de $1$ à $n$ ;
@@ -420,7 +455,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   Alan J. Perlis, vous glisserait volontiers qu’un programme devient souvent plus intéressant lorsqu’on le relance plusieurs fois.
 
   L’idée est donc simple : si le glouton échoue, recommençons, mais en modifiant légèrement les conditions initiales.
-  C’est précisément le principe de l’algorithme glouton répété : relancer le glouton plusieurs fois pour explorer d’autres possibilités en espérant être assez chanceux pour trouver une partition parfaite.
+  C’est précisément le principe de l’algorithme glouton répété : lancer le glouton plusieurs fois pour explorer d’autres possibilités en espérant être assez chanceux pour trouver une partition parfaite.
 
   \begin{epigramme}
     Si l'on écrivait des programmes dès l'enfance, on saurait probablement mieux les lire une fois adulte.
@@ -439,11 +474,15 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \input{exs/ex2-MTGS}
 
   \begin{remarque}{À propos de l'algorithme glouton répété}
+    L'algorithme glouton répété examine uniquement des solutions distinctes : à chaque itération, il retire le plus grand objet restant est éliminé avant de relancer le glouton.
+    Or, cet objet est toujours inclus dans la solution construite par le glouton.
+  \end{remarque}
+
+  \begin{remarque}{Nombre d'étapes de l'algorithme glouton répété}
     \begin{itemize}
-    \item L'algorithme glouton répété examine uniquement des solutions distinctes,
-      car à chaque itération le plus grand objet restant est éliminé avant
-      d'appliquer à nouveau l'algorithme glouton.
-    \item l'algorithme explore au plus $n$ solutions (une par objet éliminé).
+    \item L'algorithme explore au plus $n$ solutions (une par objet successivement éliminé).
+    \item L'algorithme glouton examine au plus les $n$ objets.
+    \item Le nombre total d'étapes de l'algorithme glouton est donc proportionnel à $n^2 = n \times n$.
     \end{itemize}
   \end{remarque}
 
@@ -527,7 +566,6 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \item il trouve une partition parfaite si elle existe ;
   \item sinon, il minimise la différence entre les sommes des deux sous-sacs.
   \end{itemize}
-
     On sacrifie la rapidité pour être sûr d'obtenir la solution optimale.
   \end{remarque}
 
@@ -582,15 +620,52 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     \end{remarque}
 
 
-  \section{Problèmes connexes}
-  \label{sec:related}
+    \section{Citius, altius, fortius (plus vite, plus haut, plus fort)}
 
-  \begin{epigramme}
-    En programmation, chaque tâche est un cas particulier d'une idée plus générale -- et on s'en rend compte parfois trop vite.
-  \end{epigramme}
+    Votre esprit est maintenant limpide ! Vous voilà initié aux arcanes des partitions.
+    Mais une question demeure : comment ce labeur acharné peut-il se transformer en véritable flemme olympique ?
+    \\
+    C’est alors qu’Alan, malicieusement, vous souffle à nouveau à l’oreille :
+
+    \begin{epigramme}
+      On croit comprendre en apprenant, on est plus confiant en écrivant, encore plus en enseignant\dots mais on en est vraiment sûr en programmant.
+    \end{epigramme}
+
+    Il ne vous reste donc qu’une ultime épreuve.
+
+    \begin{exercice}{Olympiade des partitions}{?}
+      Écrire un programme capable de résoudre le problème de partition et le soumettre au
+      \begin{center}
+        \large
+        \href{}{juge olympique}.
+      \end{center}
+
+    \end{exercice}
+    À ce prix seulement, vous pourrez espérer rejoindre le panthéon des partitions.
+
+
+    Et qui sait ? Peut-être pourrez-vous enfin profiter des Jeux \dots autrement que derrière un écran.
+
+    \begin{epigramme}
+      % 67. Think of all the psychic energy expended in seeking a fundamental distinction between "algorithm" and "program"
+      Pensez à toute l’énergie mentale dépensée pour tenter de tracer la frontière entre \og algorithme \fg et \og programme \fg.
+    \end{epigramme}
+
+    \section{Problèmes connexes}
+    \label{sec:related}
+
+
+
+  % \begin{epigramme}
+  %   En programmation, chaque tâche est un cas particulier d'une idée plus générale -- et on s'en rend compte parfois trop vite.
+  % \end{epigramme}
 
 Le problème de partition appartient à une grande famille de problèmes d'optimisation étudiés en informatique et en recherche opérationnelle.
 De nombreux problèmes célèbres lui sont étroitement liés.
+\begin{epigramme}
+  % 16. Every program has (at least) two purposes: the one for which it was written and another for which it wasn't.
+  Tout programme fait au moins deux choses : ce pour quoi il a été conçu \dots et une autre pour laquelle il ne l'a pas été.
+\end{epigramme}
 
 \begin{definition}{Problème de la somme de sous-ensembles}
   On dispose d'un sac d'entiers et d'une capacité donnée.
@@ -598,14 +673,6 @@ De nombreux problèmes célèbres lui sont étroitement liés.
   somme est exactement égale à cette capacité.
 
   Le problème de partition en est un cas particulier où la capacité est la moitié de la somme totale des entiers.
-\end{definition}
-
-
-\begin{definition}{Problème du sac à dos}
-  Chaque objet possède une taille et une valeur.
-  Le but est de choisir des objets à placer dans un sac de capacité limitée de manière à maximiser la valeur totale.
-
-  Contrairement au problème de partition, il ne s'agit plus de trouver une somme exacte, mais de sélectionner la meilleure combinaison possible en termes de valeurs.
 \end{definition}
 
 \begin{definition}{Problème d'ordonnancement sur deux machines}
@@ -618,6 +685,19 @@ De nombreux problèmes célèbres lui sont étroitement liés.
   Ce problème revient donc à chercher une partition des durées des tâches aussi équilibrée que possible.
 \end{definition}
 
+\begin{remarque}{Un algorithme peut répondre à plusieurs problème !}
+  Tous les algorithmes introduits fonctionnent pour la somme des sous-ensembles et l'ordonnancement sur deux machines.
+\end{remarque}
+
+
+\begin{definition}{Problème du sac à dos}
+  Chaque objet possède une taille et une valeur.
+  Le but est de choisir des objets à placer dans un sac de capacité limitée de manière à maximiser la valeur totale.
+
+  Contrairement au problème de partition, il ne s'agit plus de trouver une somme exacte, mais de sélectionner la meilleure combinaison possible en termes de valeurs.
+\end{definition}
+
+
 \begin{definition}{Problème de mise en boîtes}
   On dispose de plusieurs sacs de capacité fixe et d'objets de tailles différentes.
   Le but est de ranger tous les objets en utilisant le moins de sacs possible.
@@ -627,6 +707,8 @@ De nombreux problèmes célèbres lui sont étroitement liés.
 
 Ces problèmes~\cite{PP,SSP,KP,MS,BP} apparaissent dans de nombreux domaines : logistique, planification de tâches, allocation de ressources ou encore gestion de
 données. Ils illustrent l'importance des algorithmes pour organiser et optimiser des ressources limitées.
+
+
 
 \begin{epigramme}
   La simplicité ne précède pas la complexité, elle la suit.
@@ -679,6 +761,10 @@ Le scénario dépendra aussi de la familiarité et l'intérêt de l'animateur.
 
 Cette activité est libre et ouverte, et peut être reproduite ou adaptée dans le respect des licences.
 Elle s’inscrit également dans une démarche de science reproductible, afin que toute personne puisse vérifier, reproduire et prolonger les résultats proposés.
+
+\begin{center}
+  \url{https://github.com/arnaud-m/flemolymp}
+\end{center}
 
 Elle contient notamment :
 \begin{itemize}
