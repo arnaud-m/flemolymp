@@ -1,0 +1,106 @@
+\documentclass[11pt, a5paper, landscape]{article}
+
+\usepackage{booktabs}
+\usepackage{tikz}
+
+\usepackage{encarts}
+\usepackage{colors}
+
+\usepackage[left = 2cm, right = 2cm, top = 5mm, bottom = 5mm]{geometry}
+
+\usepackage{fontspec}
+\setmainfont{Poppins}
+
+\usepackage{marginnote}
+\usepackage{sidenotes} 
+
+\reversemarginpar
+\begin{document}
+  \pagestyle{empty}
+
+  \centering
+
+  \begin{marginfigure}
+    \hfill\includegraphics[width = 0.85\marginparwidth]{fig/logo_bw.pdf}
+  \end{marginfigure}
+  \vspace{-7mm}
+  \cardbox[colback = olympicblue, colframe = olympicblue]{Instances de type 1}{
+    \begin{tabular}{cclc}
+      \toprule
+      Id & Taille & Entiers & Capacité\\ 
+      \midrule
+       1 &   6 & 25, 22, 14, 12, 9, 4 &  43 \\
+       2 &   6 & 25, 20, 18, 11, 4, 2 &  40 \\
+       3 &   9 & 21, 17, 15, 13, 9, 6, 5, 4, 2 &  46 \\
+       4 &   9 & 24, 18, 15, 14, 13, 7, 6, 2, 1 &  50 \\
+       5 &  12 & 25, 23, 22, 20, 13, 11, 9, 7, 6, 5, 3, 2 &  73 \\
+       6 &  15 & 25, 23, 22, 20, 19, 18, 16, 15, 12, 11, 8, 5, 3, 2, 1 & 100 \\
+      \bottomrule
+    \end{tabular}}
+
+  \vfill
+
+  % \clearpage
+  % ~
+  % \vfill
+  
+  \cardbox[colback = olympicgreen, colframe = olympicgreen]{Instances de type 2}{
+    \begin{tabular}{cclc}
+      \toprule
+      Id & Taille & Entiers & Capacité\\ 
+      \midrule
+       7 &   6 & 22, 20, 15, 14, 9, 3 &  41 \\
+       8 &   6 & 23, 20, 18, 17, 12, 10 &  50 \\
+       9 &   9 & 22, 20, 17, 13, 9, 6, 5, 4, 2 &  49 \\
+      10 &   9 & 24, 20, 15, 10, 8, 7, 6, 4, 1 &  47 \\
+      11 &  12 & 25, 23, 18, 16, 15, 12, 11, 9, 7, 6, 4, 3 &  74 \\
+      12 &  15 & 25, 23, 21, 19, 18, 17, 15, 14, 13, 10, 7, 6, 5, 4, 3 & 100 \\
+      \bottomrule
+    \end{tabular}}
+
+  % \vfill
+
+  \clearpage
+  % ~
+  % \vfill
+
+  \begin{marginfigure}
+    \hfill\includegraphics[width = 0.85\marginparwidth]{fig/logo_bw.pdf}
+  \end{marginfigure}
+  \vspace{-7mm}
+  \cardbox[colback = olympicyellow, colframe = olympicyellow]{Instances de type 3}{
+    \begin{tabular}{cclc}
+      \toprule
+      Id & Taille & Entiers & Capacité\\ 
+      \midrule
+      13 &   6 & 25, 20, 17, 14, 11, 8 &  47 \\
+      14 &   6 & 23, 20, 17, 13, 12, 5 &  45 \\
+      15 &   9 & 22, 19, 15, 14, 12, 10, 4, 3, 1 &  50 \\
+      16 &   9 & 25, 19, 13, 12, 10, 8, 7, 3, 1 &  49 \\
+      17 &  12 & 20, 17, 16, 14, 13, 12, 11, 10, 9, 6, 5, 3 &  68 \\
+      18 &  15 & 25, 22, 20, 19, 18, 15, 14, 13, 11, 10, 9, 7, 6, 5, 2 &  98 \\
+      \bottomrule
+    \end{tabular}}
+
+  \vfill
+
+  % \clearpage
+  % ~
+  % \vfill
+  
+  \cardbox[colback = olympicviolet, colframe = olympicviolet]{Instances de type 4}{
+    \begin{tabular}{cclc}
+      \toprule
+      Id & Taille & Entiers & Capacité\\ 
+      \midrule
+      19 &   6 & 24, 21, 19, 15, 9, 4 &  46 \\
+      20 &   6 & 25, 22, 15, 13, 9, 1 &  42 \\
+      21 &   9 & 25, 23, 18, 15, 13, 10, 8, 5, 3 &  60 \\
+      22 &   9 & 25, 24, 15, 14, 13, 12, 11, 2, 1 &  58 \\
+      23 &  10 & 24, 22, 20, 18, 16, 14, 12, 10, 6, 4 &  73 \\
+      24 &  11 & 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4 &  77 \\
+      \bottomrule
+    \end{tabular}}
+  
+  % \vfill
+\end{document}

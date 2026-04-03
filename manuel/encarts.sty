@@ -1,5 +1,5 @@
-\usepackage{tcolorbox}
-% \tcbuselibrary{skins, breakable}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins}
 \usepackage{ifthen}
 
 \def\name#1{\ifthenelse{\equal{#1}{}}{}{~-- #1}}
@@ -76,3 +76,24 @@ left skip=1cm, colback=\colorbg{quoteBG}, colframe=quoteCol,
 title=\textcolor{black}{-- #2}, detach title, after upper={\par\tcbtitle},
 #1
 }
+
+\tcbset{pellicule/.style = {enhanced,
+overlay = {
+\pic [tcbcolframe, scale = 0.5] at (title.south west) {pellicule = {value = 42}};
+\pic [tcbcolframe, scale = 0.5] at ([yshift = -2.3mm]title.north west) {pellicule = {value = 42}};
+\pic [tcbcolframe, scale = 0.5] at (frame.south west) {pellicule = {value = 42}};
+}}}
+
+\newtcolorbox{card}[2][]{%
+fonttitle = \bfseries\large, halign title = center, valign = center, boxrule = 0mm, toptitle = 6mm, bottomtitle = 6mm, bottom = 5mm, width = 16.8cm,
+title = #2, 
+#1
+}
+
+% \newtcolorbox{card}[2][]{%
+% fonttitle = \bfseries\large, halign title = center, valign = center, boxrule = 0mm, lefttitle = -1mm, toptitle = -1mm, bottomtitle = -1mm, width = 16.8cm, boxed title style = empty, 
+% title = \tikz{\pic [tcbcolbacktitle, scale = 0.5] at (0, 0) {barre = {value = 42, factor = 6, title = \textbf{#2}, title color = tcbcoltitle, inner color = tcbcolframe, top color = tcbcolframe}};}, 
+% #1
+% }
+
+\newtcbox{\cardbox}[2][]{fonttitle = \bfseries\large, halign title = center, toptitle = 3mm, bottomtitle = 3mm, coltitle = black, title = #2, tikznode, #1}

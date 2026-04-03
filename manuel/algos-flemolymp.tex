@@ -1,0 +1,63 @@
+\documentclass[11pt, a5paper, landscape]{article}
+
+\usepackage{colors}
+\usepackage{tikzstyles}
+\usepackage{encarts}
+
+\usepackage[left = 2cm, right = 2cm, top = 0mm, bottom = 0mm]{geometry}
+
+\usepackage{fontspec}
+\setmainfont{Poppins}
+
+\usepackage{marginnote}
+\usepackage{sidenotes} 
+
+\reversemarginpar
+\begin{document}
+  \pagestyle{empty}
+
+  \begin{marginfigure}
+    \hfill\includegraphics[width = 0.85\marginparwidth]{fig/logo_bw.pdf}
+  \end{marginfigure}
+  \vspace{-7mm}
+  \begin{card}[colback = bronze!30, colframe = black, coltitle = black, colbacktitle = bronze, pellicule]{Algorithme glouton}
+    \input{algos/GS}
+  \end{card}
+
+  \vfill
+
+  % \clearpage
+  % ~
+  % \vfill
+
+  \begin{card}[colback = silver!30, colframe = black, coltitle = black, colbacktitle = silver, pellicule]{Algorithme glouton répété}
+    \input{algos/MTGS}
+  \end{card}
+
+  % \vfill
+
+  \clearpage
+  % ~
+  % \vfill
+
+
+  \begin{marginfigure}
+    \hfill\includegraphics[width = 0.85\marginparwidth]{fig/logo_bw.pdf}
+  \end{marginfigure}
+  \vspace{-7mm}
+  \begin{card}[colback = gold!30, colframe = black, coltitle = black, colbacktitle = gold, pellicule]{Algorithme de programmation dynamique}
+    \input{algos/DP}
+  \end{card}
+
+  \vfill
+
+  % \clearpage
+  % ~
+  % \vfill
+
+  \begin{card}[colback = gold!30, colframe = black, coltitle = black, colbacktitle = gold, pellicule]{Reconstruction du sac en programmation dynamique}
+    \input{algos/DP-sol}
+  \end{card}
+  
+  % \vfill
+\end{document}

@@ -186,7 +186,6 @@
   }}, prog dyn/.cd, unit/.initial = 1, capacity/.initial = 10, sizes/.initial = {1}, deck/.initial = {0}, no deck/.initial = 0, no deck/.default = 1, marks/.initial = {0}, deck below/.initial = 0, deck below/.default = 1
 }
 
-
 \tikzset{
   pics/barre/.style = {code = {
     \tikzset{barre/.cd,#1}%
@@ -201,6 +200,8 @@
     \def\img{\arg{img}}
     \def\inner{\arg{inner color}}
     \def\side{\arg{top color}}
+    \def\name{\arg{title}}
+    \def\coltitle{\arg{title color}}
 
     \fill [pic actions] (0, 0) rectangle ++ ({\val*\unit}, \haut);
 
@@ -250,8 +251,30 @@
       \fi
       \node [img] at (0, \haut) {\includegraphics{fig/\val.pdf}};
     \else
-      {\fontsize{35}{40}\selectfont\node [inner sep = 0mm, \inner] at ({\unit*\val/2}, {\haut/2}) {\val};}
+      \ifx\name\empty\relax
+        {\fontsize{35}{40}\selectfont\node [inner sep = 0mm, \inner] at ({\unit*\val/2}, {\haut/2}) {\val};}
+      \else
+        \node [inner sep = 0mm, \coltitle] at ({\unit*\val/2}, {\haut/2}) {\name};
+      \fi
     \fi
 
-  }}, barre/.cd, value/.initial = 1, unit/.initial = 0.8, height/.initial = 3, sizes/.initial = {1}, factor/.initial = 0, down/.initial = 0, down/.default = 1, img/.initial = 0, img/.default = 1, inner color/.initial = black, top color/.initial = black
+  }}, barre/.cd, value/.initial = 1, unit/.initial = 0.8, height/.initial = 3, sizes/.initial = {1}, factor/.initial = 0, down/.initial = 0, down/.default = 1, img/.initial = 0, img/.default = 1, inner color/.initial = black, top color/.initial = black, title/.initial = {}, title color/.initial = black
+}
+
+\tikzset{
+  pics/pellicule/.style = {code = {
+    \tikzset{pellicule/.cd,#1}%
+    \def\arg##1{\pgfkeysvalueof{/tikz/pellicule/##1}}%
+
+    \def\val{\arg{value}}
+    \def\unit{\arg{unit}}
+    \def\side{\arg{color}}
+    
+    \fill [even odd rule, \side] 
+      (0, 0) rectangle ++ ({\val*\unit}, 0.46)
+      [rounded corners = 0.8mm]
+      \foreach \i in {1, ..., \val} {
+        ({(\i-1)*\unit + \unit/4}, 0.08) rectangle ++ ({\unit/2}, 0.3)
+      };
+  }}, pellicule/.cd, value/.initial = 1, unit/.initial = 0.8, color/.initial = black
 }
