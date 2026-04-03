@@ -1,4 +1,4 @@
-\begin{exercice}[label=ex:MTGS2]{Glouton répété avec type 2}{15}
+\begin{exercice}[label=ex:MTGS2]{Algorithme glouton répété avec type 2}{15}
 
 \begin{table}[H]
 \centering
@@ -19,71 +19,72 @@ Id & Taille & Entiers & Capacité \\
 \end{table}
 
 \end{exercice}
+
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-\pic at (0, 0) {subset sum = {capacity = 41, sizes = {22,20,15,14,9,3}, deck = {1,2,1,2,2,1}}};
-\pic at (0, -2) {subset sum = {capacity = 41, sizes = {22,20,15,14,9,3}, deck = {2,1,1,2,2,1}}};
-\pic at (0, -4) {subset sum = {capacity = 41, sizes = {22,20,15,14,9,3}, deck = {2,2,1,1,1,1}}};
+\pic at (0, 0) {subset sum = {capacity = 41, sizes = {22,20,15,14,9,3}, deck = {1,2,1,2,2,1}, offset = 0}};
+\pic at (0, -2) {subset sum = {capacity = 41, sizes = {22,20,15,14,9,3}, deck = {2,1,1,2,2,1}, offset = 0}};
+\pic at (0, -4) {subset sum = {capacity = 41, sizes = {22,20,15,14,9,3}, deck = {2,2,1,1,1,1}, offset = 0}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton répété sur l'instance \#7.}
+\caption{Application de l'algorithme glouton répété sur l'instance \#7 : $S_1 = \{15,14,9,3\}$.}
 \label{fig:MTGS2-7}
 \end{figure}
 
-
 \ifshowsols
+
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-\pic at (0, 0) {subset sum = {capacity = 50, sizes = {23,20,18,17,12,10}, deck = {1,1,2,2,2,2}}};
-\pic at (0, -2) {subset sum = {capacity = 50, sizes = {23,20,18,17,12,10}, deck = {2,1,1,2,1,0}}};
+\pic at (0, 0) {subset sum = {capacity = 50, sizes = {23,20,18,17,12,10}, deck = {1,1,2,2,2,2}, offset = 0}};
+\pic at (0, -2) {subset sum = {capacity = 50, sizes = {23,20,18,17,12,10}, deck = {2,1,1,2,1,0}, offset = 0}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton répété sur l'instance \#8.}
+\caption{Application de l'algorithme glouton répété sur l'instance \#8 : $S_1 = \{20,18,12\}$.}
 \label{fig:MTGS2-8}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-\pic at (0, 0) {subset sum = {capacity = 49, sizes = {22,20,17,13,9,6,5,4,2}, deck = {1,1,2,2,2,1,2,2,2}}};
-\pic at (0, -2) {subset sum = {capacity = 49, sizes = {22,20,17,13,9,6,5,4,2}, deck = {2,1,1,2,1,2,2,2,1}}};
-\pic at (0, -4) {subset sum = {capacity = 49, sizes = {22,20,17,13,9,6,5,4,2}, deck = {2,2,1,1,1,1,2,1,0}}};
+\pic at (0, 0) {subset sum = {capacity = 49, sizes = {22,20,17,13,9,6,5,4,2}, deck = {1,1,2,2,2,1,2,2,2}, offset = 0}};
+\pic at (0, -2) {subset sum = {capacity = 49, sizes = {22,20,17,13,9,6,5,4,2}, deck = {2,1,1,2,1,2,2,2,1}, offset = 0}};
+\pic at (0, -4) {subset sum = {capacity = 49, sizes = {22,20,17,13,9,6,5,4,2}, deck = {2,2,1,1,1,1,2,1,0}, offset = 0}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton répété sur l'instance \#9.}
+\caption{Application de l'algorithme glouton répété sur l'instance \#9 : $S_1 = \{17,13,9,6,4\}$.}
 \label{fig:MTGS2-9}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-\pic at (0, 0) {subset sum = {capacity = 47, sizes = {24,20,15,10,8,7,6,4,1}, deck = {1,1,2,2,2,2,2,2,1}}};
-\pic at (0, -2) {subset sum = {capacity = 47, sizes = {24,20,15,10,8,7,6,4,1}, deck = {2,1,1,1,2,2,2,2,1}}};
-\pic at (0, -4) {subset sum = {capacity = 47, sizes = {24,20,15,10,8,7,6,4,1}, deck = {2,2,1,1,1,1,1,2,1}}};
+\pic at (0, 0) {subset sum = {capacity = 47, sizes = {24,20,15,10,8,7,6,4,1}, deck = {1,1,2,2,2,2,2,2,1}, offset = 0}};
+\pic at (0, -2) {subset sum = {capacity = 47, sizes = {24,20,15,10,8,7,6,4,1}, deck = {2,1,1,1,2,2,2,2,1}, offset = 0}};
+\pic at (0, -4) {subset sum = {capacity = 47, sizes = {24,20,15,10,8,7,6,4,1}, deck = {2,2,1,1,1,1,1,2,1}, offset = 0}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton répété sur l'instance \#10.}
+\caption{Application de l'algorithme glouton répété sur l'instance \#10 : $S_1 = \{15,10,8,7,6,1\}$.}
 \label{fig:MTGS2-10}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-\pic at (0, 0) {subset sum = {capacity = 74, sizes = {25,23,18,16,15,12,11,9,7,6,4,3}, deck = {1,1,1,2,2,2,2,2,1,2,2,2}}};
-\pic at (0, -2) {subset sum = {capacity = 74, sizes = {25,23,18,16,15,12,11,9,7,6,4,3}, deck = {2,1,1,1,1,2,2,2,2,2,2,2}}};
-\pic at (0, -4) {subset sum = {capacity = 74, sizes = {25,23,18,16,15,12,11,9,7,6,4,3}, deck = {2,2,1,1,1,1,1,2,2,2,2,2}}};
-\pic at (0, -6) {subset sum = {capacity = 74, sizes = {25,23,18,16,15,12,11,9,7,6,4,3}, deck = {2,2,2,1,1,1,1,1,1,2,1,0}}};
+\pic at (0, 0) {subset sum = {capacity = 74, sizes = {25,23,18,16,15,12,11,9,7,6,4,3}, deck = {1,1,1,2,2,2,2,2,1,2,2,2}, offset = 0}};
+\pic at (0, -2) {subset sum = {capacity = 74, sizes = {25,23,18,16,15,12,11,9,7,6,4,3}, deck = {2,1,1,1,1,2,2,2,2,2,2,2}, offset = 0}};
+\pic at (0, -4) {subset sum = {capacity = 74, sizes = {25,23,18,16,15,12,11,9,7,6,4,3}, deck = {2,2,1,1,1,1,1,2,2,2,2,2}, offset = 0}};
+\pic at (0, -6) {subset sum = {capacity = 74, sizes = {25,23,18,16,15,12,11,9,7,6,4,3}, deck = {2,2,2,1,1,1,1,1,1,2,1,0}, offset = 0}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton répété sur l'instance \#11.}
+\caption{Application de l'algorithme glouton répété sur l'instance \#11 : $S_1 = \{16,15,12,11,9,7,4\}$.}
 \label{fig:MTGS2-11}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-\pic at (0, 0) {subset sum = {capacity = 100, sizes = {25,23,21,19,18,17,15,14,13,10,7,6,5,4,3}, deck = {1,1,1,1,2,2,2,2,2,1,2,2,2,2,2}}};
-\pic at (0, -2) {subset sum = {capacity = 100, sizes = {25,23,21,19,18,17,15,14,13,10,7,6,5,4,3}, deck = {2,1,1,1,1,1,2,2,2,2,2,2,2,2,2}}};
-\pic at (0, -4) {subset sum = {capacity = 100, sizes = {25,23,21,19,18,17,15,14,13,10,7,6,5,4,3}, deck = {2,2,1,1,1,1,1,2,2,1,0,0,0,0,0}}};
+\pic at (0, 0) {subset sum = {capacity = 100, sizes = {25,23,21,19,18,17,15,14,13,10,7,6,5,4,3}, deck = {1,1,1,1,2,2,2,2,2,1,2,2,2,2,2}, offset = 0}};
+\pic at (0, -2) {subset sum = {capacity = 100, sizes = {25,23,21,19,18,17,15,14,13,10,7,6,5,4,3}, deck = {2,1,1,1,1,1,2,2,2,2,2,2,2,2,2}, offset = 0}};
+\pic at (0, -4) {subset sum = {capacity = 100, sizes = {25,23,21,19,18,17,15,14,13,10,7,6,5,4,3}, deck = {2,2,1,1,1,1,1,2,2,1,0,0,0,0,0}, offset = 0}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton répété sur l'instance \#12.}
+\caption{Application de l'algorithme glouton répété sur l'instance \#12 : $S_1 = \{21,19,18,17,15,10\}$.}
 \label{fig:MTGS2-12}
 \end{figure}
 

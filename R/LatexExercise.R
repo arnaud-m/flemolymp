@@ -72,7 +72,7 @@ LatexExercise <- function(inputs, outputs, algorithm, type) {
     for(i in seq_along(ind)) {
         tex <- c(tex,
                  TikzSolution(inputs[[ind[i]]], HalfSum(inputs[[ind[i]]]), algorithm,
-                              caption = sprintf("Application de %s sur l'instance \\#%d.", algonames[algorithm], ind[i]),
+                              caption = sprintf("Application de %s sur l'instance \\#%d", algonames[algorithm], ind[i]),
                               label = paste0("fig:", label, "-", ind[i])))
         if(i == 1) {
             tex <- c(tex, "\\ifshowsols\n")

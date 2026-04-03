@@ -37,12 +37,6 @@ TikzSolution <- function(sizes, capacity, algorithm, caption = NULL,  label = NU
     length(algorithm) == 1
   )
 
-  ## Supported algorithms
-  valid_algorithms <- c("GS", "MTGS", "DP")
-  if (!(algorithm %in% valid_algorithms)) {
-
-  }
-
   ## Collect LaTeX output
   out <- character()
 
@@ -51,21 +45,23 @@ TikzSolution <- function(sizes, capacity, algorithm, caption = NULL,  label = NU
   out <- c(out, "\\begin{tikzpicture}")
 
   ## Generate TikZ content depending on the algorithm
+  solution <- NA
   if (algorithm == "GS") {
     out <- c(out,
              utils::capture.output(
-               invisible(GreedySearchSSP(sizes, capacity, tikz = TRUE))
-             ))
+                        solution <- GreedySearchSSP(sizes, capacity, tikz = TRUE)
+                    ))
   } else if (algorithm == "MTGS") {
     out <- c(out,
              utils::capture.output(
-               invisible(IteratedGreedySearchSSP(sizes, capacity, tikz = TRUE))
-             ))
+                        solution <- IteratedGreedySearchSSP(sizes, capacity, tikz = TRUE)
+                    ))
   } else if (algorithm == "DP") {
       out <- c(out,
-               utils::capture.output(
-                   ExportTikz(GetSolutionDP(DynamicProgrammingSSP(sizes, capacity, tikz = TRUE), sizes), sizes, capacity, offset = 1)
-               ))
+               utils::capture.output({
+                   solution <- GetSolutionDP(DynamicProgrammingSSP(sizes, capacity, tikz = TRUE), sizes)
+                   ExportTikz(solution, sizes, capacity, offset = 1)
+               }))
   } else {
       stop("Unknown algorithm: ", algorithm)
   }
@@ -74,7 +70,7 @@ TikzSolution <- function(sizes, capacity, algorithm, caption = NULL,  label = NU
 
   ## Optional caption
   if (is.character(caption) && length(caption) == 1) {
-    out <- c(out, sprintf("\\caption{%s}", caption))
+    out <- c(out, sprintf("\\caption{%s : $S_1 = \\{%s\\}$.}", caption, paste(sizes[which(solution)], collapse = ",")))
   }
 
   ## Optional label

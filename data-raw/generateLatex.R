@@ -35,7 +35,7 @@ LatexPartFile <- function(n) {
             seq(n, 1),
             HalfSum(seq(n, 1)),
             "GS",
-            caption = paste("Partition des entiers de 1 à ", n, ".", sep = ""),
+            caption = paste("Partition des entiers de 1 à ", n, sep = ""),
             label = paste0("fig:part", n)
         ),
         file = paste0("partition-", n, ".tex")
