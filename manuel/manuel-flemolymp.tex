@@ -177,7 +177,7 @@ En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
       \pic at (0, 0) {subset sum = {capacity = 13, sizes = {5,6,7,8}, deck = {1,2,2,1}}};
       \pic at (0, -2) {subset sum = {capacity = 13, sizes = {5,6,7,8}, deck = {2,1,1,2}}};
     \end{tikzpicture}
-    \caption{Partition de quatre entiers consécutifs.}
+    \caption{Partition parfaite de quatre entiers consécutifs.}
     \label{fig:quatre}
   \end{figure}
 
@@ -234,7 +234,7 @@ En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
       \pic at (0, 0) {subset sum = {capacity = 23, sizes = {5,6,7,8,9,10}, deck = {1,2,2,1,2,1}}};
       \pic at (0, -2) {subset sum = {capacity = 22, sizes = {5,6,7,8,9,10}, deck = {2,1,1,2,1,2}}};
     \end{tikzpicture}
-    \caption{Partition de six entiers consécutifs.}
+    \caption{Partition parfaite de six entiers consécutifs.}
     \label{fig:six}
   \end{figure}
 
@@ -291,7 +291,7 @@ En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
   \lettrine[lines=4,lhang=0]{\includegraphics[height=1.75ex]{Chocolate_medal_olympic}}{}
 Avant de se lancer dans des séquences vidéo dignes des Jeux Olympiques, commençons doucement avec des petites séquences faciles à manipuler : les entiers de 1 à $n$.
 Explorez les partitions, essayez, échouez, recommencez.
-Votre mission est de répartir ces nombres en deux résumés parfaits et découvrir que comprendre un algorithme, c'est souvent plus important que le résultat immédiat.
+Votre mission est de répartir ces nombres en deux résumés parfaits et découvrir que comprendre un problème, c'est souvent plus important que le résultat immédiat.
 
 
 \begin{exercice}{Partition parfaite de 1 à $n$}{10}
@@ -384,7 +384,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   \begin{algorithme}{Algorithme glouton}
     \label{algo:gs}
-    \input{algo/GS}
+    \input{algos/GS}
   \end{algorithme}
 
   \input{exs/ex1-GS}
@@ -396,7 +396,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     \item Le nombre d'étapes est donc proportionnel au nombre d'objets $n$.
     \end{itemize}
 
-    En pratique, même pour plusieurs centaines d'objet le glouton
+    En pratique, même pour plusieurs milliers d'objet le glouton
     trouve une partition presque sans transpirer.
   \end{remarque}
 
@@ -417,7 +417,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
 
   \begin{exercice}[label=ex1-GS]{Partition de 1 à $n$ avec le glouton}{10}
-    Appliquer l'algorithme glouton pour une partition parfaite des entiers de 1 à $n = 15, 16$.
+    Appliquer l'algorithme glouton pour trouver une partition des entiers de 1 à $n = 15, 16$.
   \end{exercice}
 
   \input{tex/partition-15}
@@ -457,13 +457,13 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   \begin{algorithme}{Algorithme glouton répété}
     \label{algo:mtgs}
-    \input{algo/MTGS}
+    \input{algos/MTGS}
   \end{algorithme}
 
   \input{exs/ex2-MTGS}
 
   \begin{remarque}{À propos de l'algorithme glouton répété}
-    L'algorithme glouton répété examine uniquement des solutions distinctes : à chaque itération, il retire le plus grand objet restant est éliminé avant de relancer le glouton.
+    L'algorithme glouton répété examine uniquement des solutions distinctes : à chaque itération, il retire le plus grand objet restant avant de relancer le glouton.
     Or, cet objet est toujours inclus dans la solution construite par le glouton.
   \end{remarque}
 
@@ -489,7 +489,6 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   C’est alors que Richard Bellman intervient avec une idée plus méthodique.
   Plutôt que d’explorer les possibilités un peu au hasard, il propose de construire progressivement toutes les sommes que l’on peut atteindre avec les objets disponibles.
-
   La méthode est plus coûteuse en temps, mais aussi plus difficile à imaginer et à mettre en œuvre.
   Il va falloir être rusé : la programmation dynamique est pour les champions de l’algorithmique.
 
@@ -500,11 +499,14 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   \begin{algorithme}{Algorithme de programmation dynamique}
     \label{algo:dp}
-    \input{algo/DP}
+    \input{algos/DP}
   \end{algorithme}
 
+  Nous savons désormais quelles sommes sont atteignables, ce qui est déjà une bonne nouvelle.
+  En revanche, les solutions elles-mêmes restent cachées : à nous de les reconstruire en interprétant les marqueurs, avec l’algorithme comme guide.
+
   \begin{algorithme}{Reconstruction du sac en programmation dynamique}
-    \input{algo/DP-sol}
+    \input{algos/DP-sol}
   \end{algorithme}
 
   \input{exs/ex3-DP}
@@ -518,20 +520,13 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     \end{itemize}
 
     Cette complexité ne dépend pas seulement de la taille de l'entrée (le nombre d'objets),
-    mais aussi de leurs valeurs, ici la capacité du sac.
-    Pour des petites valeurs ou une capacité raisonnable, l'algorithme reste rapide,
-    mais pour de grandes valeurs, le temps de calcul peut devenir important.
+    mais aussi de leurs valeurs (ici la capacité du sac).
+    Pour une taille et des valeurs raisonnables, l'algorithme reste rapide,
+    mais pour de grandes tailles et valeurs, le temps de calcul peut devenir important.
   \end{remarque}
 
   \input{exs/ex4-DP}
 
-  \begin{mycitation}{Devise Shadok}
-    S'il n'y a pas de solution, c'est qu'il n'y a pas de problème.
-  \end{mycitation}
-
-  % \textbf{Insérer devise shadok : S'il n'y a pas de solution, c'est qu'il n'y a pas de problème.
-  %   Zut, les images ne sont pas libres de droit.
-  % }
 
 \begin{remarque}{Optimalité de la programmation dynamique}
   L'algorithme de programmation dynamique garantit de trouver la partition la plus équilibrée :
@@ -577,8 +572,8 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
 
   \begin{remarque}{Une ouverture en profondeur de Bellman}
-    Il existe une méthode exacte plus générale pour résoudre ce type de problème : \textbf{Tester-et-Générer}.
-    Simple à comprendre et souvent facile à programmer récursivement, elle devient vite très pénible à exécuter à la main, tant elle explore toutes les possibilités par sauts de puce.
+    Il existe une méthode exacte plus générale pour résoudre ce type de problème : \emph{Tester-et-Générer}.
+    Simple à comprendre et quelquefois facile à programmer, elle devient vite très pénible à exécuter à la main, tant elle explore toutes les possibilités par sauts de puce.
     Après avoir déjà transpiré sur la programmation dynamique, notre patience a des limites\dots et nous n’irons pas plus loin dans cette voie !
   \end{remarque}
 
@@ -615,8 +610,6 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
     \end{exercice}
     À ce prix seulement, vous pourrez espérer rejoindre le panthéon des partitions.
-
-
     Et qui sait ? Peut-être pourrez-vous enfin profiter des Jeux\dots autrement que derrière un écran.
 
     \begin{epigramme}
@@ -637,7 +630,7 @@ Le problème de partition appartient à une grande famille de problèmes d'optim
 De nombreux problèmes célèbres lui sont étroitement liés.
 \begin{epigramme}
   % 16. Every program has (at least) two purposes: the one for which it was written and another for which it wasn't.
-  Tout programme fait au moins deux choses : ce pour quoi il a été conçu\dots et une autre pour laquelle il ne l'a pas été.
+  Tout programme fait au moins deux choses : ce pour quoi il a été conçu \dots et une autre pour laquelle il ne l'a pas été.
 \end{epigramme}
 
 \begin{definition}{Problème de la somme de sous-ensembles}
@@ -698,29 +691,31 @@ données. Ils illustrent l'importance des algorithmes pour organiser et optimise
 Cette suite d'activités a été concue pour être adaptée à différents publics, du primaire au supérieur.
 Le scénario dépendra aussi de la familiarité et l'intérêt de l'animateur.
 
+\textbf{TODO}
+
 % \Cref{sec:unn}
 % Les \protect\cref{sec:unn,sec:gs,sec:mtgs,sec:dp} peuvent être abordées de manière presque indépendantes même si l'ordre du document a été soigneusement pensé.
 
-\begin{table}[htbp]
-  \centering
-  \begin{adjustbox}{max totalsize={0.95\textwidth}{0.95\textheight}}
-  \begin{tabular}{lllll}
-    \toprule
-    Section & Objectif & Public visé & Durée & Difficulté \\
-    \midrule
-    \nameref{sec:flemo} & Introduction du problème & Tous & 10min & \\
-    \nameref{sec:partition} & Définition du problème & Tous & 20min & \\
-    \nameref{sec:unn} & Appropriation du problème & Tous & 30min \\
-    \nameref{sec:gs} & Méthode naturelle approximative & Tous & 45min \\
-    \nameref{sec:mtgs} & Amélioration et limitations & Secondaire & 45min\\
-    \nameref{sec:dp} & Méthode difficile, mais exacte & Secondaire 2nd cycle & 60min\\
-    \nameref{sec:related} & Généralisation du problème & Tous & 15min \\
-    \bottomrule
-  \end{tabular}
-  \end{adjustbox}
-  \caption[Scénario pédagogique.]{Scénario pédagogique pour les animateurs}
-  \label{tab:scenario}
-\end{table}
+% \begin{table}[htbp]
+%   \centering
+%   \begin{adjustbox}{max totalsize={0.95\textwidth}{0.95\textheight}}
+%   \begin{tabular}{lllll}
+%     \toprule
+%     Section & Objectif & Public visé & Durée & Difficulté \\
+%     \midrule
+%     \nameref{sec:flemo} & Introduction du problème & Tous & 10min & \\
+%     \nameref{sec:partition} & Définition du problème & Tous & 20min & \\
+%     \nameref{sec:unn} & Appropriation du problème & Tous & 30min \\
+%     \nameref{sec:gs} & Méthode naturelle approximative & Tous & 45min \\
+%     \nameref{sec:mtgs} & Amélioration et limitations & Secondaire & 45min\\
+%     \nameref{sec:dp} & Méthode difficile, mais exacte & Secondaire 2nd cycle & 60min\\
+%     \nameref{sec:related} & Généralisation du problème & Tous & 15min \\
+%     \bottomrule
+%   \end{tabular}
+%   \end{adjustbox}
+%   \caption[Scénario pédagogique.]{Scénario pédagogique pour les animateurs}
+%   \label{tab:scenario}
+% \end{table}
 
 
 \section{Tableau des instances}
@@ -732,8 +727,8 @@ Le scénario dépendra aussi de la familiarité et l'intérêt de l'animateur.
 
 \section{Licence et reproductibilité}
 
-Cette activité est libre et ouverte, et peut être reproduite ou adaptée dans le respect des licences.
-Elle s’inscrit également dans une démarche de science reproductible, afin que toute personne puisse vérifier, reproduire et prolonger les résultats proposés.
+Cette activité est libre, ouverte, et reproductible dans le respect des licences.
+Ainsi, toute personne peut vérifier, reproduire et prolonger les résultats proposés.
 
 \begin{center}
   \url{https://github.com/arnaud-m/flemolymp}
