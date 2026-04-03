@@ -22,7 +22,7 @@ test_that("Infeasible Partition 1", {
     expect_equal(DynamicProgrammingEnumSSP(sizes = sizes, capacity = capacity), 0)
 })
 
-test_that("Infeasible Feasible Partition 2", {
+test_that("Infeasible Partition 2", {
     sizes <- c(18, 17, 16, 15, 14, 5, 2, 1)
     capacity <- sum(sizes) %/% 2
     expect_equal(DynamicProgrammingEnumSSP(sizes = sizes, capacity = capacity), 0)

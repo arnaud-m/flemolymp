@@ -17,6 +17,7 @@ test_that("Feasible Partition 3", {
     capacity <- sum(sizes) %/% 2
     solution <- IteratedGreedySearchSSP(sizes = sizes, capacity = capacity)
     expect_false(IsFeasible(solution, sizes, capacity))
+    expect_false(any(!solution, na.rm = T))
 })
 
 test_that("Infeasible Partition 1", {
@@ -24,11 +25,13 @@ test_that("Infeasible Partition 1", {
     capacity <- sum(sizes) %/% 2
     solution <- IteratedGreedySearchSSP(sizes = sizes, capacity = capacity)
     expect_false(IsFeasible(solution, sizes, capacity))
+    expect_false(any(!solution, na.rm = T))
 })
 
-test_that("Infeasible Feasible Partition 2", {
+test_that("Infeasible Partition 2", {
     sizes <- c(18, 17, 16, 15, 14, 5, 2, 1)
     capacity <- sum(sizes) %/% 2
     solution <- IteratedGreedySearchSSP(sizes = sizes, capacity = capacity)
     expect_false(IsFeasible(solution, sizes, capacity))
+    expect_false(any(!solution, na.rm = T))
 })

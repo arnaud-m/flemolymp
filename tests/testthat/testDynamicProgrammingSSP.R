@@ -30,7 +30,7 @@ test_that("Infeasible Partition 1", {
     expect_false(IsFeasible(solution, sizes, capacity))
 })
 
-test_that("Infeasible Feasible Partition 2", {
+test_that("Infeasible Partition 2", {
     sizes <- c(18, 17, 16, 15, 14, 5, 2, 1)
     capacity <- sum(sizes) %/% 2
     reached <- DynamicProgrammingSSP(sizes = sizes, capacity = capacity)

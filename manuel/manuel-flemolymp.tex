@@ -463,6 +463,8 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \input{exs/ex2-MTGS}
 
   \begin{remarque}{À propos de l'algorithme glouton répété}
+    L’algorithme glouton répété peut s’arrêter dès que tous les objets sont dans le sac, car retirer des objets ne permettrait pas d’améliorer la solution : le sac serait forcément moins rempli.
+
     L'algorithme glouton répété examine uniquement des solutions distinctes : à chaque itération, il retire le plus grand objet restant avant de relancer le glouton.
     Or, cet objet est toujours inclus dans la solution construite par le glouton.
   \end{remarque}
@@ -536,39 +538,6 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \end{itemize}
     On sacrifie la rapidité pour être sûr d'obtenir la solution optimale.
   \end{remarque}
-
-
-
-  % \section{Tester et Générer}
-
-  % \begin{algorithme}{Algorithme Tester-et-Générer}
-  %   \begin{itemize}
-  %   \item Déterminer la capacité.
-  %   \item Trier les objets par ordre décroissant.
-  %   \item  Descente : Répéter tant que le dernier objet n'est pas dans le sac :
-  %     \begin{itemize}
-  %     \item Répéter pour chaque objet :
-  %       \begin{itemize}
-  %       \item ranger l'objet dans le sac si la capacité le permet.
-  %       \end{itemize}
-  %     \item Si le sac est rempli, arrêter l'algorithme.
-  %     \item Sinon, effectuer un retour arrière simple : retirer le plus petit objet du sac.
-  %       \end{itemize}
-  %     \item Retour arrière sautée quand le plus petit objet du deck est dans le sac.
-  %     \begin{itemize}
-  %     \item Retirer les objets du sac trouver jusqu'à ce que vous trouviez le plus petit objet que vous n'avez pas pu faire rentrer.
-  %     \item Sinon éliminer l'objet.
-  %     \end{itemize}
-  %   % \item  Répéter tant qu'il reste des objets et que le sac n'est pas rempli (la dernière case n'est pas marquée) :
-  %   %   \begin{itemize}
-  %   %   \item répéter pour chaque case marquée en partant de la dernière :
-  %   %   \begin{itemize}
-  %   %   \item déterminer la case atteinte en rangeant l'objet immédiatement après la case marquée (utiliser l'objet comme règle).
-  %   %   \item Si la case atteinte n'est pas marquée, placer un marqueur de l'objet.
-  %   %   \end{itemize}
-  %   %   \end{itemize}
-  %   \end{itemize}
-  % \end{algorithme}
 
 
   \begin{remarque}{Une ouverture en profondeur de Bellman}
