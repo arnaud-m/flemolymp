@@ -10,6 +10,8 @@
 \usepackage{tikzstyles}
 \usepackage{theoremes}
 
+\usepackage[draft, footnote,  marginclue, nomargin,index]{fixme}
+
 
 \title{La flemme olympique}
 \author{Arnaud Malapert et Marie Pelleau \\
@@ -32,13 +34,16 @@ Université Côte d'Azur, CNRS, I3S, France
 
 
 \begin{abstract}
-  \noindent Et si créer des vidéos des Jeux Olympiques devenait un défi d’algorithmique ?
+  \noindent Et si créer des vidéos des Jeux Olympiques devenait un défi d'algorithmique ?
 
-  \noindent L’activité Flemme Olympique propose une approche ludique de l’algorithmique à travers un problème de partition.
-  Elle permet d’explorer concrètement des stratégies algorithmiques dans un cadre débranché et de développer la pensée logique.
+  \noindent L'activité Flemme Olympique propose une approche ludique de l'algorithmique à travers un problème de partition.
+  Elle permet d'explorer concrètement des stratégies algorithmiques dans un cadre débranché et de développer la pensée logique.
 \end{abstract}
 
 \tableofcontents
+
+\listoffixmes
+
 \clearpage
 
 \section{Bienvenue aux Flemmes Olympiques !}
@@ -47,32 +52,31 @@ Université Côte d'Azur, CNRS, I3S, France
 C'est le premier jour de votre stage dans une société de production audiovisuelle pour couvrir les jeux olympiques.
 Vous rêvez d'assister à des exploits sportifs, d'interviewer les plus grands athlètes dans des enceintes célèbres !
 
-Après quelques formalités, vous rencontrez enfin votre chef qui vous décrit votre mission : créer le résumé parfait des Jeux Olympiques, en combinant des séquences de différents sports.
- Certaines sont courtes, d'autres longues, certaines spectaculaires, d'autres plus calmes\dots et votre objectif est de tout organiser pour créer deux séquences de durée identiques pour les génériques de début et de fin d'une émission.
+Votre mission est de créer le résumé parfait des Jeux Olympiques, en combinant des séquences de différents sports.
+ Certaines sont courtes, d'autres longues, certaines spectaculaires, d'autres plus calmes\dots et votre objectif est de tout organiser pour créer deux séquences de durées identiques pour les génériques de début et de fin d'une émission.
 
 Pourquoi cette précision ?
 Les diffusions reposent sur des serveurs capricieux et des automatismes stricts.
 Une vidéo trop longue ou trop courte peut bloquer tout le système, interrompre d'autres diffusions, et faire grincer des dents dans les salles de contrôle.
 
 La flemme !
-Vous partez la tête basse\dots adieu les rêves de lumière\dots et en route pour la salle de montage obscure.
+Vous partez la tête basse \dots adieu les rêves de lumière \dots et en route pour la salle de montage obscure.
 Au début, vous tentez d'organiser les séquences à la main, en espérant gagner du temps.
 Mauvaise idée. Les vidéos s'entrechoquent, certaines séquences débordent, d'autres restent à moitié inutilisées\dots et vous commencez à désespérer.
+
 
 Après plusieurs heures de vains efforts, un homme a l'air vif et intelligent se présente à vous :
 \og Richard Ernest Bellman, maître des algorithmes, appelé à la rescousse !
 Je vais vous aider à trouver une partition parfaite lorsque c'est possible, et la plupart du temps dans un temps raisonnable, sauf dans les pires cas.
 \fg
 
-Et pour vous guider, l’esprit d’Alan Jay Perlis, pionnier de la programmation et des langages informatiques, est là pour distiller ses conseils et réflexions sur les algorithmes\dots à travers ses fameuses épigrammes~\cite{Perlis1982}.
+Et pour vous guider, l'esprit d'Alan Jay Perlis, pionnier de la programmation et des langages informatiques, est là pour distiller ses conseils et réflexions sur les algorithmes\dots à travers ses fameuses épigrammes~\cite{Perlis1982}.
 
 Sa première leçon : simplifiez le problème.
 Considérez chaque séquence comme un objet réduit à sa seule durée et préparez-vous à appliquer des algorithmes plus ou moins retors selon les situations.
 
 Alan vous avertit cependant que l'efficacité et les gains de temps n'arriveront qu'après un sérieux effort pour comprendre le problème et dompter les algorithmes.
 Mais une fois ce coup de maître acquis, vous pourrez enfin profiter de votre flemme olympique\dots sans catastrophe vidéo.
-
-Prêts à devenir des champions de la flemme en domptant la puissance des algorithmes ?
 
 \begin{epigramme}
   On croit comprendre en apprenant, on est plus confiant en écrivant, encore plus en enseignant\dots mais on en est vraiment sûr en programmant.
@@ -84,20 +88,26 @@ Prêts à devenir des champions de la flemme en domptant la puissance des algori
 % 98. In computing, the mean time to failure keeps getting shorter.
 
 \nocite{MartelloToth1990,Mertens2003}
+
+\fxnote{Ajouter une section \og Description du jeu \fg avec des photos du jeu.
+  Ajouter aussi des photos des solutions aux exercices obtenues avec le jeu ?}
+
+
 \section{Description du problème}
 \label{sec:partition}
 
-Après la simplification, il faut mettre un peu d’ordre dans tout ça : définir clairement le problème et en explorer les propriétés.
-Car soyons honnêtes : concevoir -- ou même comprendre -- un algorithme pour un problème qui nous est étranger, c'est un peu comme écouter une conversation dans une langue étrangère.
+Après la simplification, il faut mettre un peu d'ordre dans tout ça : définir clairement le problème et en explorer les propriétés.
+Car soyons honnêtes : concevoir, ou même comprendre, un algorithme pour un problème qui nous est étranger, c'est un peu comme écouter une conversation dans une langue étrangère.
 
-Que comprendriez-vous, par exemple, aux conseils d’un marin en pleine régate olympique, si vous n'avez jamais mis un pied sur un bateau ?
-\og Je ne vais pas trop tendre le cunningham ni forcer sur le hale-bas au près ; je vais plutôt jouer sur l’équilibre du bateau en déplaçant mon poids et ajuster finement le cap, vu la petite brise. \fg
+Que comprendriez-vous, par exemple, aux conseils d'un marin en pleine régate olympique, si vous n'avez jamais mis un pied sur un bateau ?
+\og Je ne vais pas trop tendre le cunningham ni forcer sur le hale-bas au près ; je vais plutôt jouer sur l'équilibre du bateau en déplaçant mon poids et ajuster finement le cap, vu la petite brise. \fg
+\\
+En clair, sans un peu d'expérience de la mer, ces mots ne sont que du vent !
 
-En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
-
+Comme chaque séquence vidéo n'est caractérisée que par sa durée, on peut la considérer comme un simple entier.
+On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées associées aux séquences utilisées pour les génériques de début et de fin.
 \begin{definition}{Sac d'entiers}
   Un \emph{sac d'entiers} est une collection d'entiers naturels dans laquelle un même nombre peut apparaître plusieurs fois.
-
   Par exemple, le sac
   $$S = \{1,2,2,5\}$$
   contient quatre entiers et le nombre $2$ apparaît deux fois.
@@ -108,34 +118,45 @@ En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
 \end{definition}
 
 \begin{definition}{Partition d'un sac}
-  Une \emph{partition} d'un sac $S$ consiste à séparer les éléments de $S$
-  en deux sacs non vides $S_1$ et $S_2$.
-  Chaque élément du sac initial doit apparaître dans \emph{exactement un} des deux sacs.
+  Une \emph{partition} d'un sac $S$ consiste à répartir les éléments de $S$ en deux sacs non vides $S_1$ et $S_2$, appelés sacoches.
+  Chaque élément du sac initial doit appartenir à \emph{exactement une} des deux sacoches.
   \\
   Autrement dit :
   \begin{itemize}
   \item $S_1$ et $S_2$ sont non vides; %: $S_1 \neq \emptyset$ et $S_2 \neq \emptyset$ ;
-  \item $S_1$ et $S_2$ sont disjoints (aucun entier n'apparaît dans les deux sacs) ; %:  $S_1 \cap S_2 = \emptyset$) ;
+  \item $S_1$ et $S_2$ sont disjoints (aucun entier $s_i$ n'apparaît dans les deux sacs) ; %:  $S_1 \cap S_2 = \emptyset$) ;
   \item $S_1$ et $S_2$ recouvrent $S$ (tous les éléments de $S$ apparaissent dans $S_1$ ou $S_2$).
   \end{itemize}
 \end{definition}
 
+\fxwarning{Faire attention à la distinction entre sac et sacoche lors de la relecture.}
 
-  \begin{exemple}{Partition d'un ensemble}
+
+
+  \begin{exemple}{Partition d'un sac d'entier}
     Soit un sac $S = \{1,2,3,4,5\}$.
     \begin{itemize}
-      \item Les sacs $S_1$ et $S_2$ forment une partition de $S$.
-        \begin{itemize}
-          \item $S_1 = \{1\}$ et $S_2 = \{2,3,4,5\}$
-          \item $S_1 = \{2, 4\}$ et $S_2 = \{1,3,5\}$
-        \end{itemize}
-      \item Les sacs $S_1$ et $S_2$ ne forment pas une partition de $S$.
-        \begin{itemize}
-          \item $S_1 = \{1,2,3,4,5\}$ et $S_2 = \emptyset$, car $S_2$ est vide.
-          \item $S_1 = \{1,2,3\}$ et $S_2 = \{3,4,5\}$, car le nombre 3 apparaît dans les deux sacs.
-          \item $S_2 = \{1,2\}$ et $S_2 = \{4, 5\}$, car le nombre 3 n'apparaît dans aucun des deux sacs.
-        \end{itemize}
+    \item Les sacoches $S_1$ et $S_2$ forment une partition de $S$.
+      \begin{itemize}
+      \item $S_1 = \{1\}$ et $S_2 = \{2,3,4,5\}$
+      \item $S_1 = \{2, 4\}$ et $S_2 = \{1,3,5\}$
+      \end{itemize}
+    \item Les sacoches $S_1$ et $S_2$ ne forment pas une partition de $S$.
+      \begin{itemize}
+      \item $S_1 = \{1,2,3,4,5\}$ et $S_2 = \emptyset$, car $S_2$ est vide.
+      \item $S_1 = \{1,2,3\}$ et $S_2 = \{3,4,5\}$, car le nombre 3 apparaît dans les deux sacs.
+      \item $S_2 = \{1,2\}$ et $S_2 = \{4, 5\}$, car le nombre 3 n'apparaît dans aucun des deux sacs.
+      \end{itemize}
     \end{itemize}
+  \end{exemple}
+
+
+  \begin{exemple}{Partition d'un sac d'entiers avec répétitions}
+    Soit un sac $S = \{1,2,2,5\}$.
+    Les sacoches $S_1 = \{2, 2\}$ et $S_2 = \{1, 5\}$ forment une partition de $S$.
+    La valeur entière 2 apparaît deux fois dans la sacoche $S_1$, mais elle correspond à deux entiers distincts : $s_1 = 2$ et $s_2 = 2$.
+
+    Dans cette activité, pour simplifier mais sans perte de généralité, nous ne considérerons que des sacs d'entiers sans répétition.
   \end{exemple}
 
   \begin{definition}{Partition parfaite d'un sac pair}
@@ -155,20 +176,14 @@ En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
 
   \begin{exercice}{Partition de quatre entiers consécutifs}{5}
     Trouver une partition parfaite pour un sac de quatre entiers consécutifs.
+    Par exemple, prenez $S = \{5, 6, 7, 8\}$ ou $S = \{9, 10, 11, 12\}$.
   \end{exercice}
 
-
-  \begin{exemple}{Partition de quatre entiers consécutifs}
-    La partition pour les entiers de 1 à 4 se généralisent pour les sacs de quatre entiers consécutifs.
-    Ce sac $S = \{ n + 1, n + 2, n + 3, n + 4\}$ est pair ($n \geq 0$).
-    \begin{itemize}
-    \item $S_1 = \{ n + 1, n + 4\}$, de somme $n + 1 + n + 4 = 2n + 5$,
-    \item et $S_2 = \{n + 2, n + 3\}$, de somme $n + 2 + n + 3 = 2n + 5$,
-    \item forment une partition parfaite, car leurs sommes sont égales.
-    \end{itemize}
-  \end{exemple}
-
-  \begin{figure}[htbp]
+  La figure \ref{fig:quatre} illustre la partition du sac $S = \{5, 6, 7, 8\}$.
+  Chaque ligne correspond à une sacoche.
+  Le tableau de gauche indique les entiers qui composent la sacoche ; les entiers qui n'y appartiennent pas sont barrés.
+  Le tableau de droite représente le remplissage de chaque sacoche par ces entiers.
+   \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
       \pic at (0, 0) {subset sum = {capacity = 13, sizes = {5,6,7,8}, deck = {1,2,2,1}}};
@@ -179,15 +194,26 @@ En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
   \end{figure}
 
 
-  \begin{definition}{Partition parfaite d'un sac impair}
+  \begin{solution}{Partition de quatre entiers consécutifs}
+    La partition pour les entiers de 1 à 4 se généralisent pour les sacs de quatre entiers consécutifs.
+    Ce sac $S = \{ n + 1, n + 2, n + 3, n + 4\}$ est pair ($n \geq 0$).
+    \begin{itemize}
+    \item $S_1 = \{ n + 1, n + 4\}$, de somme $n + 1 + n + 4 = 2n + 5$,
+    \item et $S_2 = \{n + 2, n + 3\}$, de somme $n + 2 + n + 3 = 2n + 5$,
+    \item forment une partition parfaite, car leurs sommes sont égales.
+    \end{itemize}
+  \end{solution}
 
+
+
+  \begin{definition}{Partition parfaite d'un sac impair}
     Un sac d'entiers $S$ est dit \emph{impair} si la somme de tous ses entiers est un nombre impair.
 
     Une \emph{partition parfaite} d'un sac impair est une partition $(S_1,S_2)$ telle que
     la différence entre la somme des entiers de $S_1$ et celle de $S_2$ est égale à $1$.
 
     En effet, lorsque la somme totale est impaire, il est impossible de partager les
-    entiers en deux sacs ayant exactement la même somme. La meilleure partition
+    entiers en deux sacoches ayant exactement la même somme. La meilleure partition
     possible est donc celle où les deux sommes diffèrent de $1$.
   \end{definition}
 
@@ -203,7 +229,7 @@ En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
     \end{itemize}
   \end{exemple}
 
-  \begin{remarque}{}
+  \begin{remarque}{Déterminer la parité d'un sac}
     Pour savoir si la somme de tous les entiers d'un sac d'entiers est paire ou impaire, il suffit de compter le nombre d'entiers impairs.
     \begin{itemize}
     \item Si le nombre d'entiers impairs est pair, la somme sera paire.
@@ -214,17 +240,12 @@ En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
 
   \begin{exercice}{Partition de six entiers consécutifs}{5}
     Trouver une partition parfaite pour un sac de six entiers consécutifs.
+    Par exemple, prenez $S = \{5, 6, 7, 8, 9, 10\}$ ou $S = \{12, 13, 14, 15, 16, 17\}$.
   \end{exercice}
 
-  \begin{exemple}{Partition de six entiers consécutifs}
-    Le sac $S = \{ n + 1, n + 2, n + 3, n + 4, n + 5, n + 6\}$ est impair ($n \geq 0$).
-    \begin{itemize}
-    \item $S_1 = \{ n + 1, n + 4, n + 6\}$, de somme $n + 1 + n + 4 + n + 6 = 3n + 11$,
-    \item et $S_2 = \{n + 2, n + 3, n + 5\}$, de somme $n + 2 + n + 3 + n + 5 = 3n + 10$,
-    \item forment une partition parfaite, car la différence entre les deux sommes est $1$.
-    \end{itemize}
-  \end{exemple}
-
+  La figure \ref{fig:six} illustre la partition du sac $S = \{5, 6, 7, 8, 9, 10\}$.
+  On peut remarquer que le sac est impair puis les deux sommes diffèrent de $1$
+  En effet, le sac contient trois nombres impairs $\{5, 7, 9\}$.
   \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -236,28 +257,59 @@ En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
   \end{figure}
 
 
+  \begin{solution}{Partition de six entiers consécutifs}
+    Le sac $S = \{ n + 1, n + 2, n + 3, n + 4, n + 5, n + 6\}$ est impair ($n \geq 0$).
+    Sa somme est $n + 1 +n + 2 + n + 3 + n + 4 + n + 5 + n + 6 = 6n + 21$.
+    \begin{itemize}
+    \item $S_1 = \{ n + 1, n + 4, n + 6\}$, de somme $n + 1 + n + 4 + n + 6 = 3n + 11$,
+    \item et $S_2 = \{n + 2, n + 3, n + 5\}$, de somme $n + 2 + n + 3 + n + 5 = 3n + 10$,
+    \item forment une partition parfaite, car la différence entre les deux sommes est $1$.
+    \end{itemize}
+  \end{solution}
+
+
   \begin{definition}{Problème de partition}
     En informatique, le problème de partition consiste à déterminer si une partition parfaite d'un sac d'entiers existe.
 
-    Ce problème est connu pour être difficile en informatique théorique, classé \emph{NP-complet} :
+    L'idée est simple : il suffit de répartir les entiers entre deux sacoches et de comparer leurs sommes.
+    Calculer la somme des entiers d'une sacoche est une opération facile et rapide.
+  \end{definition}
+
+  \begin{definition}{Complexité du problème de partition}
+    Le nombre de partitions possibles devient très grand dès que le nombre d'entiers augmente.
+    En effet, chaque entier peut être placé dans l'une ou l'autre des deux sacoches :
+    le nombre total de configurations double à chaque nouvel entier ajouté au sac.
+    Ainsi, même si chaque vérification est simple, le nombre total de cas à examiner peut devenir énorme : on parle d'\emph{explosion combinatoire}.
+
+    Ce problème est connu pour être difficile en informatique théorique.
+    Plus précisément, il est classé \emph{NP-complet} :
     \begin{itemize}
     \item on peut vérifier rapidement si une partition candidate est correcte ;
     \item mais trouver une partition parfaite pour n'importe quel sac peut être très difficile.
     \end{itemize}
-
-    Cependant, plusieurs algorithmes permettent de le résoudre de manière efficace pour des instances de taille raisonnable, soit exactement, soit approximativement.
-    Pour cette raison, on l'appelle parfois :
-    \begin{center}
-      \emph{le plus facile des problèmes difficiles}.
-    \end{center}
-
   \end{definition}
+
+    \begin{remarque}{Résolution du problème de partition}
+      On distingue deux types d'algorithmes pour résoudre ce problème.
+      Les algorithmes \emph{exacts} déterminent si une partition parfaite existe ou non, sans erreur possible, mais peuvent être coûteux en temps de calcul.
+      Les algorithmes \emph{approximatifs} ou heuristiques, quant à eux, construisent rapidement une solution plausible sans explorer toutes les possibilités, mais ne garantissent pas de trouver une solution même si elle existe.
+
+      Dans la pratique, des algorithmes efficaces permettent de résoudre le problème de partition exactement pour des instances de taille raisonnable, et de manière approximative pour des instances de grande taille.
+
+      Pour cette raison, on l'appelle parfois :
+      \begin{center}
+        \emph{le plus facile des problèmes difficiles}.
+      \end{center}
+
+      On utilise parfois des méthodes approximatives dites heuristiques : elles construisent une solution plausible sans explorer tous les cas possibles.
+      Elles peuvent donc être très rapides, mais elles ne garantissent pas de trouver une solution même si elle existe.
+  \end{remarque}
 
 
 \begin{remarque}{Symétries du problème}
     Ce problème admet une symétrie évidente puisque l'on peut inverser la partition, c'est-à-dire échanger les ensembles $S_1$ et $S_2$.
 
-    De manière générale, on peut échanger des nombres entre $S_1$ et $S_2$ tant que les sommes des deux sacs restent identiques.
+    De manière générale, on peut échanger des nombres entre $S_1$ et $S_2$ tant que les sommes des deux sacoches restent identiques.
   \end{remarque}
 
   \begin{exemple}{Symétries du problème}
@@ -274,7 +326,7 @@ En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
   \end{exemple}
 
   \begin{exercice}{Échanges partiels}{5}
-    Trouver d'autres partitions parfaites de six entiers consécutifs en effectuant des échanges partiels d'entiers entre les deux sacs.
+    Trouver d'autres partitions parfaites de six entiers consécutifs en effectuant des échanges partiels d'entiers entre les deux sacoches.
   \end{exercice}
 
   \begin{epigramme}
@@ -288,7 +340,6 @@ En clair, sans un peu d’expérience de la mer, ces mots ne sont que du vent !
   \lettrine[lines=4,lhang=0]{\includegraphics[height=1.75ex]{Chocolate_medal_olympic}}{}
 Avant de se lancer dans des séquences vidéo dignes des Jeux Olympiques, commençons doucement avec des petites séquences faciles à manipuler : les entiers de 1 à $n$.
 Explorez les partitions, essayez, échouez, recommencez.
-Votre mission est de répartir ces nombres en deux résumés parfaits et découvrir que comprendre un problème, c'est souvent plus important que le résultat immédiat.
 
 
 \begin{exercice}{Partition parfaite de 1 à $n$}{10}
@@ -314,9 +365,14 @@ Votre mission est de répartir ces nombres en deux résumés parfaits et découv
 
   Ce raisonnement fonctionne pour tout $n$ et conduit à la formule générale $\frac{n(n+1)}{2}$.
 
-  Cette formule permet notamment de connaître rapidement la somme totale des objets, ce qui sera utile pour déterminer la capacité du sac dans les problèmes de partition.
+  Cette formule permet notamment de connaître rapidement la somme totale des objets, ce qui sera utile pour déterminer la capacité de la sacoche dans les problèmes de partition.
 \end{remarque}
 
+\begin{solution}
+  La figure \ref{fig:part79} présente des partitions parfaites des entiers de $1$ à $n$ pour $n = 7, 8, 9$.
+  Chaque ligne correspond à une partition, pour laquelle une sacoche est représentée.
+  L'autre sacoche se déduit facilement : les entiers qui la composent sont barrés dans le tableau de gauche.
+\end{solution}
 \begin{figure}[htbp]
   \centering
   \begin{tikzpicture}
@@ -335,7 +391,7 @@ Votre mission est de répartir ces nombres en deux résumés parfaits et découv
 \end{definition}
 
 
-\begin{remarque}{}
+\begin{remarque}{Ce que l'activité mettra en évidence}
   \begin{itemize}
   \item Plusieurs algorithmes peuvent répondre à un même problème.
   \item Un algorithme peut répondre à plusieurs problèmes.
@@ -345,6 +401,13 @@ Votre mission est de répartir ces nombres en deux résumés parfaits et découv
 \begin{exercice}{Algorithme pour partition parfaite}{20}
   Proposer un algorithme pour trouver une partition parfaite des entiers de 1 à $n$.
 \end{exercice}
+
+Un algorithme peut prendre des formes variées : une formule, un pseudo-code, un texte en langue naturelle, ou encore un programme informatique écrit dans un langage de programmation.
+
+Par exemple, on peut le représenter avec deux participants : un participant qui fournit les instructions de résolution (l'algorithme) et un participant qui les exécute pas à pas (le programme), afin de résoudre un problème de partition des entiers de $1$ à $12$.
+\\
+Pour éviter toute adaptation en cours d'exécution, le participant qui donne les instructions peut, par exemple, fermer les yeux ou se tourner dos au second participant pendant que celui-ci exécute l'algorithme.
+
 
 \begin{epigramme}
   Écrire un mauvais programme est facile ; comprendre un bon programme est difficile.
@@ -356,26 +419,27 @@ Votre mission est de répartir ces nombres en deux résumés parfaits et découv
 \nocite{medals}
 \lettrine[lines=4,lhang=0]{\includegraphics[height=1.75ex]{Bronze_medal_olympic}}{}
 Vous avez maintenant compris comment jongler avec les entiers et trouver des partitions parfaites\dots mais qui a envie de tester toutes les combinaisons possibles ?
-L’algorithme glouton correspond à la manière la plus intuitive de résoudre le problème pour les débutants.
+Un algorithme glouton correspond à la manière la plus intuitive de résoudre le problème pour les débutants.
 Il construit une solution étape par étape, sans se compliquer la vie.
-Ce n’est pas toujours la voie optimale, mais c’est simple, rapide et permet de se familiariser avec les algorithmes.
+Ce n'est pas toujours une voie optimale, mais c'est simple, rapide et permet de se familiariser avec les algorithmes.
 
 Jusqu'à présent, nous avons manipulé des sacs d'entiers sans leur donner de sens concret.
-Pour appliquer les algorithmes, nous allons maintenant considérer chaque entier comme la \emph{taille} d'un objet réel.
-Ainsi, chaque entier du sac correspond à un objet que l'on peut placer dans un sac de capacité donnée.
-Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en gardant à l'esprit qu'il sont seulement caractérisés par un entier, leur taille.
+Pour appliquer les algorithmes, nous allons maintenant considérer chaque entier comme la \emph{taille} d'un objet réel, ici la durée d'une séquence vidéo.
+Ainsi, chaque entier correspond à un objet que l'on peut placer dans une sacoche de capacité donnée.
+Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en gardant à l'esprit qu'ils sont seulement caractérisés par un entier, leur taille.
 
   \begin{definition}{Algorithme glouton}
     Un \emph{algorithme glouton} est un algorithme qui, étape par étape, fait toujours le choix considéré comme le meilleur à ce moment précis (choix \emph{localement optimal}).
-
-    Dans certains problèmes, cette approche conduit à un optimum global.
-    Dans le cas général, c'est une \emph{heuristique} qui ne garantit pas de trouver l'optimum global.
   \end{definition}
 
+  \begin{remarque}{Algorithme glouton}
+    Dans certains cas, un algorithme glouton garantit de trouver une solution si elle existe.
+    Dans le cas général, il s'agit d'une \emph{heuristique} qui construit une solution plausible, sans garantir d'en trouver une, même si elle existe.
+  \end{remarque}
 
   \begin{epigramme}
     % 17. If a listener nods his head when you're explaining your program, wake him up.
-    Si quelqu’un hoche la tête pendant que vous expliquez un algorithme, réveillez-le.
+    Si quelqu'un hoche la tête pendant que vous expliquez un algorithme, réveillez-le.
   \end{epigramme}
 
 
@@ -384,17 +448,32 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     \input{algos/GS}
   \end{algorithme}
 
+
+  Dans les exercices suivants, nous donnerons les instances du problème, c'est-à-dire les sacs à partitionner, sous la forme d'un tableau.
+  La première colonne indique l'identifiant du sac.
+  La deuxième colonne donne sa taille, c'est-à-dire le nombre d'objets qu'il contient.
+  La troisième colonne précise les tailles des objets du sac.
+  La dernière colonne indique la capacité de la sacoche dans laquelle placer les objets, égale à la moitié de la somme des tailles des objets.
+  Nous vous donnons directement cette valeur, car nous pensons que vous avez la flemme de calculer a somme.
+  Le type d'une instance est une indication réservée aux animateurs. Vous en devinerez peut-être la signification à la fin de l'activité.
+
+
   \input{exs/ex1-GS}
 
+
+  La figure \ref{fig:GS1-1} montre la construction de la solution par l'algorithme glouton.
+  À chaque itération, dans le tableau de gauche, les objets placés dans la sacoche apparaissent sur fond blanc, ceux retirés du sac sont barrés, et ceux qui n'ont pas encore été examinés apparaissent sur fond coloré.
+  La partition obtenue à la sixième itération est parfaite puisque la sacoche est pleine.
+  \fxerror{Il y a encore des objets avec la même couleurs.}
+
   \begin{remarque}{Nombre d'étapes de l'algorithme glouton}
-    Pour un ordre donné des objets, le glouton est très rapide :
+    Pour un ordre donné des objets, l'algorithme glouton est très rapide :
     \begin{itemize}
-    \item Chaque objet est examiné au plus une fois pour être placé dans le sac ;
-    \item Le nombre d'étapes est donc proportionnel au nombre d'objets $n$.
+    \item Chaque objet est examiné au plus une fois pour être placé dans la sacoche ;
+    \item Le nombre d'étapes est donc proportionnel au nombre $n$ d'objets.
     \end{itemize}
 
-    En pratique, même pour plusieurs milliers d'objet le glouton
-    trouve une partition presque sans transpirer.
+    En pratique, même pour plusieurs milliers d'objets, le glouton trouve une partition presque sans transpirer.
   \end{remarque}
 
   \begin{epigramme}
@@ -403,24 +482,29 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \end{epigramme}
 
   \input{exs/ex2-GS}
+  La figure \ref{fig:GS2-7} montre la construction de la solution par l'algorithme glouton.
+  L'algorithme examine tous les objets, mais la partition obtenue n'est pas parfaite.
 
   \begin{remarque}{À propos de l'algorithme glouton}
     \begin{itemize}
     \item On peut obtenir d'autres solutions en modifiant l'ordre dans lequel les objets sont considérés.
     \item Des ordres différents donnent parfois la même solution.
-    \item Répéter le glouton avec plusieurs ordres différents permet de générer plusieurs solutions.
+    \item Répéter l'algorithme glouton avec plusieurs ordres différents permet de générer plusieurs solutions.
     \end{itemize}
   \end{remarque}
 
 
   \begin{exercice}[label=ex1-GS]{Partition de 1 à $n$ avec le glouton}{10}
-    Appliquer l'algorithme glouton pour trouver une partition des entiers de 1 à $n = 15, 16$.
+    Appliquer l'algorithme glouton sur le sac des entiers de 1 à $n = 15, 16$.
   \end{exercice}
 
   \input{tex/partition-15}
   \ifshowsols
     \input{tex/partition-16}
   \fi
+
+  La figure \ref{fig:part15} montre la partition parfaite des entiers de 1 à 15 par l'algorithme glouton.
+  L'algorithme place les 4 plus grands objets dans le sac puis un seul objet plus petit pour remplir exactement la sacoche.
 
   \begin{remarque}{Optimalité du glouton pour la partition des entiers de 1 à $n$}
     L'algorithme glouton est optimal pour le problème de partition des entiers de $1$ à $n$ :
@@ -429,11 +513,12 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     \item l'algorithme glouton en trouve toujours une.
     \end{itemize}
 
-    \emph{Preuve : } supposons qu'à une étape de l'algorithme on ne puisse pas placer l'entier $k$ dans le sac.
-    Dans ce cas, la capacité restante du sac est égale à la différence entre la capacité totale et la somme des entiers déjà placés dans le sac.
+    \emph{Preuve.} Supposons qu'à une étape de l'algorithme on ne puisse pas placer l'entier $k$ dans la sacoche.
+    Dans ce cas, la capacité restante de la sacoche est égale inférieure à $k$.
 
     Or les entiers encore disponibles sont exactement $1,2,\dots,k$.
-    Il reste donc toujours un entier égal à cette capacité restante, que l'on peut placer dans le sac. L'algorithme peut donc toujours compléter le sac.
+    Il reste donc toujours un entier égal à cette capacité restante, que l'on peut placer dans la sacoche.
+    L'algorithme peut donc toujours compléter le sac.
   \end{remarque}
 
 
@@ -441,12 +526,15 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \label{sec:mtgs}
 
   \lettrine[lines=4,lhang=0]{\includegraphics[height=1.75ex]{Silver_medal_olympic}}{}
-  L’algorithme glouton semblait prometteur, mais il passe parfois juste à côté d’une partition parfaite.
+  L'algorithme glouton semblait prometteur, mais il passe parfois juste à côté d'une partition parfaite.
   Et pourtant, en effectuant quelques échanges entre les objets, la solution finit par apparaître.
-  Alan J. Perlis, vous glisserait volontiers qu’un programme devient souvent plus intéressant lorsqu’on le relance plusieurs fois.
 
-  L’idée est donc simple : si le glouton échoue, recommençons, mais en modifiant légèrement les conditions initiales.
-  C’est précisément le principe de l’algorithme glouton répété : lancer le glouton plusieurs fois pour explorer d’autres possibilités en espérant être assez chanceux pour trouver une partition parfaite.
+  Alan J. Perlis vous glisserait volontiers qu'un programme devient souvent plus intéressant lorsqu'on le relance plusieurs fois en modifiant les conditions initiales.
+  En les faisant varier, on explore des chemins de construction différents.
+
+  L'idée est donc simple : si l'algorithme glouton échoue, on recommence en modifiant intelligemment ces conditions initiales départ.
+  C'est précisément le principe de l'algorithme glouton répété : exécuter plusieurs fois le glouton en faisant varier les objets disponibles dans le sac.
+  Concrètement, à chaque itération, on retire du sac le plus grand objet précédemment placé dans la sacoche.
 
   \begin{epigramme}
     Si l'on écrivait des programmes dès l'enfance, on saurait probablement mieux les lire une fois adulte.
@@ -459,41 +547,54 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   \input{exs/ex2-MTGS}
 
-  \begin{remarque}{À propos de l'algorithme glouton répété}
-    L’algorithme glouton répété peut s’arrêter dès que tous les objets sont dans le sac, car retirer des objets ne permettrait pas d’améliorer la solution : le sac serait forcément moins rempli.
+  La figure \ref{fig:MTGS2-7} montre les différentes solutions obtenues à chaque itération par l'algorithme glouton répété.
+  La partition obtenue à la troisième itération est parfaite.
 
-    L'algorithme glouton répété examine uniquement des solutions distinctes : à chaque itération, il retire le plus grand objet restant avant de relancer le glouton.
-    Or, cet objet est toujours inclus dans la solution construite par le glouton.
+
+  \begin{remarque}{À propos de l'algorithme glouton répété}
+    L'algorithme glouton répété peut s'arrêter dès que tous les objets sont dans la sacoche, car retirer des objets ne permettrait pas d'améliorer la solution : la sacoche serait forcément moins remplie.
+
+    L'algorithme glouton répété examine uniquement des solutions distinctes : à chaque itération, il retire le plus grand objet dans le sac restant avant de relancer le glouton.
+    Or, cet objet est toujours inclus dans la sacoche construite par le glouton.
+    En effet, c'est le premier objet examiné par le glouton et il est donc toujours placé dans la sacoche.
   \end{remarque}
 
   \begin{remarque}{Nombre d'étapes de l'algorithme glouton répété}
     \begin{itemize}
-    \item L'algorithme explore au plus $n$ solutions (une par objet successivement éliminé).
-    \item L'algorithme glouton examine au plus les $n$ objets.
-    \item Le nombre total d'étapes de l'algorithme glouton est donc proportionnel à $n^2 = n \times n$.
+    \item L'algorithme glouton répété explore au plus $n$ solutions (une par objet successivement éliminé, à chaque itération).
+    \item À chaque itération, l'algorithme glouton examine au plus les $n$ objets.
+    \item Le nombre total d'étapes de l'algorithme glouton répété est donc proportionnel à $n^2 = n \times n$.
     \end{itemize}
   \end{remarque}
 
+
   \input{exs/ex3-MTGS}
 
+  La figure \ref{fig:MTGS3-13} présente les solutions obtenues par l'algorithme glouton répété.
+  L'algorithme ne trouve pas de partition parfaite.
+  On peut toutefois remarquer que les deux premières itérations produisent les partitions les plus équilibrées, tandis que la dernière itération donne la partition la moins équilibrée, avec une différence de sommes maximale.
+
   \begin{remarque}{Ne pas perdre la meilleure solution}
-    En pratique, il est important de garder en mémoire la meilleure solution trouvée par l'algorithme glouton répété, car ce n’est pas forcément la dernière solution calculée qui est la meilleure.
+    En pratique, il est important de garder en mémoire la meilleure solution trouvée par l'algorithme glouton répété, car ce n'est pas forcément la dernière solution calculée qui est la meilleure.
   \end{remarque}
 
+  \begin{remarque}{Recherche locale}
+    Les méthodes de recherche locale reposent sur la répétition d'algorithmes gloutons, combinée à des modifications des solutions obtenues, par exemple par des échanges partiels d'objets.
+  \end{remarque}
 
   \section{Programmation dynamique}
   \label{sec:dp}
 
   \lettrine[lines=4,lhang=0]{\includegraphics[height=1.75ex]{Gold_medal_olympic}}{}
   Cette fois, vous avez tout essayé.
-  Le glouton répété n'a rien trouvé et vos tentativces d'échanges sont restées vaines.
-  Malgré tous vos efforts la partition parfaite reste introuvable ou peut-être simplement bien cachée.
+  Le glouton répété n'a pas trouvé de partition parfaite et vos tentatives d'échanges sont restées vaines ?
+  Malgré tous vos efforts la partition parfaite reste introuvable ou peut-être simplement bien cachée ?
   Malheureusement, votre patron exige une réponse claire : la partition parfaite existe-t-elle ou non ?
 
-  C’est alors que Richard Bellman intervient avec une idée plus méthodique.
-  Plutôt que d’explorer les possibilités un peu au hasard, il propose de construire progressivement toutes les sommes que l’on peut atteindre avec les objets disponibles.
-  La méthode est plus coûteuse en temps, mais aussi plus difficile à imaginer et à mettre en œuvre.
-  Il va falloir être rusé : la programmation dynamique est pour les champions de l’algorithmique.
+  C'est alors que Richard Bellman intervient avec une idée plus méthodique.
+  Plutôt que d'explorer les possibilités un peu au hasard, il propose de construire progressivement toutes les sommes que l'on peut atteindre avec les objets disponibles.
+  La méthode est plus coûteuse en temps, mais aussi plus difficile à imaginer et à mettre en \oe uvre.
+  Il va falloir être rusé \dots
 
 
   \begin{epigramme}
@@ -506,76 +607,87 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \end{algorithme}
 
   Nous savons désormais quelles sommes sont atteignables, ce qui est déjà une bonne nouvelle.
-  En revanche, les solutions elles-mêmes restent cachées : à nous de les reconstruire en interprétant les marqueurs, avec l’algorithme comme guide.
+  En revanche, les solutions elles-mêmes restent cachées : à nous de les reconstruire en interprétant les marqueurs, avec l'algorithme comme guide.
 
-  \begin{algorithme}{Reconstruction du sac en programmation dynamique}
+  \begin{algorithme}{Reconstruction de la sacoche en programmation dynamique}
     \input{algos/DP-sol}
   \end{algorithme}
 
   \input{exs/ex3-DP}
 
+  La figure \ref{fig:DP3-13} illustre la programmation dynamique.
+  La première ligne donne la sacoche obtenue par reconstruction.
+  Les lignes suivantes correspondent aux étapes de marquage des cases avec les objets.
+
+  Après le marquage du point de départ, une seule case est marquée par l'objet 25 lors de la première itération.
+  Deux cases sont marquées avec l'objet 20 lors de la seconde itération.
+  On remarque que seulement trois cases sont marquées par l'objet 11 à la quatrième itération, certaines cases atteintes étant déjà marquées.
+
   \begin{remarque}{Nombre d'étapes de la programmation dynamique}
-    L'algorithme de programmation dynamique est beaucoup plus gourmand en étapes
-    que les gloutons. Pour $n$ objets et une capacité $C$ du sac :
+    L'algorithme de programmation dynamique est beaucoup plus gourmand en étapes que les gloutons.
+    Pour $n$ objets et une capacité $C$ de la sacoche :
     \begin{itemize}
-    \item Il faut examiner toutes les cases marquées pour chaque objet, et il y a au plus $C$ cases marquées ;
-    \item Le nombre d'étapes est donc proportionnel à $n \cdot C$, ce qui est bien plus que le glouton.
+    \item La programmation dynamique marque les cases avec un objet au plus $n$ fois (une fois par objet successivement examiné, à chaque itération).
+    \item À chaque itération, il faut examiner toutes les cases marquées, et il y en a au plus $C$.
+    \item Le nombre d'étapes est donc proportionnel à $n \cdot C$, ce qui est bien plus élevé que pour les gloutons.
     \end{itemize}
 
     Cette complexité ne dépend pas seulement de la taille de l'entrée (le nombre d'objets),
-    mais aussi de leurs valeurs (ici la capacité du sac).
+    mais aussi de leurs valeurs (ici la capacité de la sacoche).
     Pour une taille et des valeurs raisonnables, l'algorithme reste rapide,
     mais pour de grandes tailles et valeurs, le temps de calcul peut devenir important.
   \end{remarque}
 
+
   \input{exs/ex4-DP}
+
+  La figure \ref{fig:DP4-19} illustre la programmation dynamique lorsqu'il n'existe pas de partition parfaite.
+  La reconstruction de la solution à partir de la case marquée la plus à droite permet d'obtenir la sacoche la plus remplie, et donc la partition la plus équilibrée possible.
+
 
 
 \begin{remarque}{Optimalité de la programmation dynamique}
-  L'algorithme de programmation dynamique garantit de trouver la partition la plus équilibrée :
+  L'algorithme de programmation dynamique garantit de trouver une partition la plus équilibrée :
   \begin{itemize}
   \item il trouve une partition parfaite si elle existe ;
-  \item sinon, il minimise la différence entre les sommes des deux sous-sacs.
+  \item sinon, il minimise la différence entre les sommes des deux sacoches.
   \end{itemize}
-    On sacrifie la rapidité pour être sûr d'obtenir la solution optimale.
+    On sacrifie la rapidité pour être sûr d'obtenir une solution optimale.
   \end{remarque}
 
 
   \begin{remarque}{Une ouverture en profondeur de Bellman}
     Il existe une méthode exacte plus générale pour résoudre ce type de problème : \emph{Tester-et-Générer}.
     Simple à comprendre et quelquefois facile à programmer, elle devient vite très pénible à exécuter à la main, tant elle explore toutes les possibilités par sauts de puce.
-    Après avoir déjà transpiré sur la programmation dynamique, notre patience a des limites\dots et nous n’irons pas plus loin dans cette voie !
+    Après avoir déjà transpiré sur la programmation dynamique, notre patience a des limites\dots et nous n'irons pas plus loin dans cette voie !
   \end{remarque}
 
 
 
     \begin{remarque}{Bellman botte en touche !}
-      Il existe aussi une pléthore de méthodes approximatives plus élaborées pour s’échapper des limites des algorithmes gloutons.
-      Elles reposent souvent sur des échanges d’objets et s’inspirent librement de phénomènes naturels : colonies de fourmis, essaims d’abeilles, etc.
+      Il existe aussi une pléthore de méthodes approximatives plus élaborées pour s'échapper des limites des algorithmes gloutons.
+      Elles reposent souvent sur des échanges d'objets et s'inspirent librement de phénomènes naturels : évolution génétique, colonies de fourmis, essaims d'abeilles, etc.
 
-      Mais Richard Bellman rechigne à vous en dire davantage : selon lui, même efficaces, ces approches n’ont pas tout à fait la même noblesse ni la même rigueur que les méthodes exactes.
-      Vous devrez donc les découvrir sans son aide !
+      Mais Richard Bellman rechigne à vous en dire davantage : selon lui, c'est déjà bien suffisant pour aujourd'hui et pour résoudre le problème \dots il a la flemme.
     \end{remarque}
 
 
-    \section{Citius, altius, fortius (plus vite, plus haut, plus fort)}
+    \section[Citius, altius, fortius]{Citius, altius, fortius\protect\footnote{Plus vite, plus haut, plus fort.}}
 
     Votre esprit est maintenant limpide ! Vous voilà initié aux arcanes des partitions.
     Mais une question demeure : comment ce labeur acharné peut-il se transformer en véritable flemme olympique ?
     \\
-    C’est alors qu’Alan, malicieusement, vous souffle à nouveau à l’oreille :
+    C'est alors qu'Alan, malicieusement, vous souffle à nouveau à l'oreille :
 
     \begin{epigramme}
       On croit comprendre en apprenant, on est plus confiant en écrivant, encore plus en enseignant\dots mais on en est vraiment sûr en programmant.
     \end{epigramme}
 
-    Il ne vous reste donc qu’une ultime épreuve.
-
-    \begin{exercice}{Olympiade des partitions}{?}
-      Écrire un programme capable de résoudre le problème de partition et le soumettre au
+    \begin{exercice}{Olympiade de partition}{?}
+      Écrire un programme pour résoudre le problème de partition et le soumettre au
       \begin{center}
         \large
-        \href{}{juge olympique}.
+        \href{}{juge olympique} \textbf{(Bientôt disponible !)}.
       \end{center}
 
     \end{exercice}
@@ -584,8 +696,9 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
     \begin{epigramme}
       % 67. Think of all the psychic energy expended in seeking a fundamental distinction between "algorithm" and "program"
-      Pensez à toute l’énergie mentale dépensée pour tenter de tracer la frontière entre \og algorithme \fg et \og programme \fg.
+      Pensez à toute l'énergie mentale dépensée pour tenter de tracer la frontière entre \og algorithme \fg et \og programme \fg.
     \end{epigramme}
+
 
     \section{Problèmes connexes}
     \label{sec:related}
@@ -596,20 +709,25 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   %   En programmation, chaque tâche est un cas particulier d'une idée plus générale -- et on s'en rend compte parfois trop vite.
   % \end{epigramme}
 
-Le problème de partition appartient à une grande famille de problèmes d'optimisation étudiés en informatique et en recherche opérationnelle.
+    Le problème de partition appartient à une grande famille de problèmes d'optimisation étudiés en informatique et en recherche opérationnelle.
+    La recherche opérationnelle utilise des modèles mathématiques et des méthodes algorithmiques, implémentées en informatique, pour résoudre des problèmes concrets de décision, comme l'organisation, la planification ou l'allocation de ressources.
 De nombreux problèmes célèbres lui sont étroitement liés.
 \begin{epigramme}
   % 16. Every program has (at least) two purposes: the one for which it was written and another for which it wasn't.
   Tout programme fait au moins deux choses : ce pour quoi il a été conçu \dots et une autre pour laquelle il ne l'a pas été.
 \end{epigramme}
 
+
 \begin{definition}{Problème de la somme de sous-ensembles}
   On dispose d'un sac d'entiers et d'une capacité donnée.
-  La question est de savoir s'il existe un sous-ensemble d'objets dont la
+  La question est de savoir s'il existe une sacoche d'entiers dont la
   somme est exactement égale à cette capacité.
 
   Le problème de partition en est un cas particulier où la capacité est la moitié de la somme totale des entiers.
 \end{definition}
+
+Par exemple, la sélection d'investissements sous contrainte de budget, en choisissant des projets dont le coût total respecte un budget donné.
+Ou encore, le choix d'activités à réaliser dans un temps limité, en optimisant l'utilisation du temps disponible.
 
 \begin{definition}{Problème d'ordonnancement sur deux machines}
   Un problème très proche apparaît en \emph{ordonnancement}.
@@ -620,6 +738,8 @@ De nombreux problèmes célèbres lui sont étroitement liés.
 
   Ce problème revient donc à chercher une partition des durées des tâches aussi équilibrée que possible.
 \end{definition}
+
+Ce problème apparaît par exemple dans la répartition de travaux entre deux serveurs informatiques, dans l'organisation de tâches de production sur deux chaînes d'assemblage, ou encore dans la planification de devoirs à réaliser entre deux jours de travail.
 
 \begin{remarque}{Un algorithme peut répondre à plusieurs problème !}
   Tous les algorithmes introduits fonctionnent pour la somme des sous-ensembles et l'ordonnancement sur deux machines.
@@ -633,16 +753,20 @@ De nombreux problèmes célèbres lui sont étroitement liés.
   Contrairement au problème de partition, il ne s'agit plus de trouver une somme exacte, mais de sélectionner la meilleure combinaison possible en termes de valeurs.
 \end{definition}
 
+Ce problème apparaît par exemple en industrie, lors du choix de composants à produire sous contrainte de capacité (temps, masse, ou coût), chaque élément ayant à la fois une contrainte de consommation de ressources et une valeur associée à son intérêt économique. L'objectif est alors de sélectionner les éléments les plus rentables sans dépasser les ressources disponibles.
 
 \begin{definition}{Problème de mise en boîtes}
   On dispose de plusieurs sacs de capacité fixe et d'objets de tailles différentes.
   Le but est de ranger tous les objets en utilisant le moins de sacs possible.
 
-  Ce problème généralise l'idée de remplir un sac avec des objets de tailles données.
+  Ce problème généralise l'idée de remplir une sacs avec des objets de tailles données.
 \end{definition}
 
-Ces problèmes~\cite{PP,SSP,KP,MS,BP} apparaissent dans de nombreux domaines : logistique, planification de tâches, allocation de ressources ou encore gestion de
-données. Ils illustrent l'importance des algorithmes pour organiser et optimiser des ressources limitées.
+Ce problème apparaît par exemple dans le transport routier, maritime ou aérien, où des marchandises de volumes différents doivent être réparties dans un nombre minimal de camions, conteneurs ou soutes de capacité fixe, sans dépasser leur capacité.
+
+Au delà de ces quelques exemples, ces problèmes~\cite{PP,SSP,KP,MS,BP} apparaissent dans de nombreux domaines : logistique, planification de tâches, allocation de ressources, gestion de données, télécommunications ou encore industrie.
+Ils illustrent l'importance des algorithmes pour organiser et optimiser des ressources limitées.
+
 
 
 
@@ -658,10 +782,18 @@ données. Ils illustrent l'importance des algorithmes pour organiser et optimise
 
 \section{Guide pour les animateurs}
 
-Cette suite d'activités a été concue pour être adaptée à différents publics, du primaire au supérieur.
-Le scénario dépendra aussi de la familiarité et l'intérêt de l'animateur.
+L'activité Flemme Olympique s'inscrit dans une démarche pédagogique visant à rendre accessibles des notions fondamentales de l'algorithmique et de l'optimisation à travers une situation concrète. Inspirée de la problématique de la diffusion de contenus audiovisuels, elle invite les participants et participantes à relever un défi : construire un résumé parfaitement équilibré en combinant des séquences de durées variées. Derrière cette mise en situation ludique se cache un problème classique de l'informatique théorique, celui du partitionnement d'un ensemble d'entiers.
 
-\textbf{TODO}
+Dans un premier temps, les participants explorent le problème de manière intuitive. Ils manipulent des données simples (durées de séquences) et tentent, par essais et erreurs, de construire deux ensembles équilibrés. Cette phase favorise l'engagement, la prise d'initiative et la compréhension progressive des contraintes, notamment la notion de parité et d'équilibre des sommes. Rapidement, les limites de cette approche empirique apparaissent, ouvrant la voie à une réflexion plus structurée.
+
+L'activité introduit alors différentes stratégies algorithmiques. L'algorithme glouton, accessible et intuitif, constitue une première formalisation de la démarche de résolution. Il permet de comprendre comment une suite de choix locaux peut conduire à une solution satisfaisante, sans garantir l'optimalité. Dans un second temps, l'algorithme glouton répété illustre l'intérêt de la diversification des essais et de la variation des conditions initiales. Enfin, la programmation dynamique propose une approche plus systématique et rigoureuse, garantissant l'obtention d'une solution optimale lorsque celle-ci existe, au prix d'une complexité accrue.
+
+Au-delà des contenus disciplinaires, cette activité mobilise des compétences transversales essentielles. Elle développe la pensée algorithmique, la capacité à modéliser une situation réelle, à raisonner de manière logique et à comparer différentes stratégies. Elle favorise également la collaboration, la communication et l'argumentation, notamment lors des phases de mise en commun et de justification des solutions.
+
+D'un point de vue didactique, Flemme Olympique illustre l'intérêt des activités débranchées pour introduire des concepts informatiques complexes sans recourir immédiatement à la programmation. Elle permet aux participants de se concentrer sur la compréhension des mécanismes sous-jacents, tout en maintenant un haut niveau d'engagement. Par ailleurs, elle offre une ouverture vers des notions avancées telles que la complexité algorithmique et les problèmes NP-complets, contribuant ainsi à une acculturation progressive aux enjeux de l'informatique contemporaine et de la recherche opérationnelle.
+
+En somme, cette activité constitue un levier efficace pour articuler manipulation, abstraction et formalisation, tout en développant des compétences clés du XXIe siècle dans un cadre motivant et accessible.
+
 
 % \Cref{sec:unn}
 % Les \protect\cref{sec:unn,sec:gs,sec:mtgs,sec:dp} peuvent être abordées de manière presque indépendantes même si l'ordre du document a été soigneusement pensé.
@@ -710,12 +842,14 @@ Elle contient notamment :
 \item le contenu pédagogique (textes, images, schémas, diagrammes) distribué sous licence CC BY 4.0.
 \item le source \LaTeX\ de tous les documents (manuel, fiche technique, solutions) ;
 \item les fichiers nécessaires à la fabrication des éléments physiques via découpeuse laser ou imprimante 3D ;
-\item les illustrations et images utilisées dans l’activité, libres de droits ou sous licence compatible ;
-\item les instructions détaillées pour la mise en place de l’activité, incluant la préparation du matériel et des variantes selon le niveau des participants.
+\item les illustrations et images utilisées dans l'activité, libres de droits ou sous licence compatible ;
+\item les instructions détaillées pour la mise en place de l'activité, incluant la préparation du matériel et des variantes selon le niveau des participants.
 \end{itemize}
 
 
-  \bibliographystyle{plainnat}
-  \bibliography{flemolymp}
+\phantomsection
+\addcontentsline{toc}{section}{Références}
+\bibliographystyle{plainnat}
+\bibliography{flemolymp}
 
 \end{document}

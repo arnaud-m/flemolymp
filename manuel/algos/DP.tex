@@ -1,13 +1,16 @@
 \begin{itemize}
-  \item Déterminer la capacité du sac.
-  \item Trier les objets par ordre décroissant.
-  \item Répéter tant qu'il reste des objets à placer :
+\item Déterminer la capacité de la sacoche.
+\item Trier les objets par ordre décroissant.
+\item Marquer la case 0, qui correspond au point de départ.
+\item Répéter tant qu'il reste des objets dans le sac :
   \begin{itemize}
-    \item Pour chaque case marquée, en partant de la dernière (à droite) :
+  \item Prendre le plus grand objet du sac.
+  \item Pour chaque case marquée, en partant de la dernière (à droite) :
     \begin{itemize}
-      \item Calculer la case atteinte en plaçant immédiatement l'objet après la case marquée.
-      \item Si cette case n'est pas encore marquée, placer un marqueur correspondant à l'objet.
+    \item Calculer la case atteinte en plaçant immédiatement l’objet après la case marquée.
+    \item Si cette case n’est pas encore marquée, y placer un marqueur correspondant à l’objet.
     \end{itemize}
-    \item Si la dernière case (capacité) est marquée, le sac est plein et l'algorithme s'arrête.
+  \item Retirer l’objet du sac.
+  \item Si la dernière case (capacité) est marquée, le sac est plein et l’algorithme s’arrête.
   \end{itemize}
 \end{itemize}
