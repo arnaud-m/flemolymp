@@ -66,13 +66,13 @@
     \fi
     \fi
 
-    \foreach \s [count = \i, evaluate = \i as \di using {\indeck[\i]}, evaluate = \i as \x using {(\i-1)*\unit}, evaluate = \s as \c using {int(Mod(\s-1, \nbcol)+1)}, evaluate = \c as \col using {\colors[\c]}, evaluate = \di as \p using {int(Mod(\di, 2))}, remember = \sum as \sum (initially 0), evaluate = \p as \sum using {int(\p*\s+\sum)}] in \sizes {
+    \foreach \s [count = \i, evaluate = \i as \di using {\indeck[\i]}, evaluate = \i as \x using {(\i-1)*\unit}, evaluate = \s as \c using {int(Mod(\s-1, \nbcol)+1)}, evaluate = \c as \col using {\colors[\c]}, evaluate = \s as \tmp using {int((\s-1)/\nbcol)}, evaluate = \tmp as \aux using {int(mod(\tmp, 3))}, evaluate = \aux as \o using {int(60 + 20*\aux)}, evaluate = \di as \p using {int(Mod(\di, 2))}, remember = \sum as \sum (initially 0), evaluate = \p as \sum using {int(\p*\s+\sum)}] in \sizes {
       \ifnum\di=1
         \ifnum\sum>\capa
           \draw [rouge, thick] ({\xsac + (\sum-\s)*\unit}, \ysac) -- ++ (\unit, \unit) ({(\sum-\s)*\unit}, {\ysac + \unit}) -- ++ (\unit, -\unit);
           \gdef\nodecol{\col}
         \else
-          \fill [\col] ({\xsac + \sum*\unit}, \ysac) rectangle ++ ({-\s*\unit}, \unit);
+          \fill [\col!\o] ({\xsac + \sum*\unit}, \ysac) rectangle ++ ({-\s*\unit}, \unit);
           \gdef\nodecol{white}
         \fi
         \node [\nodecol] at ({\xsac + (\sum-\s+0.5)*\unit}, {\ysac + \unit/2}) {\large\textbf{\s}};
@@ -80,13 +80,13 @@
           \ifnum\sum>\capa
             \draw [rouge, thick] (\x, 0) -- ++ (\unit, \unit) (\x, \unit) -- ++ (\unit, -\unit);
           \fi
-          \node [\col] at ({\x + \unit/2}, {\unit/2}) {\large\textbf{\s}};
+          \node [\col!\o] at ({\x + \unit/2}, {\unit/2}) {\large\textbf{\s}};
           \draw (\x, 0) rectangle ++ (\unit, \unit);
         \fi
       \else
         \ifnum\nd=0
           \ifnum\di=0
-            \fill [\col] (\x, 0) rectangle ++ (\unit, \unit);
+            \fill [\col!\o] (\x, 0) rectangle ++ (\unit, \unit);
             \node [white] at ({\x + \unit/2}, {\unit/2}) {\large\s};
           \else
             \node [gray] at ({\x + \unit/2}, {\unit/2}) {\large\s};
@@ -200,20 +200,18 @@
     \def\img{\arg{img}}
     \def\inner{\arg{inner color}}
     \def\side{\arg{top color}}
-    \def\name{\arg{title}}
-    \def\coltitle{\arg{title color}}
 
-    \fill [pic actions] (0, 0) rectangle ++ ({\val*\unit}, \haut);
+    \fill [pic actions, rounded corners] (0, 0) rectangle ++ ({\val*\unit}, \haut);
 
     \fill [even odd rule, \side] 
-      (0, 0) rectangle ++ ({\val*\unit}, 0.46)
+      (0, 0) -- ++ (0, 0.46) -- ++ ({\val*\unit}, 0) [rounded corners] -- ++ (0, -0.46) -- cycle
       [rounded corners = 0.8mm]
       \foreach \i in {1, ..., \val} {
         ({(\i-1)*\unit + \unit/4}, 0.08) rectangle ++ ({\unit/2}, 0.3)
       };
 
     \fill [even odd rule, \side] 
-      (0, \haut) rectangle ++ ({\val*\unit}, -0.46)
+      (0, \haut) -- ++ (0, -0.46) -- ++ ({\val*\unit}, 0) [rounded corners] -- ++ (0, 0.46) -- cycle
       [rounded corners = 0.8mm]
       \foreach \i in {1, ..., \val} {
         ({(\i-1)*\unit + \unit/4}, {\haut - 0.08}) rectangle ++ ({\unit/2}, -0.3)
@@ -251,14 +249,10 @@
       \fi
       \node [img] at (0, \haut) {\includegraphics{fig/\val.pdf}};
     \else
-      \ifx\name\empty\relax
-        {\fontsize{35}{40}\selectfont\node [inner sep = 0mm, \inner] at ({\unit*\val/2}, {\haut/2}) {\val};}
-      \else
-        \node [inner sep = 0mm, \coltitle] at ({\unit*\val/2}, {\haut/2}) {\name};
-      \fi
+      {\fontsize{35}{40}\selectfont\node [inner sep = 0mm, \inner] at ({\unit*\val/2}, {\haut/2}) {\val};}
     \fi
 
-  }}, barre/.cd, value/.initial = 1, unit/.initial = 0.8, height/.initial = 3, sizes/.initial = {1}, factor/.initial = 0, down/.initial = 0, down/.default = 1, img/.initial = 0, img/.default = 1, inner color/.initial = black, top color/.initial = black, title/.initial = {}, title color/.initial = black
+  }}, barre/.cd, value/.initial = 1, unit/.initial = 0.8, height/.initial = 3, sizes/.initial = {1}, factor/.initial = 0, down/.initial = 0, down/.default = 1, img/.initial = 0, img/.default = 1, inner color/.initial = black, top color/.initial = black
 }
 
 \tikzset{
