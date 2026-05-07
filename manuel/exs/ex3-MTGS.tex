@@ -6,12 +6,16 @@
   \toprule
 Id & Taille & Entiers & Capacité \\
   \midrule
- 13 &   6 & 25, 20, 17, 14, 11, 8 &  47 \\
-   14 &   6 & 23, 20, 17, 13, 12, 5 &  45 \\
-   15 &   9 & 22, 19, 15, 14, 12, 10, 4, 3, 1 &  50 \\
-   16 &   9 & 25, 19, 13, 12, 10, 8, 7, 3, 1 &  49 \\
-   17 &  12 & 20, 17, 16, 14, 13, 12, 11, 10, 9, 6, 5, 3 &  68 \\
-   18 &  15 & 25, 22, 20, 19, 18, 15, 14, 13, 11, 10, 9, 7, 6, 5, 2 &  98 \\
+ 21 &   6 & 25, 20, 17, 14, 11, 8 &  47 \\
+   22 &   6 & 21, 20, 17, 14, 13, 8 &  46 \\
+   23 &   6 & 23, 20, 17, 13, 12, 5 &  45 \\
+   24 &   9 & 25, 21, 15, 10, 9, 7, 6, 5, 1 &  49 \\
+   25 &   9 & 22, 19, 15, 14, 12, 10, 4, 3, 1 &  50 \\
+   26 &   9 & 25, 19, 13, 12, 10, 8, 7, 3, 1 &  49 \\
+   27 &  12 & 21, 20, 18, 17, 15, 14, 13, 10, 8, 7, 4, 3 &  75 \\
+   28 &  12 & 20, 17, 16, 14, 13, 12, 11, 10, 9, 6, 5, 3 &  68 \\
+   29 &  15 & 23, 22, 21, 19, 18, 17, 16, 14, 13, 11, 8, 7, 5, 4, 2 & 100 \\
+   30 &  15 & 25, 22, 20, 19, 18, 15, 14, 13, 11, 10, 9, 7, 6, 5, 2 &  98 \\
    \bottomrule
 \end{tabular}
 \caption{Appliquer l'algorithme glouton répété sur une instance de type 3.}
@@ -28,11 +32,23 @@ Id & Taille & Entiers & Capacité \\
 \pic at (0, -4) {subset sum = {capacity = 47, sizes = {25,20,17,14,11,8}, deck = {2,2,1,1,1,2}, offset = 0}};
 \pic at (0, -6) {subset sum = {capacity = 47, sizes = {25,20,17,14,11,8}, deck = {2,2,2,1,1,1}, offset = 0}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton répété sur l'instance \#13 : $S_1 = \{14,11,8\}$.}
-\label{fig:MTGS3-13}
+\caption{Application de l'algorithme glouton répété sur l'instance \#21 : $S_1 = \{14,11,8\}$.}
+\label{fig:MTGS3-21}
 \end{figure}
 
 \ifshowsols
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\pic at (0, 0) {subset sum = {capacity = 46, sizes = {21,20,17,14,13,8}, deck = {1,1,2,2,2,2}, offset = 0}};
+\pic at (0, -2) {subset sum = {capacity = 46, sizes = {21,20,17,14,13,8}, deck = {2,1,1,2,2,1}, offset = 0}};
+\pic at (0, -4) {subset sum = {capacity = 46, sizes = {21,20,17,14,13,8}, deck = {2,2,1,1,1,2}, offset = 0}};
+\pic at (0, -6) {subset sum = {capacity = 46, sizes = {21,20,17,14,13,8}, deck = {2,2,2,1,1,1}, offset = 0}};
+\end{tikzpicture}
+\caption{Application de l'algorithme glouton répété sur l'instance \#22 : $S_1 = \{14,13,8\}$.}
+\label{fig:MTGS3-22}
+\end{figure}
 
 \begin{figure}[htbp]
 \centering
@@ -42,8 +58,20 @@ Id & Taille & Entiers & Capacité \\
 \pic at (0, -4) {subset sum = {capacity = 45, sizes = {23,20,17,13,12,5}, deck = {2,2,1,1,1,2}, offset = 0}};
 \pic at (0, -6) {subset sum = {capacity = 45, sizes = {23,20,17,13,12,5}, deck = {2,2,2,1,1,1}, offset = 0}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton répété sur l'instance \#14 : $S_1 = \{13,12,5\}$.}
-\label{fig:MTGS3-14}
+\caption{Application de l'algorithme glouton répété sur l'instance \#23 : $S_1 = \{13,12,5\}$.}
+\label{fig:MTGS3-23}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\pic at (0, 0) {subset sum = {capacity = 49, sizes = {25,21,15,10,9,7,6,5,1}, deck = {1,1,2,2,2,2,2,2,1}, offset = 0}};
+\pic at (0, -2) {subset sum = {capacity = 49, sizes = {25,21,15,10,9,7,6,5,1}, deck = {2,1,1,1,2,2,2,2,1}, offset = 0}};
+\pic at (0, -4) {subset sum = {capacity = 49, sizes = {25,21,15,10,9,7,6,5,1}, deck = {2,2,1,1,1,1,1,2,1}, offset = 0}};
+\pic at (0, -6) {subset sum = {capacity = 49, sizes = {25,21,15,10,9,7,6,5,1}, deck = {2,2,2,1,1,1,1,1,1}, offset = 0}};
+\end{tikzpicture}
+\caption{Application de l'algorithme glouton répété sur l'instance \#24 : $S_1 = \{10,9,7,6,5,1\}$.}
+\label{fig:MTGS3-24}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -54,8 +82,8 @@ Id & Taille & Entiers & Capacité \\
 \pic at (0, -4) {subset sum = {capacity = 50, sizes = {22,19,15,14,12,10,4,3,1}, deck = {2,2,1,1,1,2,1,1,1}, offset = 0}};
 \pic at (0, -6) {subset sum = {capacity = 50, sizes = {22,19,15,14,12,10,4,3,1}, deck = {2,2,2,1,1,1,1,1,1}, offset = 0}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton répété sur l'instance \#15 : $S_1 = \{14,12,10,4,3,1\}$.}
-\label{fig:MTGS3-15}
+\caption{Application de l'algorithme glouton répété sur l'instance \#25 : $S_1 = \{14,12,10,4,3,1\}$.}
+\label{fig:MTGS3-25}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -66,8 +94,21 @@ Id & Taille & Entiers & Capacité \\
 \pic at (0, -4) {subset sum = {capacity = 49, sizes = {25,19,13,12,10,8,7,3,1}, deck = {2,2,1,1,1,1,2,1,1}, offset = 0}};
 \pic at (0, -6) {subset sum = {capacity = 49, sizes = {25,19,13,12,10,8,7,3,1}, deck = {2,2,2,1,1,1,1,1,1}, offset = 0}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton répété sur l'instance \#16 : $S_1 = \{12,10,8,7,3,1\}$.}
-\label{fig:MTGS3-16}
+\caption{Application de l'algorithme glouton répété sur l'instance \#26 : $S_1 = \{12,10,8,7,3,1\}$.}
+\label{fig:MTGS3-26}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\pic at (0, 0) {subset sum = {capacity = 75, sizes = {21,20,18,17,15,14,13,10,8,7,4,3}, deck = {1,1,1,2,1,2,2,2,2,2,2,2}, offset = 0}};
+\pic at (0, -2) {subset sum = {capacity = 75, sizes = {21,20,18,17,15,14,13,10,8,7,4,3}, deck = {2,1,1,1,1,2,2,2,2,2,1,2}, offset = 0}};
+\pic at (0, -4) {subset sum = {capacity = 75, sizes = {21,20,18,17,15,14,13,10,8,7,4,3}, deck = {2,2,1,1,1,1,2,1,2,2,2,2}, offset = 0}};
+\pic at (0, -6) {subset sum = {capacity = 75, sizes = {21,20,18,17,15,14,13,10,8,7,4,3}, deck = {2,2,2,1,1,1,1,1,2,2,1,2}, offset = 0}};
+\pic at (0, -8) {subset sum = {capacity = 75, sizes = {21,20,18,17,15,14,13,10,8,7,4,3}, deck = {2,2,2,2,1,1,1,1,1,1,1,1}, offset = 0}};
+\end{tikzpicture}
+\caption{Application de l'algorithme glouton répété sur l'instance \#27 : $S_1 = \{15,14,13,10,8,7,4,3\}$.}
+\label{fig:MTGS3-27}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -80,8 +121,22 @@ Id & Taille & Entiers & Capacité \\
 \pic at (0, -8) {subset sum = {capacity = 68, sizes = {20,17,16,14,13,12,11,10,9,6,5,3}, deck = {2,2,2,2,1,1,1,1,1,1,1,2}, offset = 0}};
 \pic at (0, -10) {subset sum = {capacity = 68, sizes = {20,17,16,14,13,12,11,10,9,6,5,3}, deck = {2,2,2,2,2,1,1,1,1,1,1,1}, offset = 0}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton répété sur l'instance \#17 : $S_1 = \{12,11,10,9,6,5,3\}$.}
-\label{fig:MTGS3-17}
+\caption{Application de l'algorithme glouton répété sur l'instance \#28 : $S_1 = \{12,11,10,9,6,5,3\}$.}
+\label{fig:MTGS3-28}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\pic at (0, 0) {subset sum = {capacity = 100, sizes = {23,22,21,19,18,17,16,14,13,11,8,7,5,4,2}, deck = {1,1,1,1,2,2,2,1,2,2,2,2,2,2,2}, offset = 0}};
+\pic at (0, -2) {subset sum = {capacity = 100, sizes = {23,22,21,19,18,17,16,14,13,11,8,7,5,4,2}, deck = {2,1,1,1,1,1,2,2,2,2,2,2,2,2,1}, offset = 0}};
+\pic at (0, -4) {subset sum = {capacity = 100, sizes = {23,22,21,19,18,17,16,14,13,11,8,7,5,4,2}, deck = {2,2,1,1,1,1,1,2,2,2,1,2,2,2,2}, offset = 0}};
+\pic at (0, -6) {subset sum = {capacity = 100, sizes = {23,22,21,19,18,17,16,14,13,11,8,7,5,4,2}, deck = {2,2,2,1,1,1,1,1,1,2,2,2,2,2,1}, offset = 0}};
+\pic at (0, -8) {subset sum = {capacity = 100, sizes = {23,22,21,19,18,17,16,14,13,11,8,7,5,4,2}, deck = {2,2,2,2,1,1,1,1,1,1,1,2,2,2,1}, offset = 0}};
+\pic at (0, -10) {subset sum = {capacity = 100, sizes = {23,22,21,19,18,17,16,14,13,11,8,7,5,4,2}, deck = {2,2,2,2,2,1,1,1,1,1,1,1,1,1,1}, offset = 0}};
+\end{tikzpicture}
+\caption{Application de l'algorithme glouton répété sur l'instance \#29 : $S_1 = \{17,16,14,13,11,8,7,5,4,2\}$.}
+\label{fig:MTGS3-29}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -94,8 +149,8 @@ Id & Taille & Entiers & Capacité \\
 \pic at (0, -8) {subset sum = {capacity = 98, sizes = {25,22,20,19,18,15,14,13,11,10,9,7,6,5,2}, deck = {2,2,2,2,1,1,1,1,1,1,1,1,2,2,2}, offset = 0}};
 \pic at (0, -10) {subset sum = {capacity = 98, sizes = {25,22,20,19,18,15,14,13,11,10,9,7,6,5,2}, deck = {2,2,2,2,2,1,1,1,1,1,1,1,1,1,1}, offset = 0}};
 \end{tikzpicture}
-\caption{Application de l'algorithme glouton répété sur l'instance \#18 : $S_1 = \{15,14,13,11,10,9,7,6,5,2\}$.}
-\label{fig:MTGS3-18}
+\caption{Application de l'algorithme glouton répété sur l'instance \#30 : $S_1 = \{15,14,13,11,10,9,7,6,5,2\}$.}
+\label{fig:MTGS3-30}
 \end{figure}
 
 \fi

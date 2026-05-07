@@ -464,7 +464,6 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   La figure \ref{fig:GS1-1} montre la construction de la solution par l'algorithme glouton.
   À chaque itération, dans le tableau de gauche, les objets placés dans la sacoche apparaissent sur fond blanc, ceux retirés du sac sont barrés, et ceux qui n'ont pas encore été examinés apparaissent sur fond coloré.
   La partition obtenue à la sixième itération est parfaite puisque la sacoche est pleine.
-  \fxerror{Il y a encore des objets avec la même couleurs.}
 
   \begin{remarque}{Nombre d'étapes de l'algorithme glouton}
     Pour un ordre donné des objets, l'algorithme glouton est très rapide :
@@ -482,7 +481,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \end{epigramme}
 
   \input{exs/ex2-GS}
-  La figure \ref{fig:GS2-7} montre la construction de la solution par l'algorithme glouton.
+  La figure \ref{fig:GS2-11} montre la construction de la solution par l'algorithme glouton.
   L'algorithme examine tous les objets, mais la partition obtenue n'est pas parfaite.
 
   \begin{remarque}{À propos de l'algorithme glouton}
@@ -547,8 +546,8 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   \input{exs/ex2-MTGS}
 
-  La figure \ref{fig:MTGS2-7} montre les différentes solutions obtenues à chaque itération par l'algorithme glouton répété.
-  La partition obtenue à la troisième itération est parfaite.
+  La figure \ref{fig:MTGS2-11} montre les différentes solutions obtenues à chaque itération par l'algorithme glouton répété.
+  La partition obtenue à la deuxième itération est parfaite.
 
 
   \begin{remarque}{À propos de l'algorithme glouton répété}
@@ -570,7 +569,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   \input{exs/ex3-MTGS}
 
-  La figure \ref{fig:MTGS3-13} présente les solutions obtenues par l'algorithme glouton répété.
+  La figure \ref{fig:MTGS3-21} présente les solutions obtenues par l'algorithme glouton répété.
   L'algorithme ne trouve pas de partition parfaite.
   On peut toutefois remarquer que les deux premières itérations produisent les partitions les plus équilibrées, tandis que la dernière itération donne la partition la moins équilibrée, avec une différence de sommes maximale.
 
@@ -615,7 +614,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   \input{exs/ex3-DP}
 
-  La figure \ref{fig:DP3-13} illustre la programmation dynamique.
+  La figure \ref{fig:DP3-21} illustre la programmation dynamique.
   La première ligne donne la sacoche obtenue par reconstruction.
   Les lignes suivantes correspondent aux étapes de marquage des cases avec les objets.
 
@@ -641,7 +640,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
   \input{exs/ex4-DP}
 
-  La figure \ref{fig:DP4-19} illustre la programmation dynamique lorsqu'il n'existe pas de partition parfaite.
+  La figure \ref{fig:DP4-31} illustre la programmation dynamique lorsqu'il n'existe pas de partition parfaite.
   La reconstruction de la solution à partir de la case marquée la plus à droite permet d'obtenir la sacoche la plus remplie, et donc la partition la plus équilibrée possible.
 
 
