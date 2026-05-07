@@ -1,2 +1,2 @@
-items <- sort(c(5:25, 10:20), decreasing = TRUE)
+items <- 25:1
 usethis::use_data(items, overwrite = TRUE)
