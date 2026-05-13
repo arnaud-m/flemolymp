@@ -19,8 +19,8 @@ Université Côte d'Azur, CNRS, I3S, France
 }
 \date{}
 
-% \draftmodetrue % By default at false
-% \notikztrue % By default at false
+%\draftmodetrue % By default at false
+%\notikztrue % By default at false
 % \showsolstrue % By default at false
 % \leaflettrue % By default at false
 
@@ -84,13 +84,61 @@ Mais une fois ce coup de maître acquis, vous pourrez enfin profiter de votre fl
 
 % 58. Fools ignore complexity. Pragmatists suffer it. Some can avoid it, Geniuses remove it.
 % 61. In programming, as in everything else, to be in error is to be reborn
-% 67. Think of all the psychic energy expended in seeking a fundamental distinction between "algorithm" and "program"
 % 98. In computing, the mean time to failure keeps getting shorter.
 
 \nocite{MartelloToth1990,Mertens2003}
 
-\fxnote{Ajouter une section \og Description du jeu \fg avec des photos du jeu.
-  Ajouter aussi des photos des solutions aux exercices obtenues avec le jeu ?}
+
+
+\section{Description du jeu}
+\label{sec:jeu}
+
+Alan te déconseille de te ruer sur ton ordinateur !
+Au contraire, il te propose de recourir à un ensemble de supports simples permettant la manipulation et la représentation de données numériques.
+L'objectif est de favoriser l'exploration concrète du problème sans recours à un outil informatique ou au calcul.
+
+Le tableau~\ref{tab:materiel} décrit les supports de l'activité et la figure~\ref{fig:materiel} en présente une photographie.
+Les supports sont introduits progressivement afin de s'adapter aux différents publics et faciliter la compréhension.
+Ils permettent de manipuler directement les données, de tester différentes stratégies et de formaliser progressivement les raisonnements.
+
+
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{p{\textwidth}}
+    \toprule
+    \multicolumn{1}{c}{\emph{Support Général}} \\
+     1 manuel du jeu  \\
+     1 fiche d'algorithmes  \\
+     1 livret contenant des collections d'extraits vidéo \\
+    \midrule
+    \multicolumn{1}{c}{\emph{Problème de partition} (Sections~\ref{sec:partition})} \\
+     25 barres représentant des extraits vidéo avec des durées allant de 1 à 25 \\
+    \midrule
+    \multicolumn{1}{c}{\emph{Algorithmes gloutons} (Sections \ref{sec:unn}, \ref{sec:gs} et \ref{sec:mtgs})} \\
+     4 règlettes graduées pour organiser les extraits en une séquence vidéo \\
+     2 fermoirs pour maintenir les extrémités des règlettes fermées \\
+     1 marqueur pour indiquer la durée maximale de la séquence \\
+    \midrule
+    \multicolumn{1}{c}{\emph{Programmation dynamique} (Section~\ref{sec:dp})} \\
+    4 règlettes pour marquer les durées atteintes \\
+    1 marqueur pour tableau blanc  \\
+    \bottomrule
+  \end{tabular}
+  \caption{Liste du matériel}
+  \label{tab:materiel}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+
+  \caption{Photo du matériel}
+  \label{fig:materiel}
+\end{figure}
+
+La mise en place est pensée pour favoriser le travail en petits groupes.
+Un espace est également prévu afin de permettre des démonstrations et des explications de l'animateur.
+Avant le début de l'activité, les participants sont regroupés en binômes, puis le matériel est distribué et vérifié.
 
 
 \section{Description du problème}
@@ -403,15 +451,19 @@ Explorez les partitions, essayez, échouez, recommencez.
 \end{exercice}
 
 Un algorithme peut prendre des formes variées : une formule, un pseudo-code, un texte en langue naturelle, ou encore un programme informatique écrit dans un langage de programmation.
-
-Par exemple, on peut le représenter avec deux participants : un participant qui fournit les instructions de résolution (l'algorithme) et un participant qui les exécute pas à pas (le programme), afin de résoudre un problème de partition des entiers de $1$ à $12$.
 \\
+Par exemple, on peut le représenter avec deux participants : un participant qui fournit les instructions de résolution (l'algorithme) et un participant qui les exécute pas à pas (le programme), afin de résoudre un problème de partition des entiers de $1$ à $12$.
 Pour éviter toute adaptation en cours d'exécution, le participant qui donne les instructions peut, par exemple, fermer les yeux ou se tourner dos au second participant pendant que celui-ci exécute l'algorithme.
 
 
 \begin{epigramme}
   Écrire un mauvais programme est facile ; comprendre un bon programme est difficile.
 \end{epigramme}
+
+La bonne question à se poser pour trouver un algorithme est : quel est le premier entier à placer dans la sacoche ?
+Les trois réponses les plus classiques sont le plus grand, le plus petit, ou un choix au hasard.
+Ces trois réponses permettent de construire un algorithme en répétant ce choix à chaque étape.
+La section suivante vous donnera la meilleure réponse parmi les trois !
 
 
 \section{Algorithme glouton}\label{sec:gs}
