@@ -172,7 +172,7 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
   Autrement dit :
   \begin{itemize}
   \item $S_1$ et $S_2$ sont non vides; %: $S_1 \neq \emptyset$ et $S_2 \neq \emptyset$ ;
-  \item $S_1$ et $S_2$ sont disjoints (aucun entier $s_i$ n'apparaît dans les deux sacs) ; %:  $S_1 \cap S_2 = \emptyset$) ;
+  \item $S_1$ et $S_2$ sont disjoints (aucun entier $s_i$ n'apparaît dans les deux sacoches) ; %:  $S_1 \cap S_2 = \emptyset$) ;
   \item $S_1$ et $S_2$ recouvrent $S$ (tous les éléments de $S$ apparaissent dans $S_1$ ou $S_2$).
   \end{itemize}
 \end{definition}
@@ -192,8 +192,8 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
     \item Les sacoches $S_1$ et $S_2$ ne forment pas une partition de $S$.
       \begin{itemize}
       \item $S_1 = \{1,2,3,4,5\}$ et $S_2 = \emptyset$, car $S_2$ est vide.
-      \item $S_1 = \{1,2,3\}$ et $S_2 = \{3,4,5\}$, car le nombre 3 apparaît dans les deux sacs.
-      \item $S_2 = \{1,2\}$ et $S_2 = \{4, 5\}$, car le nombre 3 n'apparaît dans aucun des deux sacs.
+      \item $S_1 = \{1,2,3\}$ et $S_2 = \{3,4,5\}$, car le nombre 3 apparaît dans les deux sacoches.
+      \item $S_2 = \{1,2\}$ et $S_2 = \{4, 5\}$, car le nombre 3 n'apparaît dans aucune des deux sacoches.
       \end{itemize}
     \end{itemize}
   \end{exemple}
@@ -201,8 +201,10 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
 
   \begin{exemple}{Partition d'un sac d'entiers avec répétitions}
     Soit un sac $S = \{1,2,2,5\}$.
-    Les sacoches $S_1 = \{2, 2\}$ et $S_2 = \{1, 5\}$ forment une partition de $S$.
-    La valeur entière 2 apparaît deux fois dans la sacoche $S_1$, mais elle correspond à deux entiers distincts : $s_1 = 2$ et $s_2 = 2$.
+    % Les sacoches $S_1 = \{2, 2\}$ et $S_2 = \{1, 5\}$ forment une partition de $S$.
+    % La valeur entière 2 apparaît deux fois dans la sacoche $S_1$, mais elle correspond à deux entiers distincts : $s_2 = 2$ et $s_3 = 2$.
+    Les sacoches $S_1 = \{1, 2\}$ et $S_2 = \{2, 5\}$ forment une partition de $S$.
+    La valeur entière 2 apparaît dans les deux sacoches, mais elle correspond à deux entiers distincts : $s_2 = 2$ et $s_3 = 2$.
 
     Dans cette activité, pour simplifier mais sans perte de généralité, nous ne considérerons que des sacs d'entiers sans répétition.
   \end{exemple}
@@ -242,7 +244,7 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
   \end{figure}
 
 
-  \begin{solution}{Partition de quatre entiers consécutifs}
+  \begin{solution}[Partition de quatre entiers consécutifs]
     La partition pour les entiers de 1 à 4 se généralisent pour les sacs de quatre entiers consécutifs.
     Ce sac $S = \{ n + 1, n + 2, n + 3, n + 4\}$ est pair ($n \geq 0$).
     \begin{itemize}
@@ -292,8 +294,9 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
   \end{exercice}
 
   La figure \ref{fig:six} illustre la partition du sac $S = \{5, 6, 7, 8, 9, 10\}$.
-  On peut remarquer que le sac est impair puis les deux sommes diffèrent de $1$
-  En effet, le sac contient trois nombres impairs $\{5, 7, 9\}$.
+  On peut remarquer que le sac est impair, en effet, le sac contient trois nombres impairs $\{5, 7, 9\}$.
+  Et donc, les deux sommes diffèrent de $1$.
+  
   \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -305,7 +308,7 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
   \end{figure}
 
 
-  \begin{solution}{Partition de six entiers consécutifs}
+  \begin{solution}[Partition de six entiers consécutifs]
     Le sac $S = \{ n + 1, n + 2, n + 3, n + 4, n + 5, n + 6\}$ est impair ($n \geq 0$).
     Sa somme est $n + 1 +n + 2 + n + 3 + n + 4 + n + 5 + n + 6 = 6n + 21$.
     \begin{itemize}
@@ -361,7 +364,7 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
   \end{remarque}
 
   \begin{exemple}{Symétries du problème}
-    soit le sac $S = \{1, 2, 4, 6, 8, 9\}$ et la partition parfaite de somme égale à 15.
+    soit le sac $S = \{1, 2, 4, 6, 8, 9\}$ et la partition parfaite de somme égale à 15
     $$S_1 = \{6, 9\}, \quad S_2 = \{1, 2, 4, 8\}.$$
 
     \begin{description}
@@ -506,7 +509,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   La deuxième colonne donne sa taille, c'est-à-dire le nombre d'objets qu'il contient.
   La troisième colonne précise les tailles des objets du sac.
   La dernière colonne indique la capacité de la sacoche dans laquelle placer les objets, égale à la moitié de la somme des tailles des objets.
-  Nous vous donnons directement cette valeur, car nous pensons que vous avez la flemme de calculer a somme.
+  Nous vous donnons directement cette valeur, car nous pensons que vous avez la flemme de calculer la somme.
   Le type d'une instance est une indication réservée aux animateurs. Vous en devinerez peut-être la signification à la fin de l'activité.
 
 
@@ -569,7 +572,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
     Or les entiers encore disponibles sont exactement $1,2,\dots,k$.
     Il reste donc toujours un entier égal à cette capacité restante, que l'on peut placer dans la sacoche.
-    L'algorithme peut donc toujours compléter le sac.
+    L'algorithme peut donc toujours compléter la sacoche.
   \end{remarque}
 
 
@@ -583,7 +586,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   Alan J. Perlis vous glisserait volontiers qu'un programme devient souvent plus intéressant lorsqu'on le relance plusieurs fois en modifiant les conditions initiales.
   En les faisant varier, on explore des chemins de construction différents.
 
-  L'idée est donc simple : si l'algorithme glouton échoue, on recommence en modifiant intelligemment ces conditions initiales départ.
+  L'idée est donc simple : si l'algorithme glouton échoue, on recommence en modifiant intelligemment ces conditions initiales de départ.
   C'est précisément le principe de l'algorithme glouton répété : exécuter plusieurs fois le glouton en faisant varier les objets disponibles dans le sac.
   Concrètement, à chaque itération, on retire du sac le plus grand objet précédemment placé dans la sacoche.
 
@@ -620,6 +623,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
 
   \input{exs/ex3-MTGS}
+  \fxwarning{Est-ce qu'il ne faudrait pas retirer $S_1$ dans ce cas ?}
 
   La figure \ref{fig:MTGS3-21} présente les solutions obtenues par l'algorithme glouton répété.
   L'algorithme ne trouve pas de partition parfaite.
@@ -645,7 +649,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   C'est alors que Richard Bellman intervient avec une idée plus méthodique.
   Plutôt que d'explorer les possibilités un peu au hasard, il propose de construire progressivement toutes les sommes que l'on peut atteindre avec les objets disponibles.
   La méthode est plus coûteuse en temps, mais aussi plus difficile à imaginer et à mettre en \oe uvre.
-  Il va falloir être rusé \dots
+  Il va falloir être rusé\dots
 
 
   \begin{epigramme}
@@ -719,7 +723,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
       Il existe aussi une pléthore de méthodes approximatives plus élaborées pour s'échapper des limites des algorithmes gloutons.
       Elles reposent souvent sur des échanges d'objets et s'inspirent librement de phénomènes naturels : évolution génétique, colonies de fourmis, essaims d'abeilles, etc.
 
-      Mais Richard Bellman rechigne à vous en dire davantage : selon lui, c'est déjà bien suffisant pour aujourd'hui et pour résoudre le problème \dots il a la flemme.
+      Mais Richard Bellman rechigne à vous en dire davantage : selon lui, c'est déjà bien suffisant pour aujourd'hui et pour résoudre le problème\dots il a la flemme.
     \end{remarque}
 
 
@@ -807,10 +811,10 @@ Ce problème apparaît par exemple dans la répartition de travaux entre deux se
 Ce problème apparaît par exemple en industrie, lors du choix de composants à produire sous contrainte de capacité (temps, masse, ou coût), chaque élément ayant à la fois une contrainte de consommation de ressources et une valeur associée à son intérêt économique. L'objectif est alors de sélectionner les éléments les plus rentables sans dépasser les ressources disponibles.
 
 \begin{definition}{Problème de mise en boîtes}
-  On dispose de plusieurs sacs de capacité fixe et d'objets de tailles différentes.
-  Le but est de ranger tous les objets en utilisant le moins de sacs possible.
+  On dispose de plusieurs sacoches de capacité fixe et d'objets de tailles différentes.
+  Le but est de ranger tous les objets en utilisant le moins de sacoches possible.
 
-  Ce problème généralise l'idée de remplir une sacs avec des objets de tailles données.
+  Ce problème généralise l'idée de remplir une sacoche avec des objets de tailles données.
 \end{definition}
 
 Ce problème apparaît par exemple dans le transport routier, maritime ou aérien, où des marchandises de volumes différents doivent être réparties dans un nombre minimal de camions, conteneurs ou soutes de capacité fixe, sans dépasser leur capacité.
