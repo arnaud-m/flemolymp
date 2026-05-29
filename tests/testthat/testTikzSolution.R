@@ -45,7 +45,7 @@ test_that("TikzSolution handles caption and label wqith MTGS", {
   expect_match(tex, "\\end{tikzpicture}", fixed = TRUE)
   expect_match(tex, "\\end{figure}", fixed = TRUE)
 
-  expect_match(tex, "\\caption{Example caption}", fixed = TRUE)
+  expect_match(tex, "\\\\caption\\{Example caption : .*}", fixed = FALSE)
   expect_match(tex, "\\label{fig:test}", fixed = TRUE)
 
 })
