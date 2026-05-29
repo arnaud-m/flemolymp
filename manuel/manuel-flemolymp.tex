@@ -10,7 +10,7 @@
 \usepackage{tikzstyles}
 \usepackage{theoremes}
 
-\usepackage[draft, footnote,  marginclue, nomargin,index]{fixme}
+% \usepackage[draft, footnote,  marginclue, nomargin,index]{fixme}
 
 
 \title{La flemme olympique}
@@ -19,8 +19,8 @@ Université Côte d'Azur, CNRS, I3S, France
 }
 \date{}
 
-%\draftmodetrue % By default at false
-%\notikztrue % By default at false
+% \draftmodetrue % By default at false
+% \notikztrue % By default at false
 % \showsolstrue % By default at false
 % \leaflettrue % By default at false
 
@@ -32,7 +32,6 @@ Université Côte d'Azur, CNRS, I3S, France
 \mymaketitle
 
 
-
 \begin{abstract}
   \noindent Et si créer des vidéos des Jeux Olympiques devenait un défi d'algorithmique ?
 
@@ -42,10 +41,8 @@ Université Côte d'Azur, CNRS, I3S, France
 
 \tableofcontents
 
-\listoffixmes
-
+%\listoffixmes
 \clearpage
-
 \section{Bienvenue aux Flemmes Olympiques !}
 \label{sec:flemo}
 
@@ -155,7 +152,7 @@ En clair, sans un peu d'expérience de la mer, ces mots ne sont que du vent !
 Comme chaque séquence vidéo n'est caractérisée que par sa durée, on peut la considérer comme un simple entier.
 On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées associées aux séquences utilisées pour les génériques de début et de fin.
 \begin{definition}{Sac d'entiers}
-  Un \emph{sac d'entiers} est une collection d'entiers naturels dans laquelle un même nombre peut apparaître plusieurs fois.
+  Un \emph{sac d'entiers} est une collection d'entiers naturels\footnote{Un entier naturel est un nombre positif ou nul, écrit sans virgule ni signe, en utilisant l'écriture décimale habituelle.} dans laquelle un même nombre peut apparaître plusieurs fois.
   Par exemple, le sac
   $$S = \{1,2,2,5\}$$
   contient quatre entiers et le nombre $2$ apparaît deux fois.
@@ -176,9 +173,6 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
   \item $S_1$ et $S_2$ recouvrent $S$ (tous les éléments de $S$ apparaissent dans $S_1$ ou $S_2$).
   \end{itemize}
 \end{definition}
-
-\fxwarning{Faire attention à la distinction entre sac et sacoche lors de la relecture.}
-
 
 
   \begin{exemple}{Partition d'un sac d'entier}
@@ -296,7 +290,7 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
   La figure \ref{fig:six} illustre la partition du sac $S = \{5, 6, 7, 8, 9, 10\}$.
   On peut remarquer que le sac est impair, en effet, le sac contient trois nombres impairs $\{5, 7, 9\}$.
   Et donc, les deux sommes diffèrent de $1$.
-  
+
   \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -345,7 +339,7 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
       Les algorithmes \emph{exacts} déterminent si une partition parfaite existe ou non, sans erreur possible, mais peuvent être coûteux en temps de calcul.
       Les algorithmes \emph{approximatifs} ou heuristiques, quant à eux, construisent rapidement une solution plausible sans explorer toutes les possibilités, mais ne garantissent pas de trouver une solution même si elle existe.
 
-      Dans la pratique, des algorithmes efficaces permettent de résoudre le problème de partition exactement pour des instances de taille raisonnable, et de manière approximative pour des instances de grande taille.
+      Dans la pratique, des algorithmes efficaces permettent de résoudre le problème de partition exactement pour des instances\footnote{Une instance est une donnée sur laquelle porte le problème à résoudre. Ici, c’est le sac d'entiers à partitionner.} de taille raisonnable, et de manière approximative pour des instances de grande taille.
 
       Pour cette raison, on l'appelle parfois :
       \begin{center}
@@ -453,7 +447,7 @@ Explorez les partitions, essayez, échouez, recommencez.
   Proposer un algorithme pour trouver une partition parfaite des entiers de 1 à $n$.
 \end{exercice}
 
-Un algorithme peut prendre des formes variées : une formule, un pseudo-code, un texte en langue naturelle, ou encore un programme informatique écrit dans un langage de programmation.
+Un algorithme peut prendre des formes variées : une formule, un texte en langue naturelle parlée par un être humain, un pseudo-code qui est un langage presque naturel, ou encore un programme informatique dans un langage de programmation.
 \\
 Par exemple, on peut le représenter avec deux participants : un participant qui fournit les instructions de résolution (l'algorithme) et un participant qui les exécute pas à pas (le programme), afin de résoudre un problème de partition des entiers de $1$ à $12$.
 Pour éviter toute adaptation en cours d'exécution, le participant qui donne les instructions peut, par exemple, fermer les yeux ou se tourner dos au second participant pendant que celui-ci exécute l'algorithme.
@@ -517,7 +511,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
 
   La figure \ref{fig:GS1-1} montre la construction de la solution par l'algorithme glouton.
-  À chaque itération, dans le tableau de gauche, les objets placés dans la sacoche apparaissent sur fond blanc, ceux retirés du sac sont barrés, et ceux qui n'ont pas encore été examinés apparaissent sur fond coloré.
+  À chaque itération (répétition), dans le tableau de gauche, les objets placés dans la sacoche apparaissent sur fond blanc, ceux retirés du sac sont barrés, et ceux qui n'ont pas encore été examinés apparaissent sur fond coloré.
   La partition obtenue à la sixième itération est parfaite puisque la sacoche est pleine.
 
   \begin{remarque}{Nombre d'étapes de l'algorithme glouton}
@@ -623,11 +617,11 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
 
 
   \input{exs/ex3-MTGS}
-  \fxwarning{Est-ce qu'il ne faudrait pas retirer $S_1$ dans ce cas ?}
+
 
   La figure \ref{fig:MTGS3-21} présente les solutions obtenues par l'algorithme glouton répété.
   L'algorithme ne trouve pas de partition parfaite.
-  On peut toutefois remarquer que les deux premières itérations produisent les partitions les plus équilibrées, tandis que la dernière itération donne la partition la moins équilibrée, avec une différence de sommes maximale.
+  On peut toutefois remarquer que les deux premières itérations produisent les partitions les plus équilibrées, tandis que la dernière itération donne la partition notée $S_1$ la moins équilibrée, avec une différence de sommes maximale.
 
   \begin{remarque}{Ne pas perdre la meilleure solution}
     En pratique, il est important de garder en mémoire la meilleure solution trouvée par l'algorithme glouton répété, car ce n'est pas forcément la dernière solution calculée qui est la meilleure.
@@ -765,7 +759,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   % \end{epigramme}
 
     Le problème de partition appartient à une grande famille de problèmes d'optimisation étudiés en informatique et en recherche opérationnelle.
-    La recherche opérationnelle utilise des modèles mathématiques et des méthodes algorithmiques, implémentées en informatique, pour résoudre des problèmes concrets de décision, comme l'organisation, la planification ou l'allocation de ressources.
+    La recherche opérationnelle utilise des modèles mathématiques et des méthodes algorithmiques, mises en \oe uvre par des programmes informatiques, pour résoudre des problèmes concrets de décision, comme l'organisation, la planification ou l'allocation de ressources.
 De nombreux problèmes célèbres lui sont étroitement liés.
 \begin{epigramme}
   % 16. Every program has (at least) two purposes: the one for which it was written and another for which it wasn't.
