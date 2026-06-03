@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper,twoside]{article}
 
 \usepackage{graphicx}
 \usepackage{float}
@@ -26,7 +26,6 @@ Université Côte d'Azur, CNRS, I3S, France
 
 \initdocument
 
-
 \begin{document}
 
 \mymaketitle
@@ -39,10 +38,16 @@ Université Côte d'Azur, CNRS, I3S, France
   Elle permet d'explorer concrètement des stratégies algorithmiques dans un cadre débranché et de développer la pensée logique.
 \end{abstract}
 
+
+\renewcommand{\baselinestretch}{0.75}\normalsize
 \tableofcontents
+\renewcommand{\baselinestretch}{1.0}\normalsize
+
+%\tableofcontents
 
 %\listoffixmes
 \clearpage
+
 \section{Bienvenue aux Flemmes Olympiques !}
 \label{sec:flemo}
 
@@ -152,7 +157,7 @@ En clair, sans un peu d'expérience de la mer, ces mots ne sont que du vent !
 Comme chaque séquence vidéo n'est caractérisée que par sa durée, on peut la considérer comme un simple entier.
 On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées associées aux séquences utilisées pour les génériques de début et de fin.
 \begin{definition}{Sac d'entiers}
-  Un \emph{sac d'entiers} est une collection d'entiers naturels\footnote{Un entier naturel est un nombre positif ou nul, écrit sans virgule ni signe, en utilisant l'écriture décimale habituelle.} dans laquelle un même nombre peut apparaître plusieurs fois.
+  Un \emph{sac d'entiers} est une collection d'entiers naturels dans laquelle un même nombre peut apparaître plusieurs fois.
   Par exemple, le sac
   $$S = \{1,2,2,5\}$$
   contient quatre entiers et le nombre $2$ apparaît deux fois.
@@ -161,6 +166,7 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
   $$S = \{s_1,s_2,\dots,s_n\}$$
   où chaque $s_i$ est un entier strictement positif.
 \end{definition}
+Pour rappel, un entier naturel est un nombre positif ou nul, écrit sans virgule ni signe, en utilisant l'écriture décimale habituelle.
 
 \begin{definition}{Partition d'un sac}
   Une \emph{partition} d'un sac $S$ consiste à répartir les éléments de $S$ en deux sacs non vides $S_1$ et $S_2$, appelés sacoches.
@@ -255,11 +261,11 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
 
     Une \emph{partition parfaite} d'un sac impair est une partition $(S_1,S_2)$ telle que
     la différence entre la somme des entiers de $S_1$ et celle de $S_2$ est égale à $1$.
-
-    En effet, lorsque la somme totale est impaire, il est impossible de partager les
-    entiers en deux sacoches ayant exactement la même somme. La meilleure partition
-    possible est donc celle où les deux sommes diffèrent de $1$.
   \end{definition}
+
+  En effet, lorsque la somme totale est impaire, il est impossible de partager les
+  entiers en deux sacoches ayant exactement la même somme. La meilleure partition
+  possible est donc celle où les deux sommes diffèrent de $1$.
 
 
   \begin{exemple}{Partition parfaite d'un sac impair}
@@ -308,7 +314,7 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
     \begin{itemize}
     \item $S_1 = \{ n + 1, n + 4, n + 6\}$, de somme $n + 1 + n + 4 + n + 6 = 3n + 11$,
     \item et $S_2 = \{n + 2, n + 3, n + 5\}$, de somme $n + 2 + n + 3 + n + 5 = 3n + 10$,
-    \item forment une partition parfaite, car la différence entre les deux sommes est $1$.
+    \item forment une partition parfaite, car la différence entre les deux sommes est~$1$.
     \end{itemize}
   \end{solution}
 
@@ -320,12 +326,13 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
     Calculer la somme des entiers d'une sacoche est une opération facile et rapide.
   \end{definition}
 
-  \begin{definition}{Complexité du problème de partition}
-    Le nombre de partitions possibles devient très grand dès que le nombre d'entiers augmente.
-    En effet, chaque entier peut être placé dans l'une ou l'autre des deux sacoches :
-    le nombre total de configurations double à chaque nouvel entier ajouté au sac.
-    Ainsi, même si chaque vérification est simple, le nombre total de cas à examiner peut devenir énorme : on parle d'\emph{explosion combinatoire}.
+  Le nombre de partitions possibles devient très grand dès que le nombre d'entiers augmente.
+  En effet, chaque entier peut être placé dans l'une ou l'autre des deux sacoches :
+  le nombre total de configurations double à chaque nouvel entier ajouté au sac.
+  Ainsi, même si chaque vérification est simple, le nombre total de cas à examiner peut devenir énorme : on parle d'\emph{explosion combinatoire}.
 
+
+  \begin{definition}{Complexité du problème de partition}
     Ce problème est connu pour être difficile en informatique théorique.
     Plus précisément, il est classé \emph{NP-complet} :
     \begin{itemize}
@@ -334,20 +341,17 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
     \end{itemize}
   \end{definition}
 
-    \begin{remarque}{Résolution du problème de partition}
-      On distingue deux types d'algorithmes pour résoudre ce problème.
-      Les algorithmes \emph{exacts} déterminent si une partition parfaite existe ou non, sans erreur possible, mais peuvent être coûteux en temps de calcul.
-      Les algorithmes \emph{approximatifs} ou heuristiques, quant à eux, construisent rapidement une solution plausible sans explorer toutes les possibilités, mais ne garantissent pas de trouver une solution même si elle existe.
+  On distingue deux types d'algorithmes pour résoudre ce problème.
+  Les algorithmes \emph{exacts} déterminent si une partition parfaite existe ou non, sans erreur possible, mais peuvent être coûteux en temps de calcul.
+  Les algorithmes \emph{approximatifs} ou heuristiques, quant à eux, construisent rapidement une solution plausible sans explorer toutes les possibilités, mais ne garantissent pas de trouver une solution même si elle existe.
 
-      Dans la pratique, des algorithmes efficaces permettent de résoudre le problème de partition exactement pour des instances\footnote{Une instance est une donnée sur laquelle porte le problème à résoudre. Ici, c’est le sac d'entiers à partitionner.} de taille raisonnable, et de manière approximative pour des instances de grande taille.
+    \begin{remarque}{Résolution du problème de partition}
+      Dans la pratique, des algorithmes efficaces permettent de résoudre le problème de partition exactement pour des sacs d'entiers de grande taille et de manière approximative pour des sacs de très grande tailles.
 
       Pour cette raison, on l'appelle parfois :
       \begin{center}
         \emph{le plus facile des problèmes difficiles}.
       \end{center}
-
-      On utilise parfois des méthodes approximatives dites heuristiques : elles construisent une solution plausible sans explorer tous les cas possibles.
-      Elles peuvent donc être très rapides, mais elles ne garantissent pas de trouver une solution même si elle existe.
   \end{remarque}
 
 
@@ -373,6 +377,16 @@ On introduit ainsi la notion de sac d'entiers, qui regroupe toutes les durées a
   \begin{exercice}{Échanges partiels}{5}
     Trouver d'autres partitions parfaites de six entiers consécutifs en effectuant des échanges partiels d'entiers entre les deux sacoches.
   \end{exercice}
+
+  \begin{solution}[Échanges partiels]
+    La figure \ref{fig:six} illustre la partition parfaite où $S_1 = \{5, 8, 10\}$ et $S_2 = \{6, 7, 9\}$.
+    On peut échanger les entiers 5 et 8 de $S_1$ avec 6 et 7 de $S_2$ dont les sommes sont égales à 12 : $S_1 = \{6, 7, 10\}$ et $S_2 = \{5, 8, 9\}$.
+    Ici, on aurait pu échanger directement 10 et 9 pour un résultat identique, car la partition est impaire.
+
+    Du coup, on peut aussi échanger l'entier 8 de $S_1$ avec 7 de $S_2$ : $S_1 = \{5, 7, 10\}$ et $S_2 = \{6, 8, 9\}$.
+    Par contre, on ne peut pas échanger l'entier 5 de $S_1$ avec 6 de $S_2$, car la différence de la partition serait 2 : $S_1 = \{6, 8, 10\}$ et $S_2 = \{5, 7, 9\}$.
+  \end{solution}
+
 
   \begin{epigramme}
     La symétrie permet de réduire la complexité ; cherchez-la partout.
@@ -498,7 +512,7 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \end{algorithme}
 
 
-  Dans les exercices suivants, nous donnerons les instances du problème, c'est-à-dire les sacs à partitionner, sous la forme d'un tableau.
+  Dans les exercices suivants, nous donnerons les \emph{instances} du problème, c'est-à-dire les sacs à partitionner, sous la forme de tableaux.
   La première colonne indique l'identifiant du sac.
   La deuxième colonne donne sa taille, c'est-à-dire le nombre d'objets qu'il contient.
   La troisième colonne précise les tailles des objets du sac.
@@ -540,7 +554,6 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     \item Répéter l'algorithme glouton avec plusieurs ordres différents permet de générer plusieurs solutions.
     \end{itemize}
   \end{remarque}
-
 
   \begin{exercice}[label=ex1-GS]{Partition de 1 à $n$ avec le glouton}{10}
     Appliquer l'algorithme glouton sur le sac des entiers de 1 à $n = 15, 16$.
@@ -843,35 +856,10 @@ D'un point de vue didactique, Flemme Olympique illustre l'intérêt des activit�
 
 En somme, cette activité constitue un levier efficace pour articuler manipulation, abstraction et formalisation, tout en développant des compétences clés du XXIe siècle dans un cadre motivant et accessible.
 
-
-% \Cref{sec:unn}
-% Les \protect\cref{sec:unn,sec:gs,sec:mtgs,sec:dp} peuvent être abordées de manière presque indépendantes même si l'ordre du document a été soigneusement pensé.
-
-% \begin{table}[htbp]
-%   \centering
-%   \begin{adjustbox}{max totalsize={0.95\textwidth}{0.95\textheight}}
-%   \begin{tabular}{lllll}
-%     \toprule
-%     Section & Objectif & Public visé & Durée & Difficulté \\
-%     \midrule
-%     \nameref{sec:flemo} & Introduction du problème & Tous & 10min & \\
-%     \nameref{sec:partition} & Définition du problème & Tous & 20min & \\
-%     \nameref{sec:unn} & Appropriation du problème & Tous & 30min \\
-%     \nameref{sec:gs} & Méthode naturelle approximative & Tous & 45min \\
-%     \nameref{sec:mtgs} & Amélioration et limitations & Secondaire & 45min\\
-%     \nameref{sec:dp} & Méthode difficile, mais exacte & Secondaire 2nd cycle & 60min\\
-%     \nameref{sec:related} & Généralisation du problème & Tous & 15min \\
-%     \bottomrule
-%   \end{tabular}
-%   \end{adjustbox}
-%   \caption[Scénario pédagogique.]{Scénario pédagogique pour les animateurs}
-%   \label{tab:scenario}
-% \end{table}
-
-
 \section{Tableau des instances}
-
 \input{tex/instances}
+\clearpage
+
 
 \tcblistof[\section]{loexo}{Liste des exercices}
 
