@@ -6,7 +6,7 @@
 \usepackage{encarts}
 \usepackage{colors}
 
-\usepackage[left = 2cm, right = 2cm, top = 5mm, bottom = 5mm]{geometry}
+\usepackage[left = 3cm, right = 3cm, top = 5mm, bottom = 5mm]{geometry}
 
 \usepackage{fontspec}
 \setmainfont{Poppins}
@@ -16,91 +16,118 @@
 
 \reversemarginpar
 \begin{document}
-  \pagestyle{empty}
+\pagestyle{empty}
 
-  \centering
+\centering
 
-  \begin{marginfigure}
-    \hfill\includegraphics[width = 0.85\marginparwidth]{fig/logo_bw.pdf}
-  \end{marginfigure}
-  \vspace{-7mm}
-  \cardbox[colback = olympicblue, colframe = olympicblue]{Instances de type 1}{
-    \begin{tabular}{cclc}
-      \toprule
-      Id & Taille & Entiers & Capacité\\ 
-      \midrule
-       1 &   6 & 25, 22, 14, 12, 9, 4 &  43 \\
-       2 &   6 & 25, 20, 18, 11, 4, 2 &  40 \\
-       3 &   9 & 21, 17, 15, 13, 9, 6, 5, 4, 2 &  46 \\
-       4 &   9 & 24, 18, 15, 14, 13, 7, 6, 2, 1 &  50 \\
-       5 &  12 & 25, 23, 22, 20, 13, 11, 9, 7, 6, 5, 3, 2 &  73 \\
-       6 &  15 & 25, 23, 22, 20, 19, 18, 16, 15, 12, 11, 8, 5, 3, 2, 1 & 100 \\
-      \bottomrule
-    \end{tabular}}
+~
+\vfill
 
-  \vfill
+\begin{marginfigure}
+  \hfill\includegraphics[width = 0.85\marginparwidth]{fig/logo_bw.pdf}
+\end{marginfigure}
+\vspace{-7mm}
+\cardbox[colback = olympicblue, colframe = olympicblue]{Instances de type 1}{
+  \begin{tabular}{cclc}
+    \toprule
+    Id & Taille & Entiers                                                & Capacité \\
+    \midrule
+    1  & 6      & 25, 22, 14, 12, 9, 4                                   & 43       \\
+    2  & 6      & 25, 24, 18, 13, 11, 5                                  & 48       \\
+    3  & 6      & 25, 24, 18, 13, 11, 5                                  & 48       \\
+    4  & 9      & 21, 17, 15, 13, 9, 6, 5, 4, 2                          & 46       \\
+    5  & 9      & 25, 20, 19, 11, 8, 6, 5, 3, 1                          & 49       \\
+    6  & 9      & 24, 18, 15, 14, 13, 7, 6, 2, 1                         & 50       \\
+    7  & 12     & 24, 20, 19, 17, 16, 15, 10, 9, 8, 7, 2, 1              & 74       \\
+    8  & 12     & 25, 23, 22, 20, 13, 11, 9, 7, 6, 5, 3, 2               & 73       \\
+    9  & 15     & 25, 24, 23, 21, 20, 19, 18, 17, 16, 15, 14, 9, 7, 3, 1 & 116      \\
+    10 & 15     & 25, 23, 22, 20, 19, 18, 16, 15, 12, 11, 8, 5, 3, 2, 1  & 100      \\
+    \bottomrule
+  \end{tabular}}
 
-  % \clearpage
-  % ~
-  % \vfill
-  
-  \cardbox[colback = olympicgreen, colframe = olympicgreen]{Instances de type 2}{
-    \begin{tabular}{cclc}
-      \toprule
-      Id & Taille & Entiers & Capacité\\ 
-      \midrule
-       7 &   6 & 22, 20, 15, 14, 9, 3 &  41 \\
-       8 &   6 & 23, 20, 18, 17, 12, 10 &  50 \\
-       9 &   9 & 22, 20, 17, 13, 9, 6, 5, 4, 2 &  49 \\
-      10 &   9 & 24, 20, 15, 10, 8, 7, 6, 4, 1 &  47 \\
-      11 &  12 & 25, 23, 18, 16, 15, 12, 11, 9, 7, 6, 4, 3 &  74 \\
-      12 &  15 & 25, 23, 21, 19, 18, 17, 15, 14, 13, 10, 7, 6, 5, 4, 3 & 100 \\
-      \bottomrule
-    \end{tabular}}
+\vfill
 
-  % \vfill
+\clearpage
+~
+\vfill
 
-  \clearpage
-  % ~
-  % \vfill
+\begin{marginfigure}
+  \hfill\includegraphics[width = 0.85\marginparwidth]{fig/logo_bw.pdf}
+\end{marginfigure}
+\vspace{-7mm}
+\cardbox[colback = olympicgreen, colframe = olympicgreen]{Instances de type 2}{
+  \begin{tabular}{cclc}
+    \toprule
+    Id & Taille & Entiers                                               & Capacité \\
+    \midrule
+    11 & 6      & 25, 22, 19, 14, 7, 4                                  & 45       \\
+    12 & 6      & 24, 22, 19, 15, 9, 6                                  & 47       \\
+    13 & 6      & 23, 20, 18, 17, 12, 10                                & 50       \\
+    14 & 9      & 22, 20, 17, 13, 9, 6, 5, 4, 2                         & 49       \\
+    15 & 9      & 22, 19, 15, 13, 12, 6, 4, 3, 2                        & 48       \\
+    16 & 9      & 21, 20, 16, 14, 8, 7, 6, 5, 4                         & 50       \\
+    17 & 12     & 25, 23, 21, 19, 14, 13, 10, 8, 6, 4, 3, 2             & 74       \\
+    18 & 12     & 24, 20, 18, 17, 16, 15, 11, 10, 8, 6, 5, 1            & 75       \\
+    19 & 15     & 25, 23, 21, 19, 18, 17, 15, 14, 13, 10, 7, 6, 5, 4, 3 & 100      \\
+    20 & 15     & 23, 22, 21, 19, 18, 17, 15, 12, 11, 9, 8, 7, 6, 5, 4  & 98       \\
+    \bottomrule
+  \end{tabular}}
 
-  \begin{marginfigure}
-    \hfill\includegraphics[width = 0.85\marginparwidth]{fig/logo_bw.pdf}
-  \end{marginfigure}
-  \vspace{-7mm}
-  \cardbox[colback = olympicyellow, colframe = olympicyellow]{Instances de type 3}{
-    \begin{tabular}{cclc}
-      \toprule
-      Id & Taille & Entiers & Capacité\\ 
-      \midrule
-      13 &   6 & 25, 20, 17, 14, 11, 8 &  47 \\
-      14 &   6 & 23, 20, 17, 13, 12, 5 &  45 \\
-      15 &   9 & 22, 19, 15, 14, 12, 10, 4, 3, 1 &  50 \\
-      16 &   9 & 25, 19, 13, 12, 10, 8, 7, 3, 1 &  49 \\
-      17 &  12 & 20, 17, 16, 14, 13, 12, 11, 10, 9, 6, 5, 3 &  68 \\
-      18 &  15 & 25, 22, 20, 19, 18, 15, 14, 13, 11, 10, 9, 7, 6, 5, 2 &  98 \\
-      \bottomrule
-    \end{tabular}}
+\vfill
 
-  \vfill
+\clearpage
+~
+\vfill
 
-  % \clearpage
-  % ~
-  % \vfill
-  
-  \cardbox[colback = olympicviolet, colframe = olympicviolet]{Instances de type 4}{
-    \begin{tabular}{cclc}
-      \toprule
-      Id & Taille & Entiers & Capacité\\ 
-      \midrule
-      19 &   6 & 24, 21, 19, 15, 9, 4 &  46 \\
-      20 &   6 & 25, 22, 15, 13, 9, 1 &  42 \\
-      21 &   9 & 25, 23, 18, 15, 13, 10, 8, 5, 3 &  60 \\
-      22 &   9 & 25, 24, 15, 14, 13, 12, 11, 2, 1 &  58 \\
-      23 &  10 & 24, 22, 20, 18, 16, 14, 12, 10, 6, 4 &  73 \\
-      24 &  11 & 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4 &  77 \\
-      \bottomrule
-    \end{tabular}}
-  
-  % \vfill
+\begin{marginfigure}
+  \hfill\includegraphics[width = 0.85\marginparwidth]{fig/logo_bw.pdf}
+\end{marginfigure}
+\vspace{-7mm}
+\cardbox[colback = olympicyellow, colframe = olympicyellow]{Instances de type 3}{
+  \begin{tabular}{cclc}
+    \toprule
+    Id & Taille & Entiers                                               & Capacité \\
+    \midrule
+    21 & 6      & 25, 20, 17, 14, 11, 8                                 & 47       \\
+    22 & 6      & 21, 20, 17, 14, 13, 8                                 & 46       \\
+    23 & 6      & 23, 20, 17, 13, 12, 5                                 & 45       \\
+    24 & 9      & 25, 21, 15, 10, 9, 7, 6, 5, 1                         & 49       \\
+    25 & 9      & 22, 19, 15, 14, 12, 10, 4, 3, 1                       & 50       \\
+    26 & 9      & 25, 19, 13, 12, 10, 8, 7, 3, 1                        & 49       \\
+    27 & 12     & 21, 20, 18, 17, 15, 14, 13, 10, 8, 7, 4, 3            & 75       \\
+    28 & 12     & 20, 17, 16, 14, 13, 12, 11, 10, 9, 6, 5, 3            & 68       \\
+    29 & 15     & 23, 22, 21, 19, 18, 17, 16, 14, 13, 11, 8, 7, 5, 4, 2 & 100      \\
+    30 & 15     & 25, 22, 20, 19, 18, 15, 14, 13, 11, 10, 9, 7, 6, 5, 2 & 98       \\
+    \bottomrule
+  \end{tabular}}
+
+\vfill
+
+\clearpage
+~
+\vfill
+
+\begin{marginfigure}
+  \hfill\includegraphics[width = 0.85\marginparwidth]{fig/logo_bw.pdf}
+\end{marginfigure}
+\vspace{-7mm}
+\cardbox[colback = olympicviolet, colframe = olympicviolet]{Instances de type 4}{
+  \begin{tabular}{cclc}
+    \toprule
+    Id & Taille & Entiers                                 & Capacité \\
+    \midrule
+    31 & 6      & 24, 21, 19, 15, 9, 4                    & 46       \\
+    32 & 6      & 25, 22, 20, 17, 5, 3                    & 46       \\
+    33 & 6      & 25, 22, 15, 13, 9, 1                    & 42       \\
+    34 & 9      & 25, 23, 18, 15, 13, 10, 8, 5, 3         & 60       \\
+    35 & 9      & 25, 24, 15, 14, 13, 12, 11, 2, 1        & 58       \\
+    36 & 9      & 25, 23, 22, 20, 19, 4, 3, 2, 1          & 59       \\
+    37 & 10     & 24, 22, 20, 18, 16, 14, 12, 10, 6, 4    & 73       \\
+    38 & 10     & 25, 24, 23, 22, 21, 20, 19, 5, 2, 1     & 81       \\
+    39 & 11     & 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4 & 77       \\
+    40 & 11     & 24, 22, 20, 16, 14, 12, 10, 8, 6, 4, 2  & 69       \\
+    \bottomrule
+  \end{tabular}}
+
+\vfill
 \end{document}
