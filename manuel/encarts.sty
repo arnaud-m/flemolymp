@@ -63,6 +63,17 @@ title=Allons plus loin\name{#2}, nameref={#2},
 #1}
 % Comme précédemment mais en couleur avec des pointillés :)
 
+%%% OBJECTIFS %%%
+\newtcolorbox{objectifs}[1][]{%
+  colback=\colorbg{pedagoBG}, colframe=pedagoCol, fonttitle=\bfseries,
+  title=Objectifs pédagogiques,
+  #1}
+
+%%% OBJECTIFS %%%
+\newtcolorbox{debriefing}[1][]{%
+  colback=\colorbg{pedagoBG}, colframe=pedagoCol, fonttitle=\bfseries,
+  title=Retour sur l'activité,
+  #1}
 
 %%% EPIGRAMME %%%
 \newtcolorbox{epigramme}[1][]{%
@@ -91,7 +102,7 @@ overlay = {
 
 \newtcolorbox{card}[2][]{%
 fonttitle = \bfseries\large, halign title = center, valign = center, boxrule = 0mm, toptitle = 6mm, bottomtitle = 6mm, bottom = 5mm, width = 16.8cm,
-title = #2, 
+title = #2,
 #1
 }
 
