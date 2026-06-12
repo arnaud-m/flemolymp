@@ -10,6 +10,7 @@
 \usepackage{tikzstyles}
 \usepackage{theoremes}
 
+\usepackage{longtable}
 % \usepackage[draft, footnote,  marginclue, nomargin,index]{fixme}
 
 
@@ -19,10 +20,10 @@ Université Côte d'Azur, CNRS, I3S, France
 }
 \date{}
 
-% \draftmodetrue % By default at false
-% \notikztrue % By default at false
+%\draftmodetrue % By default at false
+%\notikztrue % By default at false
 % \showsolstrue % By default at false
-% \leaflettrue % By default at false
+\leaflettrue % By default at false
 
 \initdocument
 
@@ -43,10 +44,8 @@ Université Côte d'Azur, CNRS, I3S, France
 \tableofcontents
 \renewcommand{\baselinestretch}{1.0}\normalsize
 
-%\tableofcontents
 
 %\listoffixmes
-\clearpage
 
 
 
@@ -129,24 +128,25 @@ Ils permettent de manipuler directement les données, de tester différentes str
     \multicolumn{1}{c}{\emph{Problème de partition} (Sections~\ref{sec:partition})} \\
      25 barres représentant des extraits vidéo avec des durées allant de 1 à 25 \\
     \midrule
-    \multicolumn{1}{c}{\emph{Algorithmes gloutons} (Sections \ref{sec:unn}, \ref{sec:gs} et \ref{sec:mtgs})} \\
+    \multicolumn{1}{c}{\emph{Algorithmes gloutons} (Sections \ref{sec:unn}, \ref{sec:gs}, et \ref{sec:mtgs})} \\
      4 règlettes graduées pour organiser les extraits en une séquence vidéo \\
      2 fermoirs pour maintenir les extrémités des règlettes fermées \\
      1 marqueur pour indiquer la durée maximale de la séquence \\
     \midrule
     \multicolumn{1}{c}{\emph{Programmation dynamique} (Section~\ref{sec:dp})} \\
     4 règlettes pour marquer les durées atteintes \\
+    \texttt{XX} marqueurs pour réglette  \\
     1 marqueur pour tableau blanc  \\
     \bottomrule
   \end{tabular}
-  \caption{Liste du matériel}
+  \caption{Liste du matériel.}
   \label{tab:materiel}
 \end{table}
 
 \begin{figure}[htbp]
   \centering
 
-  \caption{Photo du matériel}
+  \caption{Photo du matériel.}
   \label{fig:materiel}
 \end{figure}
 
@@ -159,7 +159,7 @@ Avant le début de l'activité, les participants sont regroupés en binômes, pu
 \section{Description du problème}
 \label{sec:partition}
 
-Après la simplification, il faut mettre un peu d'ordre dans tout ça : définir clairement le problème et en explorer les propriétés.
+Il faut maintenant mettre un peu d'ordre dans tout ça : définir clairement le problème et en explorer les propriétés.
 Car soyons honnêtes : concevoir, ou même comprendre, un algorithme pour un problème qui nous est étranger, c'est un peu comme écouter une conversation dans une langue étrangère.
 
 Que comprendriez-vous, par exemple, aux conseils d'un marin en pleine régate olympique, si vous n'avez jamais mis un pied sur un bateau ?
@@ -184,32 +184,47 @@ Pour rappel, un entier naturel est un nombre positif ou nul, écrit sans virgule
 \begin{definition}{Partition d'un sac}
   Une \emph{partition} d'un sac $S$ consiste à répartir les éléments de $S$ en deux sacs non vides $S_1$ et $S_2$, appelés sacoches.
   Chaque élément du sac initial doit appartenir à \emph{exactement une} des deux sacoches.
-  \\
-  Autrement dit :
-  \begin{itemize}
-  \item $S_1$ et $S_2$ sont non vides; %: $S_1 \neq \emptyset$ et $S_2 \neq \emptyset$ ;
-  \item $S_1$ et $S_2$ sont disjoints (aucun entier $s_i$ n'apparaît dans les deux sacoches) ; %:  $S_1 \cap S_2 = \emptyset$) ;
-  \item $S_1$ et $S_2$ recouvrent $S$ (tous les éléments de $S$ apparaissent dans $S_1$ ou $S_2$).
-  \end{itemize}
 \end{definition}
-
-
-  \begin{exemple}{Partition d'un sac d'entier}
-    Soit un sac $S = \{1,2,3,4,5\}$.
+Autrement dit :
+\begin{itemize}
+\item $S_1$ et $S_2$ sont non vides; %: $S_1 \neq \emptyset$ et $S_2 \neq \emptyset$ ;
+\item $S_1$ et $S_2$ sont disjoints (aucun entier $s_i$ n'apparaît dans les deux sacoches) ; %:  $S_1 \cap S_2 = \emptyset$) ;
+\item $S_1$ et $S_2$ recouvrent $S$ (tous les éléments de $S$ apparaissent dans $S_1$ ou $S_2$).
+\end{itemize}
+\begin{exemple}{Partition d'un sac d'entier}
+  Soit un sac $S = \{1,2,3,4,5\}$, les sacoches $S_1$ et $S_2$ forment une partition de $S$.
     \begin{itemize}
-    \item Les sacoches $S_1$ et $S_2$ forment une partition de $S$.
-      \begin{itemize}
-      \item $S_1 = \{1\}$ et $S_2 = \{2,3,4,5\}$
-      \item $S_1 = \{2, 4\}$ et $S_2 = \{1,3,5\}$
-      \end{itemize}
-    \item Les sacoches $S_1$ et $S_2$ ne forment pas une partition de $S$.
-      \begin{itemize}
-      \item $S_1 = \{1,2,3,4,5\}$ et $S_2 = \emptyset$, car $S_2$ est vide.
-      \item $S_1 = \{1,2,3\}$ et $S_2 = \{3,4,5\}$, car le nombre 3 apparaît dans les deux sacoches.
-      \item $S_2 = \{1,2\}$ et $S_2 = \{4, 5\}$, car le nombre 3 n'apparaît dans aucune des deux sacoches.
-      \end{itemize}
+    \item $S_1 = \{1\}$ et $S_2 = \{2,3,4,5\}$
+    \item $S_1 = \{2, 4\}$ et $S_2 = \{1,3,5\}$
     \end{itemize}
-  \end{exemple}
+\end{exemple}
+
+\begin{exemple}{Ceci n'est pas une partition d'un sac d'entier}
+  Soit un sac $S = \{1,2,3,4,5\}$, les sacoches $S_1$ et $S_2$ ne forment pas une partition de $S$.
+    \begin{itemize}
+    \item $S_1 = \{1,2,3,4,5\}$ et $S_2 = \emptyset$, car $S_2$ est vide.
+    \item $S_1 = \{1,2,3\}$ et $S_2 = \{3,4,5\}$, car le nombre 3 apparaît dans les deux sacoches.
+    \item $S_2 = \{1,2\}$ et $S_2 = \{4, 5\}$, car le nombre 3 n'apparaît dans aucune des deux sacoches.
+    \end{itemize}
+\end{exemple}
+
+
+  % \begin{exemple}{Partition d'un sac d'entier}
+  %   Soit un sac $S = \{1,2,3,4,5\}$.
+  %   \begin{itemize}
+  %   \item Les sacoches $S_1$ et $S_2$ forment une partition de $S$.
+  %     \begin{itemize}
+  %     \item $S_1 = \{1\}$ et $S_2 = \{2,3,4,5\}$
+  %     \item $S_1 = \{2, 4\}$ et $S_2 = \{1,3,5\}$
+  %     \end{itemize}
+  %   \item Les sacoches $S_1$ et $S_2$ ne forment pas une partition de $S$.
+  %     \begin{itemize}
+  %     \item $S_1 = \{1,2,3,4,5\}$ et $S_2 = \emptyset$, car $S_2$ est vide.
+  %     \item $S_1 = \{1,2,3\}$ et $S_2 = \{3,4,5\}$, car le nombre 3 apparaît dans les deux sacoches.
+  %     \item $S_2 = \{1,2\}$ et $S_2 = \{4, 5\}$, car le nombre 3 n'apparaît dans aucune des deux sacoches.
+  %     \end{itemize}
+  %   \end{itemize}
+  % \end{exemple}
 
 
   \begin{exemple}{Partition d'un sac d'entiers avec répétitions}
@@ -421,24 +436,24 @@ Explorez les partitions, essayez, échouez, recommencez.
 \begin{remarque}{Somme des entiers de 1 à $n$}
   La somme des entiers de $1$ à $n$ vaut
   $$1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}.$$
-
-  Une anecdote célèbre raconte que le mathématicien allemand
-  Carl Friedrich Gauss aurait découvert cette formule lorsqu'il
-  était encore écolier.
-
-  Son professeur lui aurait demandé de calculer la somme des entiers
-  de $1$ à $100$ afin d'occuper la classe pendant un moment.
-  Mais Gauss remarqua rapidement que l'on pouvait associer les
-  nombres par paires :
-  $$1 + 100 = 101,\quad 2 + 99 = 101,\quad 3 + 98 = 101,\ \dots$$
-
-  Chaque paire donne la même somme, $101$, et il y a $50$ paires.
-  La somme vaut donc $50 \times 101 = 5050.$
-
-  Ce raisonnement fonctionne pour tout $n$ et conduit à la formule générale $\frac{n(n+1)}{2}$.
-
-  Cette formule permet notamment de connaître rapidement la somme totale des objets, ce qui sera utile pour déterminer la capacité de la sacoche dans les problèmes de partition.
+  Cette formule permet notamment de connaître rapidement la somme totale des objets, ce qui sera utile pour déterminer la capacité de la sacoche.
 \end{remarque}
+
+Une anecdote célèbre raconte que le mathématicien allemand
+Carl Friedrich Gauss aurait découvert cette formule lorsqu'il
+était encore écolier.
+
+Son professeur lui aurait demandé de calculer la somme des entiers
+de $1$ à $100$ afin d'occuper la classe pendant un moment.
+Mais Gauss remarqua rapidement que l'on pouvait associer les
+nombres par paires :
+$$1 + 100 = 101,\quad 2 + 99 = 101,\quad 3 + 98 = 101,\ \dots$$
+
+Chaque paire donne la même somme, $101$, et il y a $50$ paires.
+La somme vaut donc $50 \times 101 = 5050.$
+
+Ce raisonnement fonctionne pour tout $n$ et conduit à la formule générale $\frac{n(n+1)}{2}$.
+
 
 \begin{solution}
   La figure \ref{fig:part79} présente des partitions parfaites des entiers de $1$ à $n$ pour $n = 7, 8, 9$.
@@ -508,10 +523,8 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     Un \emph{algorithme glouton} est un algorithme qui, étape par étape, fait toujours le choix considéré comme le meilleur à ce moment précis (choix \emph{localement optimal}).
   \end{definition}
 
-  \begin{remarque}{Algorithme glouton}
     Dans certains cas, un algorithme glouton garantit de trouver une solution si elle existe.
     Dans le cas général, il s'agit d'une \emph{heuristique} qui construit une solution plausible, sans garantir d'en trouver une, même si elle existe.
-  \end{remarque}
 
   \begin{epigramme}
     % 17. If a listener nods his head when you're explaining your program, wake him up.
@@ -547,10 +560,8 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     \item Chaque objet est examiné au plus une fois pour être placé dans la sacoche ;
     \item Le nombre d'étapes est donc proportionnel au nombre $n$ d'objets.
     \end{itemize}
-
-    En pratique, même pour plusieurs milliers d'objets, le glouton trouve une partition presque sans transpirer.
   \end{remarque}
-
+  En pratique, même pour plusieurs milliers d'objets, le glouton trouve une partition presque sans transpirer.
   \begin{epigramme}
     % 105. You can't communicate complexity, only an awareness of it.
     La complexité ne se communique pas, elle se pressent.
@@ -560,11 +571,10 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   La figure \ref{fig:GS2-11} montre la construction de la solution par l'algorithme glouton.
   L'algorithme examine tous les objets, mais la partition obtenue n'est pas parfaite.
 
-  \begin{remarque}{À propos de l'algorithme glouton}
+  \begin{remarque}{Diversification de l'algorithme glouton}
     \begin{itemize}
-    \item On peut obtenir d'autres solutions en modifiant l'ordre dans lequel les objets sont considérés.
-    \item Des ordres différents donnent parfois la même solution.
-    \item Répéter l'algorithme glouton avec plusieurs ordres différents permet de générer plusieurs solutions.
+    \item On peut obtenir des solutions différentes en modifiant l'ordre dans lequel les objets sont considérés.
+    \item Mais, des ordres différents donnent parfois la même solution.
     \end{itemize}
   \end{remarque}
 
@@ -587,14 +597,16 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     \item l'algorithme glouton en trouve toujours une.
     \end{itemize}
 
-    \emph{Preuve.} Supposons qu'à une étape de l'algorithme on ne puisse pas placer l'entier $k$ dans la sacoche.
+  \end{remarque}
+
+  \begin{proof}
+    Supposons qu'à une étape de l'algorithme on ne puisse pas placer l'entier $k$ dans la sacoche.
     Dans ce cas, la capacité restante de la sacoche est égale inférieure à $k$.
 
     Or les entiers encore disponibles sont exactement $1,2,\dots,k$.
     Il reste donc toujours un entier égal à cette capacité restante, que l'on peut placer dans la sacoche.
     L'algorithme peut donc toujours compléter la sacoche.
-  \end{remarque}
-
+  \end{proof}
 
   \section{Algorithme glouton répété}
   \label{sec:mtgs}
@@ -624,13 +636,15 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   La figure \ref{fig:MTGS2-11} montre les différentes solutions obtenues à chaque itération par l'algorithme glouton répété.
   La partition obtenue à la deuxième itération est parfaite.
 
+  \begin{remarque}{Arrêt de l'algorithme glouton répété}
+    L'algorithme glouton répété peut s'arrêter dès que tous les objets sont dans la sacoche, car retirer des objets ne permettrait pas d'améliorer la solution : la sacoche serait forcément moins remplie..
+  \end{remarque}
 
-  \begin{remarque}{À propos de l'algorithme glouton répété}
-    L'algorithme glouton répété peut s'arrêter dès que tous les objets sont dans la sacoche, car retirer des objets ne permettrait pas d'améliorer la solution : la sacoche serait forcément moins remplie.
 
-    L'algorithme glouton répété examine uniquement des solutions distinctes : à chaque itération, il retire le plus grand objet dans le sac restant avant de relancer le glouton.
-    Or, cet objet est toujours inclus dans la sacoche construite par le glouton.
-    En effet, c'est le premier objet examiné par le glouton et il est donc toujours placé dans la sacoche.
+  \begin{remarque}{Diversification de l'algorithme glouton répété}
+      L'algorithme glouton répété examine uniquement des solutions distinctes : à chaque itération, il retire le plus grand objet dans le sac restant avant de relancer l'algorithme glouton.
+      Or, cet objet est toujours inclus dans la sacoche construite par le glouton.
+      En effet, c'est le premier objet examiné par le glouton et il est donc toujours placé dans la sacoche.
   \end{remarque}
 
   \begin{remarque}{Nombre d'étapes de l'algorithme glouton répété}
@@ -731,20 +745,20 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
   \end{remarque}
 
 
-  \begin{remarque}{Une ouverture en profondeur de Bellman}
+  \begin{plusloin}{Une ouverture en profondeur de Bellman}
     Il existe une méthode exacte plus générale pour résoudre ce type de problème : \emph{Tester-et-Générer}.
     Simple à comprendre et quelquefois facile à programmer, elle devient vite très pénible à exécuter à la main, tant elle explore toutes les possibilités par sauts de puce.
     Après avoir déjà transpiré sur la programmation dynamique, notre patience a des limites\dots et nous n'irons pas plus loin dans cette voie !
-  \end{remarque}
+  \end{plusloin}
 
 
 
-    \begin{remarque}{Bellman botte en touche !}
+    \begin{plusloin}{Bellman botte en touche !}
       Il existe aussi une pléthore de méthodes approximatives plus élaborées pour s'échapper des limites des algorithmes gloutons.
       Elles reposent souvent sur des échanges d'objets et s'inspirent librement de phénomènes naturels : évolution génétique, colonies de fourmis, essaims d'abeilles, etc.
 
       Mais Richard Bellman rechigne à vous en dire davantage : selon lui, c'est déjà bien suffisant pour aujourd'hui et pour résoudre le problème\dots il a la flemme.
-    \end{remarque}
+    \end{plusloin}
 
     \begin{epigramme}
       % 67. Think of all the psychic energy expended in seeking a fundamental distinction between "algorithm" and "program"
@@ -860,7 +874,7 @@ Ils illustrent l'importance des algorithmes pour organiser et optimiser des ress
 \end{epigramme}
 
 \ifleaflet
-\clearpage
+\cleardoublepage
 \fi
 
 \appendix
@@ -881,8 +895,6 @@ En somme, cette activité constitue un levier efficace pour articuler manipulati
 
 \section{Tableau des instances}
 \input{tex/instances}
-\clearpage
-
 
 \tcblistof[\section]{loexo}{Liste des exercices}
 

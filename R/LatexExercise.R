@@ -63,7 +63,7 @@ LatexExercise <- function(inputs, outputs, algorithm, type) {
     ## Instances table
     tex <- c(tex,
              TableInstances(inputs, outputs, ind,
-                            caption = sprintf("Appliquer %s sur une instance de type %d.", algonames[algorithm], type),
+                            caption = sprintf("Appliquer %s sur une instance de type~%d.", algonames[algorithm], type),
                             label = paste0("tab:", label),
                             typeCol = FALSE))
     tex <- c(tex, "\\end{exercice}\n")
