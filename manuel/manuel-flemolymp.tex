@@ -14,24 +14,42 @@
 % \usepackage[draft, footnote,  marginclue, nomargin,index]{fixme}
 
 
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyhf{}
+
+\fancyhead[LE,RO]{\small \thepage}
+\fancyhead[LO,RE]{\small \nouppercase{\leftmark}}
+
+
+\renewcommand{\headrulewidth}{0.2pt}
+
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+
+\setlength{\headheight}{16pt}
+\addtolength{\topmargin}{-2pt}
+
 \title{La flemme olympique}
 \author{Arnaud Malapert et Marie Pelleau \\
 Université Côte d'Azur, CNRS, I3S, France
 }
 \date{}
 
-%\draftmodetrue % By default at false
-%\notikztrue % By default at false
+% \draftmodetrue % By default at false
+% \notikztrue % By default at false
 % \showsolstrue % By default at false
 \leaflettrue % By default at false
 
 \initdocument
+
 
 \begin{document}
 
 \mymaketitle
 
 
+\thispagestyle{empty}
 \begin{abstract}
   \noindent Et si créer des vidéos des Jeux Olympiques devenait un défi d'algorithmique ?
 
@@ -44,8 +62,12 @@ Université Côte d'Azur, CNRS, I3S, France
 \tableofcontents
 \renewcommand{\baselinestretch}{1.0}\normalsize
 
-
-%\listoffixmes
+\ifleaflet
+  \cleardoublepage
+  \setcounter{page}{1}
+\else
+  \clearpage
+\fi
 
 
 
@@ -873,8 +895,10 @@ Ils illustrent l'importance des algorithmes pour organiser et optimiser des ress
   La simplicité ne précède pas la complexité, elle la suit.
 \end{epigramme}
 
+\clearpage
 \ifleaflet
-\cleardoublepage
+  ~
+  \cleardoublepage
 \fi
 
 \appendix
@@ -919,9 +943,27 @@ Elle contient notamment :
 \end{itemize}
 
 
+\clearpage
+\ifleaflet
+  \thispagestyle{empty}
+  ~
+  \cleardoublepage
+\fi
+
+
 \phantomsection
 \addcontentsline{toc}{section}{Références}
 \bibliographystyle{plainnat}
 \bibliography{flemolymp}
+
+
+\ifleaflet
+  \clearpage
+  \thispagestyle{empty}
+  ~
+  \cleardoublepage
+  \thispagestyle{empty}
+  ~
+\fi
 
 \end{document}
