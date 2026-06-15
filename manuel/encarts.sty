@@ -7,60 +7,60 @@
 
 %%% DEFINITION %%%
 \newtcolorbox[auto counter,number within=section]{definition}[2][]{%
-colback=\colorbg{jeuBG},colframe=jeuCol,fonttitle=\bfseries,
-title=Définition~\thetcbcounter\name{#2}, nameref={#2},
-% breakable,
-#1}
+  colback=\colorbg{jeuBG},colframe=jeuCol,fonttitle=\bfseries,
+  title=Définition~\thetcbcounter\name{#2}, nameref={#2},
+  % breakable,
+  #1}
 
 %%% EXEMPLE %%%
 \newtcolorbox[auto counter,number within=section]{exemple}[2][]{%
-colback=\colorbg{exBG},colframe=exCol,fonttitle=\bfseries,
-title=Exemple~\name{#2}, nameref={#2},
-%breakable, % Coupe la boîte avec les paramètres par défaut
-#1}
+  colback=\colorbg{exBG},colframe=exCol,fonttitle=\bfseries,
+  title=Exemple~\name{#2}, nameref={#2},
+  %breakable, % Coupe la boîte avec les paramètres par défaut
+  #1}
 
 %%% EXERCICE %%%
 \newtcolorbox[auto counter,number within=section,list inside=loexo]{exercice}[3][]{%
-colback=\colorbg{pedagoBG},colframe=pedagoCol,fonttitle=\bfseries,
-title=Exercice~\thetcbcounter\name{#2} (#3~min), nameref={#2},
-#1,
-list text={#2 (#3~min)}}
+  colback=\colorbg{pedagoBG},colframe=pedagoCol,fonttitle=\bfseries,
+  title=Exercice~\thetcbcounter\name{#2} (#3~min), nameref={#2},
+  #1,
+  list text={#2 (#3~min)}}
 
 %%% REMARQUE %%%
 \newtcolorbox[auto counter,number within=section]{remarque}[2][]{%
-colback=\colorbg{pbBG},colframe=pbCol,fonttitle=\bfseries,
-title=Remarque~\thetcbcounter\name{#2}, nameref={#2},
-% breakable,
-#1}
+  colback=\colorbg{pbBG},colframe=pbCol,fonttitle=\bfseries,
+  title=Remarque~\thetcbcounter\name{#2}, nameref={#2},
+  % breakable,
+  #1}
 
 
 %%% ALGORITHME %%%
 \newtcolorbox[auto counter,number within=section]{algorithme}[2][]{%
-colback=\colorbg{algoBG},colframe=algoCol,fonttitle=\bfseries,
-title=Algorithme~\thetcbcounter\name{#2}, nameref={#2},
-%enhanced, breakable, % Coupe la boîte sans bordure de fin
-#1}
+  colback=\colorbg{algoBG},colframe=algoCol,fonttitle=\bfseries,
+  title=Algorithme~\thetcbcounter\name{#2}, nameref={#2},
+  %enhanced, breakable, % Coupe la boîte sans bordure de fin
+  #1}
 
 %%% PLUS LOIN %%%
 \newtcolorbox[auto counter,number within=section]{plusloin}[2][]{%
-colback=\colorbg{loinBG},colframe=loinCol,fonttitle=\bfseries,
-title=Allons plus loin\name{#2}, nameref={#2},
-%enhanced, breakable,
-%overlay first={
-%  \path[font=\small\itshape, color = tcbcolframe] (frame.south) node (tmp) {(suite sur la prochaine page)};
-%  \draw[thick, color = tcbcolframe, dotted] (frame.south west) -- (tmp.west) (tmp.east) -- (frame.south east);
-%},
-%overlay middle={
-%  \path[font=\small\itshape, color = tcbcolframe] (frame.north) node (tmp1) {(suite de Allons plus loin\name{#2})};
-%  \draw[thick, color = tcbcolframe, dotted] (frame.north west) -- (tmp1.west) (tmp1.east) -- (frame.north east);
-%  \path[font=\small\itshape, color = tcbcolframe] (frame.south) node (tmp2) {(suite sur la prochaine page)};
-%  \draw[thick, color = tcbcolframe, dotted] (frame.south west) -- (tmp2.west) (tmp2.east) -- (frame.south east);
-%},
-%overlay last={
-%  \path[font=\small\itshape, color = tcbcolframe] (frame.north) node (tmp) {(suite de Allons plus loin\name{#2})};
-%  \draw[thick, color = tcbcolframe, dotted] (frame.north west) -- (tmp.west) (tmp.east) -- (frame.north east);
-%},
-#1}
+  colback=\colorbg{loinBG},colframe=loinCol,fonttitle=\bfseries,
+  title=Allons plus loin\name{#2}, nameref={#2},
+  %enhanced, breakable,
+  %overlay first={
+  %  \path[font=\small\itshape, color = tcbcolframe] (frame.south) node (tmp) {(suite sur la prochaine page)};
+  %  \draw[thick, color = tcbcolframe, dotted] (frame.south west) -- (tmp.west) (tmp.east) -- (frame.south east);
+  %},
+  %overlay middle={
+  %  \path[font=\small\itshape, color = tcbcolframe] (frame.north) node (tmp1) {(suite de Allons plus loin\name{#2})};
+  %  \draw[thick, color = tcbcolframe, dotted] (frame.north west) -- (tmp1.west) (tmp1.east) -- (frame.north east);
+  %  \path[font=\small\itshape, color = tcbcolframe] (frame.south) node (tmp2) {(suite sur la prochaine page)};
+  %  \draw[thick, color = tcbcolframe, dotted] (frame.south west) -- (tmp2.west) (tmp2.east) -- (frame.south east);
+  %},
+  %overlay last={
+  %  \path[font=\small\itshape, color = tcbcolframe] (frame.north) node (tmp) {(suite de Allons plus loin\name{#2})};
+  %  \draw[thick, color = tcbcolframe, dotted] (frame.north west) -- (tmp.west) (tmp.east) -- (frame.north east);
+  %},
+  #1}
 % Comme précédemment mais en couleur avec des pointillés :)
 
 %%% OBJECTIFS %%%
@@ -77,33 +77,33 @@ title=Allons plus loin\name{#2}, nameref={#2},
 
 %%% EPIGRAMME %%%
 \newtcolorbox{epigramme}[1][]{%
-colback=\colorbg{quoteBG}, colframe=quoteCol, fonttitle=\bfseries,
-title=Epigramme d'Alan J. Perlis,
-#1}
+  colback=\colorbg{quoteBG}, colframe=quoteCol, fonttitle=\bfseries,
+  title=Epigramme d'Alan J. Perlis,
+  #1}
 
 %%% CITATION %%%
 \newtcolorbox{mycitation}[2][]{%
-left skip=1cm, colback=\colorbg{quoteBG}, colframe=quoteCol,
-title=\textcolor{black}{-- #2}, detach title, after upper={\par\tcbtitle},
-#1
+  left skip=1cm, colback=\colorbg{quoteBG}, colframe=quoteCol,
+  title=\textcolor{black}{-- #2}, detach title, after upper={\par\tcbtitle},
+  #1
 }
 
 \tcbset{pellicule/.style = {enhanced,
-overlay = {
-\pic [tcbcolframe, scale = 0.5] at (title.south west) {pellicule = {value = 42}};
-\pic [tcbcolframe, scale = 0.5] at ([yshift = -2.3mm]title.north west) {pellicule = {value = 42}};
-\pic [tcbcolframe, scale = 0.5] at (frame.south west) {pellicule = {value = 42}};
-}}}
+      overlay = {
+          \pic [tcbcolframe, scale = 0.5] at (title.south west) {pellicule = {value = 42}};
+          \pic [tcbcolframe, scale = 0.5] at ([yshift = -2.3mm]title.north west) {pellicule = {value = 42}};
+          \pic [tcbcolframe, scale = 0.5] at (frame.south west) {pellicule = {value = 42}};
+        }}}
 
 \tcbset{stamp/.style = {enhanced,
-overlay = {
-\node [anchor = north east] at (frame.north east) {\includegraphics[height = 1.5cm]{fig/logo_bw.pdf}};
-}}}
+      overlay = {
+          \node [anchor = north east] at (frame.north east) {\includegraphics[height = 1.4cm]{fig/logo_bw.pdf}};
+        }}}
 
 \newtcolorbox{card}[2][]{%
-fonttitle = \bfseries\large, halign title = center, valign = center, boxrule = 0mm, toptitle = 6mm, bottomtitle = 6mm, bottom = 5mm, width = 16.8cm,
-title = #2,
-#1
+  fonttitle = \bfseries\large, halign title = center, valign = center, boxrule = 0mm, toptitle = 6mm, bottomtitle = 6mm, bottom = 5mm, width = 16.8cm,
+  title = #2,
+  #1
 }
 
 \newtcbox{\cardbox}[2][]{fonttitle = \bfseries\large, halign title = center, toptitle = 3mm, bottomtitle = 3mm, coltitle = black, title = #2, tikznode, #1}
