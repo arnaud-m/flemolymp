@@ -1,4 +1,4 @@
-\documentclass[10pt, a5paper]{article}
+\documentclass[10pt, a5paper,twoside]{article}
 
 \usepackage{booktabs}
 \usepackage{tikz}
@@ -15,13 +15,25 @@
 \setlist[itemize]{itemsep = 0mm}
 
 \begin{document}
+
+
 \pagestyle{empty}
 
 \centering
 
 \tcbset{coltitle = black, stamp}
 
-~
+\begin{titlepage}
+  \vfill
+  \includegraphics[width = 8cm]{fig/logo.pdf}
+  \\\vspace{3cm}
+  \centering\LARGE%
+  Livret d'instances
+\end{titlepage}
+
+\cleardoublepage
+
+
 \vfill
 
 \begin{card}[width = \textwidth, colback = olympicblue, colframe = olympicblue, bottomtitle = 2mm]{Vidéo 1}
