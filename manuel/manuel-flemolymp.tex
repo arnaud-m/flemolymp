@@ -31,7 +31,7 @@
 \addtolength{\topmargin}{-2pt}
 
 \title{La flemme olympique}
-\author{Arnaud Malapert et Marie Pelleau \\
+\author{Arnaud Malapert, Marie Pelleau, Alexia Gastaud \\
 Université Côte d'Azur, CNRS, I3S, France
 }
 \date{}
@@ -138,6 +138,14 @@ Ils permettent de manipuler directement les données, de tester différentes str
 
 
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.75\textwidth]{materiel_flemo}
+  \caption{Photo du matériel.}
+  \label{fig:materiel}
+\end{figure}
+
+
 \begin{table}[htbp]
   \centering
   \begin{tabular}{p{\textwidth}}
@@ -152,25 +160,19 @@ Ils permettent de manipuler directement les données, de tester différentes str
     \midrule
     \multicolumn{1}{c}{\emph{Algorithmes gloutons} (Sections \ref{sec:unn}, \ref{sec:gs}, et \ref{sec:mtgs})} \\
      4 règlettes graduées pour organiser les extraits en une séquence vidéo \\
-     2 fermoirs pour maintenir les extrémités des règlettes fermées \\
+    2 fermoirs pour maintenir les extrémités des règlettes fermées \\
      1 marqueur pour indiquer la durée maximale de la séquence \\
     \midrule
     \multicolumn{1}{c}{\emph{Programmation dynamique} (Section~\ref{sec:dp})} \\
     4 règlettes pour marquer les durées atteintes \\
-    \texttt{XX} marqueurs pour réglette  \\
+    2 grands fermoirs pour maintenir les extrémités des règlettes fermées \\
+    50 marqueurs pour réglette  \\
     1 marqueur pour tableau blanc  \\
     \bottomrule
   \end{tabular}
   \caption{Liste du matériel.}
   \label{tab:materiel}
 \end{table}
-
-\begin{figure}[htbp]
-  \centering
-
-  \caption{Photo du matériel.}
-  \label{fig:materiel}
-\end{figure}
 
 La mise en place est pensée pour favoriser le travail en petits groupes.
 Un espace est également prévu afin de permettre des démonstrations et des explications de l'animateur.
@@ -812,6 +814,15 @@ Dans les sections suivantes, nous utiliserons donc le terme \emph{objet} tout en
     Et qui sait ? Peut-être pourrez-vous enfin profiter des Jeux\dots autrement que derrière un écran.
 
 
+    Pour vous aider à démarrer, Alan vous propose une implémentation simple de l'algorihtme glouton en figure \ref{fig:gsR}.
+
+    \begin{figure}[htbp]
+      \centering
+      \includegraphics[width=0.95\textwidth]{simpleGreedySearchSSP}
+      \caption{Exemple d'implémentation de l'algorithme glouton en langage R.}
+      \label{fig:gsR}
+    \end{figure}
+
     \section{Problèmes connexes}
     \label{sec:related}
 
@@ -897,10 +908,10 @@ Ils illustrent l'importance des algorithmes pour organiser et optimiser des ress
 
 \clearpage
 \ifleaflet
+  \thispagestyle{empty}
   ~
   \cleardoublepage
 \fi
-
 \appendix
 
 \section{Guide pour les animateurs}
