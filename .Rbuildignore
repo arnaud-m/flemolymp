@@ -3,5 +3,5 @@
 ^.*\.Rproj$
 ^\.gitignore$
 ^data-raw$
-^manuel$
+^doc$
 ^patterns$
