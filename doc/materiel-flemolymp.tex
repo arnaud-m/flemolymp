@@ -1,0 +1,42 @@
+\documentclass[12pt, a5paper, landscape]{article}
+
+\usepackage{booktabs}
+\usepackage{tikz}
+
+\usepackage{encarts}
+\usepackage{colors}
+
+\usepackage[left = 2cm, right = 2cm, top = 5mm, bottom = 5mm]{geometry}
+
+\usepackage{fontspec}
+\setmainfont{Poppins}
+
+\usepackage{marginnote}
+\usepackage{sidenotes}
+
+
+\newif\ifdraftmode
+\draftmodefalse
+
+\reversemarginpar
+\begin{document}
+\pagestyle{empty}
+
+\centering
+
+~
+\vfill
+
+\begin{marginfigure}
+  \hfill\includegraphics[width = 0.85\marginparwidth]{fig/logo_bw.pdf}
+\end{marginfigure}
+\vspace{-7mm}
+\cardbox[colback = olympicyellow, colframe = olympicyellow]{Liste du matériel}{
+\input{tex/materiel}
+}
+
+\vfill
+
+\clearpage
+
+\end{document}

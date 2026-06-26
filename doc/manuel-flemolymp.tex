@@ -38,6 +38,7 @@ Université Côte d'Azur, CNRS, I3S, France
 
 % \draftmodetrue % By default at false
 % \notikztrue % By default at false
+
 % \showsolstrue % By default at false
 \leaflettrue % By default at false
 
@@ -136,47 +137,27 @@ Le tableau~\ref{tab:materiel} décrit les supports de l'activité et la figure~\
 Les supports sont introduits progressivement afin de s'adapter aux différents publics et faciliter la compréhension.
 Ils permettent de manipuler directement les données, de tester différentes stratégies et de formaliser progressivement les raisonnements.
 
-
-
-\begin{figure}[htbp]
+\begin{table}[thb]
+  \small
   \centering
-  \includegraphics[width=0.75\textwidth]{materiel_flemo}
+  \input{tex/materiel}
+  \caption{Liste du matériel.}
+  \label{tab:materiel}
+\end{table}
+
+
+\begin{figure}[thp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{materiel_flemo}
   \caption{Photo du matériel.}
   \label{fig:materiel}
 \end{figure}
 
 
-\begin{table}[htbp]
-  \centering
-  \begin{tabular}{p{\textwidth}}
-    \toprule
-    \multicolumn{1}{c}{\emph{Support Général}} \\
-     1 manuel du jeu  \\
-     1 fiche d'algorithmes  \\
-     1 livret contenant des collections d'extraits vidéo \\
-    \midrule
-    \multicolumn{1}{c}{\emph{Problème de partition} (Sections~\ref{sec:partition})} \\
-     25 barres représentant des extraits vidéo avec des durées allant de 1 à 25 \\
-    \midrule
-    \multicolumn{1}{c}{\emph{Algorithmes gloutons} (Sections \ref{sec:unn}, \ref{sec:gs}, et \ref{sec:mtgs})} \\
-     4 règlettes graduées pour organiser les extraits en une séquence vidéo \\
-    2 fermoirs pour maintenir les extrémités des règlettes fermées \\
-     1 marqueur pour indiquer la durée maximale de la séquence \\
-    \midrule
-    \multicolumn{1}{c}{\emph{Programmation dynamique} (Section~\ref{sec:dp})} \\
-    4 règlettes pour marquer les durées atteintes \\
-    2 grands fermoirs pour maintenir les extrémités des règlettes fermées \\
-    50 marqueurs pour réglette  \\
-    1 marqueur pour tableau blanc  \\
-    \bottomrule
-  \end{tabular}
-  \caption{Liste du matériel.}
-  \label{tab:materiel}
-\end{table}
-
 La mise en place est pensée pour favoriser le travail en petits groupes.
 Un espace est également prévu afin de permettre des démonstrations et des explications de l'animateur.
 Avant le début de l'activité, les participants sont regroupés en binômes, puis le matériel est distribué et vérifié.
+
 
 
 
