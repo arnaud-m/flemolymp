@@ -3,7 +3,7 @@ inputs <-
 ##    IN.n IN.capa IN.dups IN.even GS.status GS.iterations MTGS.status MTGS.iterations DP.status DP.iterations DP.solutions DP.density type
 ## 1     6      43       0    TRUE      TRUE             6        TRUE               1      TRUE             5            2  0.3636364    1
 ## 2     6      48       0    TRUE      TRUE             6        TRUE               1      TRUE             5            2  0.3061224    1
-## 3     6      48       0    TRUE      TRUE             6        TRUE               1      TRUE             5            2  0.3061224    1
+## 3     6      42       0    TRUE      TRUE             6        TRUE               1      TRUE             5            2  0.3953488    1
 ## 4     9      46       0    TRUE      TRUE             9        TRUE               1      TRUE             7            6  0.7872340    1
 ## 5     9      49       0    TRUE      TRUE             9        TRUE               1      TRUE             7            6  0.6800000    1
 ## 6     9      50       0    TRUE      TRUE             9        TRUE               1      TRUE             7            6  0.7450980    1
@@ -13,7 +13,7 @@ inputs <-
 ## 10   15     100       0    TRUE      TRUE            14        TRUE               1      TRUE             7          422  0.6039604    1
         c(25L, 22L, 14L, 12L, 9L, 4L),
         c(25L, 24L, 18L, 13L, 11L, 5L),
-        c(25L, 24L, 18L, 13L, 11L, 5L),
+        c(23L, 20L, 18L, 13L, 9L, 1L),
         c(21L, 17L, 15L, 13L, 9L, 6L, 5L, 4L, 2L),
         c(25L, 20L, 19L, 11L, 8L, 6L, 5L, 3L, 1L),
         c(24L, 18L, 15L, 14L, 13L, 7L, 6L, 2L, 1L),
