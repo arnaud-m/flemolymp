@@ -1,0 +1,13 @@
+bibentry(
+    bibtype = "Manual",
+    key= "malapert.ea-26",
+    title = "Flemme Olympique: Interactive Operations Research Workshops for Terra Numerica",
+    author = c(
+        person("Arnaud", "Malapert"),
+        person("Marie", "Pelleau"),
+        person("Alexia", "Gastaud")
+    ),
+    year = "2026",
+    url = "https://github.com/arnaud-m/flemolymp",
+    note = "R package with pedagogical material developed for Terra Numerica"
+)
