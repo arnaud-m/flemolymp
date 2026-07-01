@@ -1,4 +1,4 @@
-# flemolymp 0.0.1
+# flemolymp 0.1.0
 
 ## Initial Release
 
