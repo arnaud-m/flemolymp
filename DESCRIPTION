@@ -1,6 +1,6 @@
 Package: flemolymp
 Title: Flemme Olympique - Interactive operations research workshops for Terra Numerica
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: c(
     person("Arnaud", "Malapert", , "arnaud.malapert@univ-cotedazur.fr", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-0099-479X")),
     person("Marie", "Pelleau", , "marie.pelleau@univ-cotedazur.fr", role = "aut"),
