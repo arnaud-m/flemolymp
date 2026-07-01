@@ -10,6 +10,7 @@ The goal of **flemolymp** is to provide a hands-on introduction to the **subset 
 
 Participants tackle computational challenges while creating **Olympic-style highlight videos**, combining **algorithmic thinking** with **creative storytelling**. This activity is designed for **Terra Numerica**, offering an engaging way to explore optimization concepts in a playful and interactive setting.
 
+You can read the [French facilitator's manual](doc/manuel-flemolymp.pdf) for more information.
 
 ## Installation
 

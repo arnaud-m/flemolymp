@@ -1,3 +1,9 @@
-# flemolymp 0.0.0.9000
+# flemolymp 0.0.1
+
+## Initial Release
 
 * Initial github submission.
+* First public release of the `flemolymp` package.
+* Interactive operations research workshops developed for Terra Numerica.
+* Includes datasets, teaching material, and workshop documentation.
+* Participated in the Trophée des Makers organized by Terra Numerica.
